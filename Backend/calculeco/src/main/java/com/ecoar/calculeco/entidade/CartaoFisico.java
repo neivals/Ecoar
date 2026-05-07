@@ -1,18 +1,25 @@
 package com.ecoar.calculeco.entidade;
 
-public class CartaoFisico {
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Entity
+@DiscriminatorValue("FISICO")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class CartaoFisico extends MetodoPagamento {
+
+    @Enumerated(EnumType.STRING)
     private TipoMaterial tipoMaterial;
 
-    public CartaoFisico(TipoMaterial tipoMaterial) {
-        this.tipoMaterial = tipoMaterial;
-    }
-
-    public void setTipoMaterial(TipoMaterial tipoMaterial) {
-        this.tipoMaterial = tipoMaterial;
-    }
-
-    public TipoMaterial getTipoMaterial() {
-        return this.tipoMaterial;
-    }
+    @Enumerated(EnumType.STRING)
+    private TipoTransporte transporte;
 }
