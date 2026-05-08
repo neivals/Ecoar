@@ -24,4 +24,9 @@ public class MetodoPagamento {
 
     @Column(nullable = false)
     private int quantidadeTransacoes;
+
+    MetodoPagamento(int quantidadeCartoes, int quantidadeTransacoes) {
+        this.quantidadeCartoes = quantidadeCartoes;
+        this.quantidadeTransacoes = quantidadeTransacoes;
+    }
 }
