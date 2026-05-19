@@ -4,8 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum TipoTransporte {
-    AVIAO(1000),
-    CAMINHAO(1000);
+    AVIAO(2.446),
+    CAMINHAO(0.529);
 
     private final double emissaoPorKm;
 
