@@ -22,4 +22,4 @@ function Resultado({ dados }) {
     );
 }
 
-export default Resultado;
+export default Resultado;;
