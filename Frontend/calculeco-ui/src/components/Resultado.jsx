@@ -1,30 +1,25 @@
-import React from 'react';
+
 
 function Resultado({ dados }) {
-    if (!dados){
+    if (!dados) {
         return null;
     }
 
     return (
         <div className="resultado-container">
-            <h2>Resultados</h2>
+            <h2>Resultados do Cálculo</h2>
 
             <div className="resultado-item">
-                <label>EmissaoTotalFisico:</label>
+                <label>Emissão Total Físico (kg CO2):</label>
                 <span>{dados.emissaoTotalFisico}</span>
             </div>
 
             <div className="resultado-item">
-                <label>EmissãoTotalDigital:</label>
+                <label>Emissão Total Digital (kg CO2):</label>
                 <span>{dados.emissaoTotalDigital}</span>
             </div>
-
-
         </div>
-        );
-
-
+    );
 }
 
-
-export default Resultado;
+export default Resultado;;
