@@ -1,10 +1,12 @@
 package com.ecoar.calculeco.entidade;
 
+import com.ecoar.calculeco.entidade.enums.Periodo;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -27,11 +29,27 @@ public class EmissaoSolicitacao {
     private CartaoDigital cartaoDigital;
 
     @Column(nullable = false)
-    private double custoTotalFisico;
+    private Periodo periodo;
 
     @Column(nullable = false)
-    private double custoTotalDigital;
+    private double emissaoTotalFisico;
+
+    @Column(nullable = false)
+    private double emissaoTotalDigital;
+
+    @Column(nullable = false)
+    private double diferencaEmissao;
 
     @CreationTimestamp
     private LocalDateTime dataSolicitacao;
+
+    @ElementCollection
+    @CollectionTable(name = "emissoes_cartao_fisico", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "emissao", nullable = false)
+    private List<Double> emissaoFisicoPorMes;
+
+    @ElementCollection
+    @CollectionTable(name = "emissoes_cartao_digital", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "emissao", nullable = false)
+    private List<Double> emissaoDigitalPorMes;
 }
