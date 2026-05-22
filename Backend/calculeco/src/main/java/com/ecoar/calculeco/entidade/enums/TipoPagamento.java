@@ -4,10 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum TipoPagamento {
-    NFC(10),
-    PIX(10),
-    WALLET(10),
-    QRCODE(10);
+    FISICO(0.05),
+    DIGITAL(0.01);
 
     private final double emissaoPorTransacao;
 

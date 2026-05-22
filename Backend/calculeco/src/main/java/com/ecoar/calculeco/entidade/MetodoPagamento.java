@@ -20,13 +20,13 @@ public class MetodoPagamento {
     private Long id;
 
     @Column(nullable = false)
-    private int quantidadeCartoes;
+    private int quantidadeCartoesPorMes = 1000;
 
     @Column(nullable = false)
-    private int quantidadeTransacoes;
+    private int quantidadeTransacoesPorMes = 15000;
 
-    MetodoPagamento(int quantidadeCartoes, int quantidadeTransacoes) {
-        this.quantidadeCartoes = quantidadeCartoes;
-        this.quantidadeTransacoes = quantidadeTransacoes;
+    MetodoPagamento(int quantidadeCartoesPorMes, int quantidadeTransacoesPorMes) {
+        this.quantidadeCartoesPorMes = quantidadeCartoesPorMes;
+        this.quantidadeTransacoesPorMes = quantidadeTransacoesPorMes;
     }
 }

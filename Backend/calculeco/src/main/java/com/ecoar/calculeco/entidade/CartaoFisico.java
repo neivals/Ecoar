@@ -1,6 +1,7 @@
 package com.ecoar.calculeco.entidade;
 
 import com.ecoar.calculeco.entidade.enums.TipoMaterial;
+import com.ecoar.calculeco.entidade.enums.TipoPagamento;
 import com.ecoar.calculeco.entidade.enums.TipoTransporte;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -20,13 +21,17 @@ import lombok.Setter;
 public class CartaoFisico extends MetodoPagamento {
 
     @Enumerated(EnumType.STRING)
+    private TipoPagamento tipoPagamento;
+
+    @Enumerated(EnumType.STRING)
     private TipoMaterial material;
 
     @Enumerated(EnumType.STRING)
     private TipoTransporte transporte;
 
-    public CartaoFisico(int quantidadeCartoes, int quantidadeTransacoes, TipoMaterial material, TipoTransporte transporte) {
-        super(quantidadeCartoes, quantidadeTransacoes);
+    public CartaoFisico(int quantidadeCartoesPorMes, int quantidadeTransacoesPorMes, TipoPagamento tipoPagamento, TipoMaterial material, TipoTransporte transporte) {
+        super(quantidadeCartoesPorMes, quantidadeTransacoesPorMes);
+        this.tipoPagamento = tipoPagamento;
         this.material = material;
         this.transporte = transporte;
     }
