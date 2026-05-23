@@ -53,38 +53,50 @@ public class CalculoService {
     }
 
     private double calcularFisico(RequestDTO dto, CartaoFisico cartaoFisico) {
-        double meses = dto.getPeriodo().getPeriodoEmMeses();
-        double emissaoTotal = (cartaoFisico.getMaterial().getEmissaoNaProducao() * cartaoFisico.getQuantidadeCartoesPorMes() * meses) +
-                (cartaoFisico.getTipoPagamento().getEmissaoPorTransacao() * cartaoFisico.getQuantidadeTransacoesPorMes() * meses) +
-                (cartaoFisico.getTransporte().getEmissaoPorKm() * meses);
-        return emissaoTotal;
+        int meses = dto.getPeriodo().getPeriodoEmMeses();
+        double emissaoProducao = (cartaoFisico.getMaterial().getEmissaoNaProducao() * cartaoFisico.getQuantidadeCartoesPorMes() * meses);
+        double emissaoTransacao = (cartaoFisico.getTipoPagamento().getEmissaoPorTransacao() * cartaoFisico.getQuantidadeTransacoesPorMes() * meses);
+        double emissaoTransporte = (cartaoFisico.getTransporte().getEmissaoPorKm() * meses);
+        double emissaoDecarte = 0;
+        if (dto.getPeriodo().incluirDescarte()) {
+            int mesesDescarte = meses - 36;
+            emissaoDecarte = cartaoFisico.emissaoDescarteMediaPorMes() * mesesDescarte;
+        }
+        return emissaoProducao + emissaoTransacao + emissaoTransporte + emissaoDecarte;
     }
 
     private double calcularDigital(RequestDTO dto, CartaoDigital cartaoDigital) {
-        double meses = dto.getPeriodo().getPeriodoEmMeses();
-        double emissaoTotal = (cartaoDigital.getQuantidadeTransacoesPorMes() * cartaoDigital.getTipoPagamento().getEmissaoPorTransacao() * meses);
-        return emissaoTotal;
+        int meses = dto.getPeriodo().getPeriodoEmMeses();
+        return (cartaoDigital.getQuantidadeTransacoesPorMes() * cartaoDigital.getTipoPagamento().getEmissaoPorTransacao() * meses);
     }
 
     private void calcularEmissoesPorMes(RequestDTO dto, CartaoFisico cartaoFisico, CartaoDigital cartaoDigital, List<Double> emissoesPorMesFisico, List<Double> emissoesPorMesDigital) {
-        double meses = dto.getPeriodo().getPeriodoEmMeses();
+        int meses = dto.getPeriodo().getPeriodoEmMeses();
         double emissaoNaProducaoFisico = cartaoFisico.getMaterial().getEmissaoNaProducao() * cartaoFisico.getQuantidadeCartoesPorMes();
         double emissaoNaTransacaoFisico = cartaoFisico.getTipoPagamento().getEmissaoPorTransacao() * cartaoFisico.getQuantidadeTransacoesPorMes();
         double emissaoNoTransporteFisico = cartaoFisico.getTransporte().getEmissaoPorKm();
+        double emissaoDecarteFisico = 0;
+        if (dto.getPeriodo().incluirDescarte()) {
+            emissaoDecarteFisico = cartaoFisico.emissaoDescarteMediaPorMes();
+        }
 
         double emissaoNaTransicaoDigital = cartaoDigital.getQuantidadeTransacoesPorMes() * cartaoDigital.getTipoPagamento().getEmissaoPorTransacao();
 
-        for (int i = 0; i < meses + 1; i++) {
+        int pulo = 1;
+        if (meses >= 36) {
+            pulo = 3;
+        }
+
+        for (int i = 0; i < meses + 1; i += pulo) {
             double emissaoFisico = (emissaoNaProducaoFisico * i) + (emissaoNaTransacaoFisico * i) + (emissaoNoTransporteFisico * i);
-            emissoesPorMesFisico.add(emissaoFisico);
+            if (i > 36) {
+                int mesesDescarte = i - 36;
+                emissaoFisico += (emissaoDecarteFisico * mesesDescarte);
+            }
+            emissoesPorMesFisico.add((double)Math.round(emissaoFisico * 1000.0) / 1000.0);
 
             double emissaoDigital = (emissaoNaTransicaoDigital * i);
             emissoesPorMesDigital.add(emissaoDigital);
-            if (meses == 60) {
-                i += 2;
-            } else if (meses == 24) {
-                i += 1;
-            }
         }
     }
 

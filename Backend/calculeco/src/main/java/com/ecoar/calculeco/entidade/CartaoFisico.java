@@ -1,5 +1,6 @@
 package com.ecoar.calculeco.entidade;
 
+import com.ecoar.calculeco.entidade.enums.TipoDescarte;
 import com.ecoar.calculeco.entidade.enums.TipoMaterial;
 import com.ecoar.calculeco.entidade.enums.TipoPagamento;
 import com.ecoar.calculeco.entidade.enums.TipoTransporte;
@@ -34,5 +35,12 @@ public class CartaoFisico extends MetodoPagamento {
         this.tipoPagamento = tipoPagamento;
         this.material = material;
         this.transporte = transporte;
+    }
+
+    public double emissaoDescarteMediaPorMes() {
+        double aterro = (super.getQuantidadeCartoesPorMes() * TipoDescarte.ATERRO.getEmissaoPorCartao()) * 0.7;
+        double incineracao = (super.getQuantidadeCartoesPorMes() * TipoDescarte.INCINERACAO.getEmissaoPorCartao()) * 0.2;
+        double reciclagem = (super.getQuantidadeCartoesPorMes() * TipoDescarte.RECICLAGEM.getEmissaoPorCartao()) * 0.1;
+        return aterro + incineracao + reciclagem;
     }
 }
