@@ -11,6 +11,11 @@ import com.ecoar.calculeco.repository.EmissaoSolicitacaoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +23,9 @@ import java.util.Optional;
 
 @Service
 public class CalculoService {
+
+    @Value("${opencage.key}")
+    private String apiKey;
 
     @Autowired
     private EmissaoSolicitacaoRepository repo;
@@ -104,5 +112,39 @@ public class CalculoService {
         return repo.findById(id).map(request -> new ResultadoEmissaoDTO(
                 request.getEmissaoTotalFisico(), request.getEmissaoTotalDigital(), request.getDiferencaEmissao(),
                 request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes()));
+    }
+
+    public String buscarCoordenadas(String endereco) {
+
+        try {
+
+            String url =
+                    "https://api.opencagedata.com/geocode/v1/json?q="
+                            + endereco.replace(" ", "%20")
+                            + "&key="
+                            + apiKey;
+
+            RestTemplate restTemplate = new RestTemplate();
+
+            String response = restTemplate.getForObject(url, String.class);
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            JsonNode root = mapper.readTree(response);
+
+            JsonNode geometry =
+                    root.get("results")
+                            .get(0)
+                            .get("geometry");
+
+            double lat = geometry.get("lat").asDouble();
+            double lng = geometry.get("lng").asDouble();
+
+            return "Latitude: " + lat + " Longitude: " + lng;
+
+        } catch (Exception e) {
+
+            return "Erro: " + e.getMessage();
+        }
     }
 }
