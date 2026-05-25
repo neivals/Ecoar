@@ -17,4 +17,5 @@ public class ResultadoEmissaoDTO {
     private double diferencaEmissao;
     private List<Double> emissaoFisicoPorMes = new ArrayList<>();
     private List<Double> emissaoDigitalPorMes = new ArrayList<>();
+    private String coordenadas;
 }

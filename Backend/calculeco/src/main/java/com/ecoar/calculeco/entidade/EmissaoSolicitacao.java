@@ -40,6 +40,8 @@ public class EmissaoSolicitacao {
     @Column(nullable = false)
     private double diferencaEmissao;
 
+    private String coordenadas;
+
     @CreationTimestamp
     private LocalDateTime dataSolicitacao;
 

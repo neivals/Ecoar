@@ -1,5 +1,3 @@
-
-
 function Resultado({ dados }) {
     if (!dados) {
         return null;
@@ -8,6 +6,11 @@ function Resultado({ dados }) {
     return (
         <div className="resultado-container">
             <h2>Resultados do Cálculo</h2>
+
+            <div className="resultado-item">
+                <label>Coordenadas Obtidas:</label>
+                <span>{dados.coordenadas || "Sem coordenadas mapeadas"}</span>
+            </div>
 
             <div className="resultado-item">
                 <label>Emissão Total Físico (kg CO2):</label>
@@ -22,4 +25,4 @@ function Resultado({ dados }) {
     );
 }
 
-export default Resultado;;
+export default Resultado;
