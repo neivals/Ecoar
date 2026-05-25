@@ -42,6 +42,7 @@ public class CalculoService {
         List<Double> emissaoFisicoPorMes = new ArrayList<>();
         List<Double> emissaoDigitalPorMes = new ArrayList<>();
         calcularEmissoesPorMes(dto, cartaoFisico, cartaoDigital, emissaoFisicoPorMes, emissaoDigitalPorMes);
+        String coordenadasObtidas = buscarCoordenadas(dto.getEndereco());
 
         EmissaoSolicitacao request = EmissaoSolicitacao.builder()
                 .cartaoFisico(cartaoFisico)
@@ -52,12 +53,13 @@ public class CalculoService {
                 .diferencaEmissao(diferenca)
                 .emissaoFisicoPorMes(emissaoFisicoPorMes)
                 .emissaoDigitalPorMes(emissaoDigitalPorMes)
+                .coordenadas(coordenadasObtidas)
                 .build();
 
         repo.save(request);
 
         return new ResultadoEmissaoDTO(request.getEmissaoTotalFisico(), request.getEmissaoTotalDigital(), request.getDiferencaEmissao(),
-                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes());
+                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes(), request.getCoordenadas());
     }
 
     private double calcularFisico(RequestDTO dto, CartaoFisico cartaoFisico) {
@@ -111,7 +113,7 @@ public class CalculoService {
     public Optional<ResultadoEmissaoDTO> buscarPorID(Long id) {
         return repo.findById(id).map(request -> new ResultadoEmissaoDTO(
                 request.getEmissaoTotalFisico(), request.getEmissaoTotalDigital(), request.getDiferencaEmissao(),
-                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes()));
+                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes(), request.getCoordenadas()));
     }
 
     public String buscarCoordenadas(String endereco) {
