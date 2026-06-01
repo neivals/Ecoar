@@ -1,0 +1,1099 @@
+.paginacalculadora {
+  width: 100%;
+  height: 1107px;
+  position: relative;
+  background-color: #eaf3ff;
+  overflow: hidden;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  font-size: 16px;
+  color: #162056;
+  font-family: Kufam;
+}
+.mergedAsset1Icon {
+  position: absolute;
+  top: -20px;
+  left: calc(50% - 820px);
+  width: 1640px;
+  height: 1603.2px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.inputFields,
+.mergedAsset1Child {
+  position: absolute;
+  top: 176px;
+  left: 20px;
+  width: 1600px;
+  height: 1427.2px;
+}
+.inputFields {
+  top: 459px;
+  left: 50px;
+  width: 393px;
+  height: 638px;
+}
+.formularioContent,
+.formulariocontainer {
+  position: absolute;
+  width: calc(100% - 20px);
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  height: 618px;
+}
+.formulariocontainer {
+  border-radius: 20px;
+  background-color: #fff;
+  height: 598px;
+}
+.formularioregiaoWrapper {
+  position: absolute;
+  top: 864px;
+  left: 85px;
+  width: 313px;
+  height: 71px;
+}
+.formularioregiao {
+  position: absolute;
+  width: calc(100% - 20px);
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  box-shadow: 0 4px 4px rgba(22, 32, 86, 0.25);
+  border-radius: 20px;
+  background-color: #eaf3ff;
+  height: 51px;
+}
+.inputFields2 {
+  position: absolute;
+  top: 660px;
+  left: 149px;
+  width: 249px;
+  height: 54px;
+}
+.inputFieldsChild {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: #eaf3ff;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 20px;
+  width: 229px;
+  height: 34px;
+}
+.inputFields3,
+.inputFields4 {
+  position: absolute;
+  top: 709px;
+  left: 149px;
+  width: 249px;
+  height: 54px;
+}
+.inputFields4 {
+  top: 758px;
+}
+.inputFieldsInner {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 20px;
+  background-color: #eaf3ff;
+  width: 229px;
+  height: 34px;
+}
+.inputFields5 {
+  position: absolute;
+  top: 611px;
+  left: 85px;
+  width: 54px;
+  height: 54px;
+}
+.formularioContent2 {
+  position: absolute;
+  top: 10px;
+  left: 44px;
+  box-shadow: 0 4px 4px rgba(22, 32, 86, 0.25);
+  background-color: #eaf3ff;
+  width: 34px;
+  height: 34px;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+}
+.inputFields6,
+.inputFields7,
+.inputFields8 {
+  position: absolute;
+  top: 660px;
+  left: 85px;
+  width: 54px;
+  height: 54px;
+}
+.inputFields7,
+.inputFields8 {
+  top: 709px;
+}
+.inputFields8 {
+  top: 758px;
+}
+.mergedAsset1Inner {
+  position: absolute;
+  top: 977px;
+  left: 75px;
+  width: 333px;
+  height: 91px;
+}
+.formularioperiodoWrapper {
+  position: absolute;
+  width: calc(100% - 20px);
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  height: 71px;
+}
+.inputFields9 {
+  position: absolute;
+  top: 621px;
+  left: 92px;
+  width: 41px;
+  height: 35px;
+}
+.formularioContentIcon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 21px;
+  height: 15px;
+}
+.inputFields10,
+.inputFields11,
+.inputFields12 {
+  position: absolute;
+  top: 719px;
+  left: 92px;
+  width: 41px;
+  height: 35px;
+}
+.inputFields11,
+.inputFields12 {
+  top: 768px;
+}
+.inputFields12 {
+  top: 1001px;
+  left: 338px;
+  width: 44px;
+  height: 44px;
+}
+.keyboardArrowDownIcon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 24px;
+  height: 24px;
+}
+.inputFields13,
+.inputFields14 {
+  position: absolute;
+  top: 878px;
+  left: 338px;
+  width: 44px;
+  height: 44px;
+}
+.inputFields14 {
+  top: 186px;
+  left: 50px;
+  width: 393px;
+  height: 283px;
+}
+.formularioContent6 {
+  height: 263px;
+}
+.formularioContent6,
+.frameChild,
+.frameSection,
+.infocontainer {
+  position: absolute;
+  width: calc(100% - 20px);
+  top: 10px;
+  right: 10px;
+  left: 10px;
+}
+.infocontainer {
+  border-radius: 20px;
+  background-color: #fff;
+  height: 243px;
+}
+.frameChild,
+.frameSection {
+  height: 176px;
+}
+.frameChild {
+  background-color: #162056;
+  height: 156px;
+}
+.inputFields15 {
+  position: absolute;
+  top: 60px;
+  left: 277px;
+  width: 113px;
+  height: 76px;
+}
+.image16Icon {
+  position: absolute;
+  width: calc(100% - 20px);
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  max-width: 100%;
+  overflow: hidden;
+  height: 56px;
+  object-fit: cover;
+}
+.inputFields16 {
+  position: absolute;
+  top: 196px;
+  left: 443px;
+  width: 627px;
+  height: 535px;
+}
+.rectangleDiv {
+  position: absolute;
+  width: calc(100% - 20px);
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  border-radius: 20px;
+  background-color: #e2e2e2;
+  height: 515px;
+}
+.inputFields17 {
+  position: absolute;
+  top: 732px;
+  left: 1075px;
+  width: 520px;
+  height: 365px;
+}
+.formularioContent7,
+.paragrafoconscientizacao {
+  position: absolute;
+  width: calc(100% - 20px);
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  height: 345px;
+}
+.paragrafoconscientizacao {
+  border-radius: 20px;
+  background-color: #fff;
+  height: 325px;
+}
+.inputFields18 {
+  position: absolute;
+  top: 741px;
+  left: 443px;
+  width: 627px;
+  height: 346px;
+}
+.inputFieldsChild2 {
+  position: absolute;
+  width: calc(100% - 20px);
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  border-radius: 20px;
+  background-color: #e2e2e2;
+  height: 326px;
+}
+.inputFields19 {
+  position: absolute;
+  top: 731px;
+  left: 433px;
+  width: 647px;
+  height: 366px;
+}
+.comparacaoresultados,
+.comparacaoresultadosWrapper {
+  position: absolute;
+  width: calc(100% - 20px);
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  height: 346px;
+}
+.comparacaoresultados {
+  border-radius: 20px;
+  background-color: #fff;
+  height: 326px;
+}
+.inputFields20 {
+  position: absolute;
+  top: 186px;
+  left: 433px;
+  width: 647px;
+  height: 555px;
+}
+.comparacaomodalidades,
+.comparacaomodalidadesWrapper {
+  position: absolute;
+  width: calc(100% - 20px);
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  height: 535px;
+}
+.comparacaomodalidades {
+  border-radius: 20px;
+  background-color: #fff;
+  height: 515px;
+}
+.inputFields21,
+.inputFields22 {
+  position: absolute;
+  top: 186px;
+  left: 1070px;
+  width: 520px;
+  height: 555px;
+}
+.inputFields22 {
+  top: 551px;
+  left: 1217px;
+  width: 44px;
+  height: 44px;
+}
+.formularioContent9 {
+  position: absolute;
+  top: 10px;
+  left: 34px;
+  background-color: #135b4f;
+  width: 24px;
+  height: 24px;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+}
+.inputFields23 {
+  position: absolute;
+  top: 551px;
+  left: 1331px;
+  width: 44px;
+  height: 44px;
+}
+.formularioContent10 {
+  position: absolute;
+  top: 10px;
+  left: 34px;
+  background-color: #4c9e6b;
+  width: 24px;
+  height: 24px;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+}
+.inputFields24 {
+  position: absolute;
+  top: 523px;
+  left: 624px;
+  width: 80px;
+  height: 143px;
+}
+.legendLabels {
+  position: absolute;
+  width: calc(100% - 20px);
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  background-color: #4c9e6b;
+  height: 123px;
+}
+.inputFields25 {
+  position: absolute;
+  top: 646px;
+  left: 481px;
+  width: 266px;
+  height: 22px;
+}
+.inputFieldsChild3 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 25px;
+  background-color: #162056;
+  width: 246px;
+  height: 2px;
+}
+.chartBackground,
+.inputFields26 {
+  position: absolute;
+  top: 359px;
+  left: 489px;
+  width: 22px;
+  height: 317px;
+}
+.chartBackground {
+  top: 307px;
+  left: 10px;
+  border-radius: 25px;
+  background-color: #162056;
+  width: 297px;
+  height: 2px;
+  transform: rotate(-90deg);
+  transform-origin: 0 0;
+}
+.inputFields27 {
+  position: absolute;
+  top: 402px;
+  left: 523px;
+  width: 80px;
+  height: 264px;
+}
+.legendLabels2 {
+  position: absolute;
+  width: calc(100% - 20px);
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  background-color: #135b4f;
+  height: 244px;
+}
+.inputFields28 {
+  position: absolute;
+  top: 359px;
+  left: 1119px;
+  width: 431px;
+  height: 193px;
+}
+.formularioContentIcon4 {
+  position: absolute;
+  width: calc(100% - 20px);
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  max-width: 100%;
+  overflow: hidden;
+  height: 173px;
+}
+.inputFields29 {
+  position: absolute;
+  top: 332px;
+  left: 1119px;
+  width: 431px;
+  height: 220px;
+}
+.formularioContentIcon5 {
+  position: absolute;
+  width: calc(100% - 20px);
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  max-width: 100%;
+  overflow: hidden;
+  height: 200px;
+}
+.asset84x2,
+.inputFields30 {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  width: 56px;
+  height: 76px;
+}
+.asset84x2 {
+  top: 10px;
+  left: 10px;
+  width: 36px;
+  height: 56px;
+  object-fit: cover;
+}
+.asset34x2,
+.inputFields31 {
+  position: absolute;
+  top: 88px;
+  left: 98px;
+  width: 169px;
+  height: 57px;
+}
+.asset34x2 {
+  top: 10px;
+  left: 10px;
+  width: 149px;
+  height: 37px;
+  object-fit: cover;
+}
+.inputFields38,
+.mergedAsset1Inner2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1640px;
+  height: 196px;
+}
+.inputFields38 {
+  top: 532px;
+  left: 1110px;
+  width: 440px;
+  height: 22px;
+}
+.formularioContent11 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 25px;
+  background-color: #162056;
+  width: 420px;
+  height: 2px;
+}
+.inputFields39 {
+  position: absolute;
+  top: 300px;
+  left: 1117px;
+  width: 22px;
+  height: 260px;
+}
+.formularioContent12 {
+  position: absolute;
+  top: 250px;
+  left: 10px;
+  border-radius: 25px;
+  background-color: #162056;
+  width: 240px;
+  height: 2px;
+  transform: rotate(-90deg);
+  transform-origin: 0 0;
+}
+.colorIndicators,
+.inputFields40 {
+  position: absolute;
+  top: 989px;
+  left: 626px;
+  width: 36px;
+  height: 36px;
+}
+.colorIndicators {
+  top: 10px;
+  left: 26px;
+  background-color: #000b45;
+  width: 16px;
+  height: 16px;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+}
+.inputFields41 {
+  position: absolute;
+  top: 1021px;
+  left: 662px;
+  width: 36px;
+  height: 36px;
+}
+.secondColorIndicators {
+  position: absolute;
+  top: 10px;
+  left: 26px;
+  background-color: #ffc62a;
+  width: 16px;
+  height: 16px;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+}
+.inputFields42 {
+  position: absolute;
+  top: 989px;
+  left: 715px;
+  width: 36px;
+  height: 36px;
+}
+.inputFieldsChild4 {
+  position: absolute;
+  top: 10px;
+  left: 26px;
+  background-color: #2f44b8;
+  width: 16px;
+  height: 16px;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+}
+.inputFields43 {
+  position: absolute;
+  top: 1021px;
+  left: 751px;
+  width: 36px;
+  height: 36px;
+}
+.inputFieldsChild5 {
+  position: absolute;
+  top: 10px;
+  left: 26px;
+  background-color: #ff2f28;
+  width: 16px;
+  height: 16px;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+}
+.inputFields44 {
+  position: absolute;
+  top: 989px;
+  left: 806px;
+  width: 36px;
+  height: 36px;
+}
+.inputFieldsChild6 {
+  position: absolute;
+  top: 10px;
+  left: 26px;
+  background-color: #2ec305;
+  width: 16px;
+  height: 16px;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+}
+.preenchaWrapper {
+  position: absolute;
+  top: calc(50% - 72.5px);
+  left: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  flex-shrink: 0;
+  font-size: 28px;
+}
+.preencha {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  font-weight: 700;
+  font-family: inherit;
+}
+.recursosWrapper {
+  position: absolute;
+  top: calc(50% - 3.5px);
+  left: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  flex-shrink: 0;
+  font-size: 24px;
+}
+.recursos {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  font-weight: 700;
+  font-family: inherit;
+}
+.sidebarFormGroup {
+  position: absolute;
+  top: 746px;
+  left: 65px;
+  width: 285px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 0 0 10px;
+  box-sizing: border-box;
+  gap: 15px;
+  flex-shrink: 0;
+}
+.descarteDeMateriaisWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+  box-sizing: border-box;
+  max-width: 274.9px;
+}
+.descarteDeMateriais {
+  position: relative;
+}
+.regioWrapper {
+  width: 107px;
+  height: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px 10px 0;
+  box-sizing: border-box;
+  font-size: 24px;
+}
+.paginacalculadoraChild {
+  position: absolute;
+  top: calc(50% + 37.5px);
+  left: 131px;
+  width: 249px;
+  height: 54px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.consumoDeGuaWrapper,
+.liberaoDeCo2Wrapper,
+.perodoWrapper,
+.usoDeEnergiaEltricaWrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  flex-shrink: 0;
+}
+.perodoWrapper {
+  bottom: 131px;
+  left: 65px;
+  font-size: 24px;
+}
+.consumoDeGuaWrapper,
+.liberaoDeCo2Wrapper,
+.usoDeEnergiaEltricaWrapper {
+  top: calc(50% + 45.5px);
+  left: 161px;
+}
+.consumoDeGuaWrapper,
+.usoDeEnergiaEltricaWrapper {
+  top: calc(50% + 143.5px);
+  left: 159px;
+}
+.consumoDeGuaWrapper {
+  top: calc(50% + 94.5px);
+}
+.calculatorPageWrapper {
+  position: absolute;
+  top: 69.2px;
+  right: 182.8px;
+  width: 25.2px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.calculatorPageIcon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 5.2px;
+  height: 2px;
+}
+.calculatorPageContainer {
+  position: absolute;
+  top: 68px;
+  right: 159.4px;
+  width: 26.6px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.calculatorPageIcon2 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 6.6px;
+  height: 2px;
+}
+.comparaoDentreModalidadesWrapper {
+  position: absolute;
+  top: 208px;
+  left: calc(50% - 349px);
+  width: 569px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+  max-width: 100%;
+  flex-shrink: 0;
+  font-size: 28px;
+}
+.comparaoDentreModalidades {
+  margin: 0;
+  flex: 1;
+  position: relative;
+  font-size: inherit;
+  font-weight: 700;
+  font-family: inherit;
+  display: inline-block;
+  max-width: 100%;
+}
+.comparaoPorTempoWrapper {
+  position: absolute;
+  top: 206px;
+  right: 153px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  flex-shrink: 0;
+  font-size: 28px;
+}
+.xgWrapper,
+.ygWrapper {
+  align-items: center;
+  justify-content: center;
+  padding: 10px 9px;
+  font-size: 24px;
+}
+.xgWrapper {
+  position: absolute;
+  top: calc(50% - 208.5px);
+  left: calc(50% - 283px);
+  display: flex;
+  flex-shrink: 0;
+  color: #135b4f;
+  font-family: Inter;
+}
+.ygWrapper {
+  top: calc(50% - 87.5px);
+  left: calc(50% - 181px);
+  width: 50px;
+  box-sizing: border-box;
+  color: #4c9e6b;
+}
+.chartLabelsRow,
+.fsicoWrapper,
+.ygWrapper {
+  position: absolute;
+  display: flex;
+  flex-shrink: 0;
+  font-family: Inter;
+}
+.fsicoWrapper {
+  top: calc(50% + 88.5px);
+  left: calc(50% - 290px);
+  align-items: center;
+  justify-content: center;
+  padding: 10px 9px;
+}
+.chartLabelsRow {
+  top: 534px;
+  left: 609px;
+  width: 803px;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  padding: 0 0 10px;
+  box-sizing: border-box;
+  gap: 0;
+  row-gap: 20px;
+  max-width: 100%;
+  text-align: left;
+  font-size: 16px;
+  color: #162056;
+}
+.digitalContainer,
+.digitalWrapper {
+  height: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.digitalContainer {
+  height: 136.9px;
+  padding: 10px 10px 105.9px;
+  font-family: Kufam;
+}
+.fsicoContainer {
+  bottom: 251px;
+  left: calc(50% - 238px);
+}
+.aoUsarOCartoDeBenefciosWrapper,
+.digitalFrame,
+.fsicoContainer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  flex-shrink: 0;
+}
+.digitalFrame {
+  bottom: 251px;
+  left: calc(50% + 48px);
+}
+.aoUsarOCartoDeBenefciosWrapper {
+  top: calc(50% - 186.5px);
+  left: calc(50% - 110px);
+  width: 342px;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.aoUsarO {
+  flex: 1;
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+.aCalculecoTemComoObjetivoWrapper,
+.quantidadeDeRecursosConsumiWrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  flex-shrink: 0;
+}
+.quantidadeDeRecursosConsumiWrapper {
+  top: calc(50% - 243.5px);
+  left: calc(50% - 332px);
+}
+.aCalculecoTemComoObjetivoWrapper {
+  top: 206px;
+  left: 70px;
+  width: 313px;
+  box-sizing: border-box;
+}
+.aCalculecoTem {
+  flex: 1;
+  position: relative;
+}
+.dentroDe1AnoOCartoDigiWrapper {
+  top: calc(50% + 47.5px);
+  right: 91px;
+  width: 398px;
+  box-sizing: border-box;
+  max-width: 100%;
+  text-align: center;
+}
+.dentroDe1AnoOCartoDigiWrapper,
+.fsicoFrame,
+.pargrafoDeConscientizaoLWrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  flex-shrink: 0;
+}
+.fsicoFrame {
+  top: calc(50% - 20.5px);
+  right: 310px;
+}
+.pargrafoDeConscientizaoLWrapper {
+  right: 65px;
+  bottom: 104px;
+  width: 440px;
+  height: 251px;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.pargrafoDeConscientizao {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+.paginacalculadoraItem {
+  position: absolute;
+  right: 213px;
+  bottom: 70px;
+  width: 144px;
+  height: 52px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.saibaMaisWrapper {
+  right: 244px;
+  bottom: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.cor1Wrapper,
+.cor4Wrapper,
+.saibaMaisWrapper {
+  position: absolute;
+  flex-shrink: 0;
+}
+.cor1Wrapper {
+  bottom: 99px;
+  left: calc(50% - 172px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: #000b45;
+}
+.cor4Wrapper {
+  bottom: 67px;
+  left: calc(50% - 136px);
+}
+.cor2Wrapper,
+.cor4Wrapper,
+.cor5Wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: #000b45;
+}
+.cor2Wrapper {
+  position: absolute;
+  bottom: 99px;
+  left: calc(50% - 83px);
+  flex-shrink: 0;
+}
+.cor5Wrapper {
+  bottom: 67px;
+  left: calc(50% - 47px);
+}
+.cor3Wrapper,
+.cor5Wrapper,
+.infoWrapper {
+  position: absolute;
+  flex-shrink: 0;
+}
+.cor3Wrapper {
+  bottom: 99px;
+  left: calc(50% + 8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: #000b45;
+}
+.infoWrapper {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: calc(50% + 180.5px);
+  right: 48px;
+  width: 44px;
+  height: 44px;
+}
+.comparaoDeRecursosEntreCWrapper {
+  position: absolute;
+  top: calc(50% + 197.5px);
+  left: calc(50% - 347px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  flex-shrink: 0;
+  font-size: 28px;
+}
+.frameIcon,
+.paginacalculadoraInner {
+  position: absolute;
+  bottom: 137.1px;
+  left: calc(50% - 284px);
+  border-radius: 57.5px;
+  width: 140.9px;
+  height: 140.9px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.frameIcon {
+  left: calc(50% + 6px);
+}
+@media screen and (max-width: 450px) {
+  .preencha {
+    font-size: 22px;
+  }
+  .recursos {
+    font-size: 19px;
+  }
+  .comparaoDentreModalidades {
+    font-size: 22px;
+  }
+}

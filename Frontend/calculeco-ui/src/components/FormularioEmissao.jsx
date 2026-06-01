@@ -10,7 +10,6 @@ function FormularioEmissao({ onResultado }) {
             transporte: tipoTransporte,
             periodo
         };
-
         calcularEmissao(dados)
             .then(response => {
                 onResultado(response.data);
@@ -21,29 +20,41 @@ function FormularioEmissao({ onResultado }) {
     }
 
     return (
-        <div className="formulario-container">
-
-            <div>
-                <label>Meio de Transporte:</label>
-                <select value={tipoTransporte} onChange={e => setTipoTransporte(e.target.value)}>
-                    <option value="">Selecione o meio de transporte</option>
-                    <option value="AVIAO">AVIAO</option>
-                    <option value="CAMINHAO">CAMINHAO</option>
-                </select>
+        <div className="paginacalculadora2">
+            <div className="a-calculeco-tem">
+                A CalculECO tem como objetivo calcular e comparar os impactos
+                ambientais gerados pelo uso de cartões de benefício físicos e
+                digitais. Preencha os campos abaixo para iniciar o cálculo.
             </div>
-
-            <div>
-                <label>Período de tempo:</label>
-                <select value={periodo} onChange={e => setPeriodo(e.target.value)}>
-                    <option value="">Selecione o período de tempo</option>
-                    <option value="SEISMESES">Seis meses</option>
-                    <option value="UMANO">Um ano</option>
-                    <option value="TRESANOS">Três anos</option>
-                    <option value="CINCOANOS">Cinco anos</option>
-                </select>
+            <h2 className="preencha">Preencha:</h2>
+            <h3 className="recursos">Recursos</h3>
+            <div className="calculator-page">
+                <div className="consumo-de-gua">Liberação de CO2</div>
             </div>
-
-            <button type="button" onClick={handleSubmit}>Calcular</button>
+            <div className="calculator-page">
+                <div className="consumo-de-gua">Consumo de água</div>
+            </div>
+            <div className="calculator-page">
+                <div className="consumo-de-gua">Uso de energia elétrica</div>
+            </div>
+            <div className="calculator-page">
+                <div className="consumo-de-gua">Descarte de materiais</div>
+            </div>
+            <h3 className="regio">Região</h3>
+            <select value={tipoTransporte} onChange={e => setTipoTransporte(e.target.value)}>
+                <option value="">Selecione o meio de transporte</option>
+                <option value="AVIAO">Avião</option>
+                <option value="CAMINHAO">Caminhão</option>
+            </select>
+            <h3 className="perodo">Período</h3>
+            <select value={periodo} onChange={e => setPeriodo(e.target.value)}>
+                <option value="">Selecione o período</option>
+                <option value="SEISMESES">Seis meses</option>
+                <option value="UMANO">Um ano</option>
+                <option value="TRESANOS">Três anos</option>
+                <option value="CINCOANOS">Cinco anos</option>
+            </select>
+            <button onClick={handleSubmit}>Calcular</button>
         </div>
     );
 }
