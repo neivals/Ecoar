@@ -6,12 +6,6 @@ function FormularioEmissao({ onResultado }) {
     const [tipoTransporte, setTipoTransporte] = useState("");
     const [periodo, setPeriodo] = useState("");
 
-    const [sugestoes, setSugestoes] = useState([
-        "Av. Paulista, São Paulo - SP",
-        "Av. Agamenon Magalhães, Recife - PE",
-        "Copacabana, Rio de Janeiro - RJ"
-    ]);
-
     function handleSubmit() {
         const dados = {
             transporte: tipoTransporte,
@@ -48,12 +42,21 @@ function FormularioEmissao({ onResultado }) {
             <div className="calculator-page">
                 <div className="consumo-de-gua">Descarte de materiais</div>
             </div>
+
             <h3 className="regio">Região</h3>
+            <input
+                type="text"
+                value={enderecoDigitado}
+                onChange={e => setEnderecoDigitado(e.target.value)}
+                placeholder="Digite o endereço..."
+            />
+
             <select value={tipoTransporte} onChange={e => setTipoTransporte(e.target.value)}>
                 <option value="">Selecione o meio de transporte</option>
                 <option value="AVIAO">Avião</option>
                 <option value="CAMINHAO">Caminhão</option>
             </select>
+
             <h3 className="perodo">Período</h3>
             <select value={periodo} onChange={e => setPeriodo(e.target.value)}>
                 <option value="">Selecione o período</option>
@@ -62,6 +65,7 @@ function FormularioEmissao({ onResultado }) {
                 <option value="TRESANOS">Três anos</option>
                 <option value="CINCOANOS">Cinco anos</option>
             </select>
+
             <button onClick={handleSubmit}>Calcular</button>
         </div>
     );
