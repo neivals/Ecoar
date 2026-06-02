@@ -2,13 +2,21 @@ import { useState } from "react";
 import { calcularEmissao } from "../services/calculoService";
 
 function FormularioEmissao({ onResultado }) {
+    const [enderecoDigitado, setEnderecoDigitado] = useState("");
     const [tipoTransporte, setTipoTransporte] = useState("");
     const [periodo, setPeriodo] = useState("");
+
+    const [sugestoes, setSugestoes] = useState([
+        "Av. Paulista, São Paulo - SP",
+        "Av. Agamenon Magalhães, Recife - PE",
+        "Copacabana, Rio de Janeiro - RJ"
+    ]);
 
     function handleSubmit() {
         const dados = {
             transporte: tipoTransporte,
-            periodo
+            periodo,
+            endereco: enderecoDigitado
         };
         calcularEmissao(dados)
             .then(response => {

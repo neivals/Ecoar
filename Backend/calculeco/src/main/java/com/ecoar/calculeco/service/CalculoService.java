@@ -24,6 +24,9 @@ import java.util.Optional;
 @Service
 public class CalculoService {
 
+    private static final double LAT_ORIGEM_FIXA = -8.05428;
+    private static final double LNG_ORIGEM_FIXA = -34.8813;
+
     @Value("${opencage.key}")
     private String apiKey;
 
@@ -36,12 +39,14 @@ public class CalculoService {
         CartaoFisico cartaoFisico = new CartaoFisico(1000, 15000, TipoPagamento.FISICO, TipoMaterial.PVC, dto.getTransporte());
         CartaoDigital cartaoDigital = new CartaoDigital(1000, 15000, TipoPagamento.DIGITAL);
 
-        double totalFisico = calcularFisico(dto, cartaoFisico);
+        String coordenadasObtidas = buscarCoordenadas(dto.getEndereco());
+        double distanciaKm = calcularDistanciaPelasCoordenadas(coordenadasObtidas);
+        double totalFisico = calcularFisico(dto, cartaoFisico, distanciaKm);
         double totalDigital = calcularDigital(dto, cartaoDigital);
         double diferenca = totalFisico - totalDigital;
         List<Double> emissaoFisicoPorMes = new ArrayList<>();
         List<Double> emissaoDigitalPorMes = new ArrayList<>();
-        calcularEmissoesPorMes(dto, cartaoFisico, cartaoDigital, emissaoFisicoPorMes, emissaoDigitalPorMes);
+        calcularEmissoesPorMes(dto, cartaoFisico, cartaoDigital, emissaoFisicoPorMes, emissaoDigitalPorMes, distanciaKm);
 
         EmissaoSolicitacao request = EmissaoSolicitacao.builder()
                 .cartaoFisico(cartaoFisico)
@@ -52,19 +57,20 @@ public class CalculoService {
                 .diferencaEmissao(diferenca)
                 .emissaoFisicoPorMes(emissaoFisicoPorMes)
                 .emissaoDigitalPorMes(emissaoDigitalPorMes)
+                .coordenadas(coordenadasObtidas)
                 .build();
 
         repo.save(request);
 
         return new ResultadoEmissaoDTO(request.getEmissaoTotalFisico(), request.getEmissaoTotalDigital(), request.getDiferencaEmissao(),
-                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes());
+                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes(), request.getCoordenadas());
     }
 
-    private double calcularFisico(RequestDTO dto, CartaoFisico cartaoFisico) {
+    private double calcularFisico(RequestDTO dto, CartaoFisico cartaoFisico, double distanciaKm) {
         int meses = dto.getPeriodo().getPeriodoEmMeses();
         double emissaoProducao = (cartaoFisico.getMaterial().getEmissaoNaProducao() * cartaoFisico.getQuantidadeCartoesPorMes() * meses);
         double emissaoTransacao = (cartaoFisico.getTipoPagamento().getEmissaoPorTransacao() * cartaoFisico.getQuantidadeTransacoesPorMes() * meses);
-        double emissaoTransporte = (cartaoFisico.getTransporte().getEmissaoPorKm() * meses);
+        double emissaoTransporte = (distanciaKm * cartaoFisico.getTransporte().getEmissaoPorKm() * meses);
         double emissaoDecarte = 0;
         if (dto.getPeriodo().incluirDescarte()) {
             int mesesDescarte = meses - 36;
@@ -78,11 +84,11 @@ public class CalculoService {
         return (cartaoDigital.getQuantidadeTransacoesPorMes() * cartaoDigital.getTipoPagamento().getEmissaoPorTransacao() * meses);
     }
 
-    private void calcularEmissoesPorMes(RequestDTO dto, CartaoFisico cartaoFisico, CartaoDigital cartaoDigital, List<Double> emissoesPorMesFisico, List<Double> emissoesPorMesDigital) {
+    private void calcularEmissoesPorMes(RequestDTO dto, CartaoFisico cartaoFisico, CartaoDigital cartaoDigital, List<Double> emissoesPorMesFisico, List<Double> emissoesPorMesDigital, double distanciaKm) {
         int meses = dto.getPeriodo().getPeriodoEmMeses();
         double emissaoNaProducaoFisico = cartaoFisico.getMaterial().getEmissaoNaProducao() * cartaoFisico.getQuantidadeCartoesPorMes();
         double emissaoNaTransacaoFisico = cartaoFisico.getTipoPagamento().getEmissaoPorTransacao() * cartaoFisico.getQuantidadeTransacoesPorMes();
-        double emissaoNoTransporteFisico = cartaoFisico.getTransporte().getEmissaoPorKm();
+        double emissaoNoTransporteFisico = distanciaKm * cartaoFisico.getTransporte().getEmissaoPorKm();
         double emissaoDecarteFisico = 0;
         if (dto.getPeriodo().incluirDescarte()) {
             emissaoDecarteFisico = cartaoFisico.emissaoDescarteMediaPorMes();
@@ -108,10 +114,36 @@ public class CalculoService {
         }
     }
 
+    private double calcularDistanciaPelasCoordenadas(String coordenadasString) {
+        if (coordenadasString == null || coordenadasString.startsWith("Erro")) {
+            return 0.0;
+        }
+
+        try {
+            String[] partes = coordenadasString.split(" ");
+            double latDestino = Double.parseDouble(partes[1]);
+            double lngDestino = Double.parseDouble(partes[3]);
+
+            final int R = 6371;
+            double latDistance = Math.toRadians(latDestino - LAT_ORIGEM_FIXA);
+            double lonDistance = Math.toRadians(lngDestino - LNG_ORIGEM_FIXA);
+
+            double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                    + Math.cos(Math.toRadians(LAT_ORIGEM_FIXA)) * Math.cos(Math.toRadians(latDestino))
+                    * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+
+            double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+
+        } catch (Exception e) {
+            return 0.0;
+        }
+    }
+
     public Optional<ResultadoEmissaoDTO> buscarPorID(Long id) {
         return repo.findById(id).map(request -> new ResultadoEmissaoDTO(
                 request.getEmissaoTotalFisico(), request.getEmissaoTotalDigital(), request.getDiferencaEmissao(),
-                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes()));
+                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes(), request.getCoordenadas()));
     }
 
     public String buscarCoordenadas(String endereco) {
