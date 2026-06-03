@@ -54,4 +54,19 @@ public class EmissaoSolicitacao {
     @CollectionTable(name = "emissoes_cartao_digital", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "emissao", nullable = false)
     private List<Double> emissaoDigitalPorMes;
+
+    @Column(nullable = false)
+    private double energiaTotal;
+
+    @Column(nullable = false)
+    private double aguaTotal;
+
+    @Column(nullable = false)
+    private double plasticoTotal;
+
+    @Column(nullable = false)
+    private double gastoTotalFisico;
+
+    @Column(nullable = false)
+    private double gastoTotalDigital;
 }
