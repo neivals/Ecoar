@@ -163,7 +163,8 @@ public class CalculoService {
     }
 
     private double calcularAgua(RequestDTO dto, CartaoFisico cartaoFisico) {
-        return 1;
+        double aguaNoMes = cartaoFisico.getAguaPorCartao() * cartaoFisico.getQuantidadeCartoesPorMes();
+        return aguaNoMes * dto.getPeriodo().getPeriodoEmMeses();
     }
 
     private double calcularPlastico(RequestDTO dto, CartaoFisico cartaoFisico) {

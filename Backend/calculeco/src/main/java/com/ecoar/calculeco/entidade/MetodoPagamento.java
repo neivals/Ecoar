@@ -25,6 +25,7 @@ public class MetodoPagamento {
     @Column(nullable = false)
     private int quantidadeTransacoesPorMes = 25000;
 
+    //Em KWh
     @Column(nullable = false)
     private final double energiaPorTransacao = 0.00148;
 
