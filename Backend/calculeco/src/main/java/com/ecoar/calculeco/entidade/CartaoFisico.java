@@ -4,10 +4,7 @@ import com.ecoar.calculeco.entidade.enums.TipoDescarte;
 import com.ecoar.calculeco.entidade.enums.TipoMaterial;
 import com.ecoar.calculeco.entidade.enums.TipoPagamento;
 import com.ecoar.calculeco.entidade.enums.TipoTransporte;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +26,10 @@ public class CartaoFisico extends MetodoPagamento {
 
     @Enumerated(EnumType.STRING)
     private TipoTransporte transporte;
+
+    //Em Litros
+    @Column(nullable = false)
+    private final double aguaPorCartao = 0.09615;
 
     public CartaoFisico(int quantidadeCartoesPorMes, int quantidadeTransacoesPorMes, TipoPagamento tipoPagamento, TipoMaterial material, TipoTransporte transporte) {
         super(quantidadeCartoesPorMes, quantidadeTransacoesPorMes);

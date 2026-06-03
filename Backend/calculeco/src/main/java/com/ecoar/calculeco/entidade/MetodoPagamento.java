@@ -23,7 +23,11 @@ public class MetodoPagamento {
     private int quantidadeCartoesPorMes = 1000;
 
     @Column(nullable = false)
-    private int quantidadeTransacoesPorMes = 15000;
+    private int quantidadeTransacoesPorMes = 25000;
+
+    //Em KWh
+    @Column(nullable = false)
+    private final double energiaPorTransacao = 0.00148;
 
     MetodoPagamento(int quantidadeCartoesPorMes, int quantidadeTransacoesPorMes) {
         this.quantidadeCartoesPorMes = quantidadeCartoesPorMes;

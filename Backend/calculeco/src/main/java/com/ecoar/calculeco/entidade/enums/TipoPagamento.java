@@ -4,8 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum TipoPagamento {
-    FISICO(0.0025),
-    DIGITAL(0.0008);
+    FISICO(0.00045),
+    DIGITAL(0.00045);
 
     private final double emissaoPorTransacao;
 

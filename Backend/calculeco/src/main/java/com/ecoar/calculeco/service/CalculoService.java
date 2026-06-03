@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -40,13 +39,25 @@ public class CalculoService {
         CartaoDigital cartaoDigital = new CartaoDigital(1000, 15000, TipoPagamento.DIGITAL);
 
         String coordenadasObtidas = buscarCoordenadas(dto.getEndereco());
+        //em Km
         double distanciaKm = calcularDistanciaPelasCoordenadas(coordenadasObtidas);
+        //em Kg
         double totalFisico = calcularFisico(dto, cartaoFisico, distanciaKm);
         double totalDigital = calcularDigital(dto, cartaoDigital);
         double diferenca = totalFisico - totalDigital;
         List<Double> emissaoFisicoPorMes = new ArrayList<>();
         List<Double> emissaoDigitalPorMes = new ArrayList<>();
         calcularEmissoesPorMes(dto, cartaoFisico, cartaoDigital, emissaoFisicoPorMes, emissaoDigitalPorMes, distanciaKm);
+
+        //em KWh
+        double energiaTotal = calcularEnergia(dto, cartaoDigital);
+        //em Litros
+        double aguaTotal = calcularAgua(dto, cartaoFisico);
+        //em Kg
+        double plasticoTotal = calcularPlastico(dto, cartaoFisico);
+        //em "gastos"
+        double gastoTotalFisico = totalFisico + energiaTotal + aguaTotal + plasticoTotal;
+        double gastoTotalDigital = totalDigital + energiaTotal;
 
         EmissaoSolicitacao request = EmissaoSolicitacao.builder()
                 .cartaoFisico(cartaoFisico)
@@ -58,12 +69,18 @@ public class CalculoService {
                 .emissaoFisicoPorMes(emissaoFisicoPorMes)
                 .emissaoDigitalPorMes(emissaoDigitalPorMes)
                 .coordenadas(coordenadasObtidas)
+                .energiaTotal(energiaTotal)
+                .aguaTotal(aguaTotal)
+                .plasticoTotal(plasticoTotal)
+                .gastoTotalFisico(gastoTotalFisico)
+                .gastoTotalDigital(gastoTotalDigital)
                 .build();
 
         repo.save(request);
 
         return new ResultadoEmissaoDTO(request.getEmissaoTotalFisico(), request.getEmissaoTotalDigital(), request.getDiferencaEmissao(),
-                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes(), request.getCoordenadas());
+                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes(), request.getCoordenadas(), request.getEnergiaTotal(),
+                request.getAguaTotal(), request.getPlasticoTotal(), request.getGastoTotalFisico(), request.getGastoTotalDigital());
     }
 
     private double calcularFisico(RequestDTO dto, CartaoFisico cartaoFisico, double distanciaKm) {
@@ -140,10 +157,27 @@ public class CalculoService {
         }
     }
 
+    private double calcularEnergia(RequestDTO dto, CartaoDigital cartaoDigital) {
+        double energiaNoMes = cartaoDigital.getEnergiaPorTransacao() * cartaoDigital.getQuantidadeTransacoesPorMes();
+        return energiaNoMes * dto.getPeriodo().getPeriodoEmMeses();
+    }
+
+    private double calcularAgua(RequestDTO dto, CartaoFisico cartaoFisico) {
+        double aguaNoMes = cartaoFisico.getAguaPorCartao() * cartaoFisico.getQuantidadeCartoesPorMes();
+        return aguaNoMes * dto.getPeriodo().getPeriodoEmMeses();
+    }
+
+    private double calcularPlastico(RequestDTO dto, CartaoFisico cartaoFisico) {
+        double plasticoNoMes = cartaoFisico.getMaterial().getQuiloNaProducao() * cartaoFisico.getQuantidadeCartoesPorMes();
+        return plasticoNoMes * dto.getPeriodo().getPeriodoEmMeses();
+    }
+
     public Optional<ResultadoEmissaoDTO> buscarPorID(Long id) {
         return repo.findById(id).map(request -> new ResultadoEmissaoDTO(
                 request.getEmissaoTotalFisico(), request.getEmissaoTotalDigital(), request.getDiferencaEmissao(),
-                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes(), request.getCoordenadas()));
+                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes(), request.getCoordenadas(),
+                request.getEnergiaTotal(), request.getAguaTotal(), request.getPlasticoTotal(), request.getGastoTotalFisico(),
+                request.getGastoTotalDigital()));
     }
 
     public String buscarCoordenadas(String endereco) {
