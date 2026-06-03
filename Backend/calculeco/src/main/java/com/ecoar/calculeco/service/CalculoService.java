@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -159,7 +158,8 @@ public class CalculoService {
     }
 
     private double calcularEnergia(RequestDTO dto, CartaoDigital cartaoDigital) {
-        return 1;
+        double energiaNoMes = cartaoDigital.getEnergiaPorTransacao() * cartaoDigital.getQuantidadeTransacoesPorMes();
+        return energiaNoMes * dto.getPeriodo().getPeriodoEmMeses();
     }
 
     private double calcularAgua(RequestDTO dto, CartaoFisico cartaoFisico) {
