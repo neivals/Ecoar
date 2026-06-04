@@ -21,6 +21,4 @@ public class ResultadoEmissaoDTO {
     private double energiaTotal;
     private double aguaTotal;
     private double plasticoTotal;
-    private double gastoTotalFisico;
-    private double gastoTotalDigital;
 }

@@ -7,6 +7,7 @@ import com.ecoar.calculeco.entidade.CartaoFisico;
 import com.ecoar.calculeco.entidade.EmissaoSolicitacao;
 import com.ecoar.calculeco.entidade.enums.TipoMaterial;
 import com.ecoar.calculeco.entidade.enums.TipoPagamento;
+import com.ecoar.calculeco.entidade.enums.TipoTransporte;
 import com.ecoar.calculeco.repository.EmissaoSolicitacaoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,9 @@ import java.util.Optional;
 @Service
 public class CalculoService {
 
-    private static final double LAT_ORIGEM_FIXA = -8.05428;
-    private static final double LNG_ORIGEM_FIXA = -34.8813;
+    //Latitude e longitude da fábrica 2
+    private static final double LAT_ORIGEM_FIXA = -23.674328839140124;
+    private static final double LNG_ORIGEM_FIXA = -46.5874538578481;
 
     @Value("${opencage.key}")
     private String apiKey;
@@ -35,8 +37,8 @@ public class CalculoService {
     @Transactional
     public ResultadoEmissaoDTO calcular(RequestDTO dto) {
 
-        CartaoFisico cartaoFisico = new CartaoFisico(1000, 15000, TipoPagamento.FISICO, TipoMaterial.PVC, dto.getTransporte());
-        CartaoDigital cartaoDigital = new CartaoDigital(1000, 15000, TipoPagamento.DIGITAL);
+        CartaoFisico cartaoFisico = new CartaoFisico(1000, 25000, TipoPagamento.FISICO, TipoMaterial.PVC, TipoTransporte.CAMINHAO);
+        CartaoDigital cartaoDigital = new CartaoDigital(1000, 25000, TipoPagamento.DIGITAL);
 
         String coordenadasObtidas = buscarCoordenadas(dto.getEndereco());
         //em Km
@@ -55,9 +57,6 @@ public class CalculoService {
         double aguaTotal = calcularAgua(dto, cartaoFisico);
         //em Kg
         double plasticoTotal = calcularPlastico(dto, cartaoFisico);
-        //em "gastos"
-        double gastoTotalFisico = totalFisico + energiaTotal + aguaTotal + plasticoTotal;
-        double gastoTotalDigital = totalDigital + energiaTotal;
 
         EmissaoSolicitacao request = EmissaoSolicitacao.builder()
                 .cartaoFisico(cartaoFisico)
@@ -72,15 +71,13 @@ public class CalculoService {
                 .energiaTotal(energiaTotal)
                 .aguaTotal(aguaTotal)
                 .plasticoTotal(plasticoTotal)
-                .gastoTotalFisico(gastoTotalFisico)
-                .gastoTotalDigital(gastoTotalDigital)
                 .build();
 
         repo.save(request);
 
         return new ResultadoEmissaoDTO(request.getEmissaoTotalFisico(), request.getEmissaoTotalDigital(), request.getDiferencaEmissao(),
                 request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes(), request.getCoordenadas(), request.getEnergiaTotal(),
-                request.getAguaTotal(), request.getPlasticoTotal(), request.getGastoTotalFisico(), request.getGastoTotalDigital());
+                request.getAguaTotal(), request.getPlasticoTotal());
     }
 
     private double calcularFisico(RequestDTO dto, CartaoFisico cartaoFisico, double distanciaKm) {
@@ -176,8 +173,7 @@ public class CalculoService {
         return repo.findById(id).map(request -> new ResultadoEmissaoDTO(
                 request.getEmissaoTotalFisico(), request.getEmissaoTotalDigital(), request.getDiferencaEmissao(),
                 request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes(), request.getCoordenadas(),
-                request.getEnergiaTotal(), request.getAguaTotal(), request.getPlasticoTotal(), request.getGastoTotalFisico(),
-                request.getGastoTotalDigital()));
+                request.getEnergiaTotal(), request.getAguaTotal(), request.getPlasticoTotal()));
     }
 
     public String buscarCoordenadas(String endereco) {
