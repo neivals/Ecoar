@@ -70,11 +70,6 @@ public class EmissaoSolicitacao {
     @Column(nullable = false)
     private double plasticoTotal;
 
-    //Impacto total
     @Column(nullable = false)
-    private double gastoTotalFisico;
-
-    //Impacto total
-    @Column(nullable = false)
-    private double gastoTotalDigital;
+    private int arvoresSalvas;
 }

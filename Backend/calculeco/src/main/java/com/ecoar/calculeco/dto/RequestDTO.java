@@ -1,7 +1,6 @@
 package com.ecoar.calculeco.dto;
 
 import com.ecoar.calculeco.entidade.enums.Periodo;
-import com.ecoar.calculeco.entidade.enums.TipoTransporte;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import jakarta.validation.constraints.NotNull;

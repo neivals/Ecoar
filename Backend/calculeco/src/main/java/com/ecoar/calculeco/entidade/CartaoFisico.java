@@ -14,9 +14,8 @@ import lombok.Setter;
 @DiscriminatorValue("FISICO")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class CartaoFisico extends MetodoPagamento {
+public class CartaoFisico extends Cartao {
 
     @Enumerated(EnumType.STRING)
     private TipoPagamento tipoPagamento;
@@ -31,8 +30,7 @@ public class CartaoFisico extends MetodoPagamento {
     @Column(nullable = false)
     private final double aguaPorCartao = 0.09615;
 
-    public CartaoFisico(int quantidadeCartoesPorMes, int quantidadeTransacoesPorMes, TipoPagamento tipoPagamento, TipoMaterial material, TipoTransporte transporte) {
-        super(quantidadeCartoesPorMes, quantidadeTransacoesPorMes);
+    public CartaoFisico(TipoPagamento tipoPagamento, TipoMaterial material, TipoTransporte transporte) {
         this.tipoPagamento = tipoPagamento;
         this.material = material;
         this.transporte = transporte;

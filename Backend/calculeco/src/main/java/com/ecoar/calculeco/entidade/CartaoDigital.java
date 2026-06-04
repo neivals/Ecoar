@@ -14,15 +14,13 @@ import lombok.Setter;
 @DiscriminatorValue("DIGITAL")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class CartaoDigital extends MetodoPagamento {
+public class CartaoDigital extends Cartao {
 
     @Enumerated(EnumType.STRING)
     private TipoPagamento tipoPagamento;
 
-    public CartaoDigital(int quantidadeCartoes, int quantidadeTransacoes, TipoPagamento tipoPagamento) {
-        super(quantidadeCartoes, quantidadeTransacoes);
+    public CartaoDigital( TipoPagamento tipoPagamento) {
         this.tipoPagamento = tipoPagamento;
     }
 }
