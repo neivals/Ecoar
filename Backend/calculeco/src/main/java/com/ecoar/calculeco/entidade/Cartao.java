@@ -11,26 +11,20 @@ import lombok.Setter;
 @DiscriminatorColumn(name = "tipo_cartao")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class MetodoPagamento {
+public class Cartao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private int quantidadeCartoesPorMes = 1000;
+    private final int quantidadeCartoesPorMes = 1000;
 
     @Column(nullable = false)
-    private int quantidadeTransacoesPorMes = 25000;
+    private final int quantidadeTransacoesPorMes = 25000;
 
     //Em KWh
     @Column(nullable = false)
     private final double energiaPorTransacao = 0.00148;
-
-    MetodoPagamento(int quantidadeCartoesPorMes, int quantidadeTransacoesPorMes) {
-        this.quantidadeCartoesPorMes = quantidadeCartoesPorMes;
-        this.quantidadeTransacoesPorMes = quantidadeTransacoesPorMes;
-    }
 }
