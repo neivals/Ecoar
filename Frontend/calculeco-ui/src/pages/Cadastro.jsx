@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { cadastrar, salvarSessao } from "../services/authService";
+import "../page css/Cadastro.css";
 
 function Cadastro() {
     const navigate = useNavigate();
@@ -34,14 +35,32 @@ function Cadastro() {
     };
 
     return (
-        <div className="auth-container">
+        <div className="auth-container cadastro-page">
+            <header className="auth-brandbar" aria-label="Marcas">
+                <div className="calculeco-brand">
+                    <span className="calculeco-mark" aria-hidden="true"></span>
+                    <span>CalculECO</span>
+                </div>
+                <div className="edenred-brand" aria-label="Edenred">
+                    <span aria-hidden="true"></span>
+                    Edenred
+                </div>
+            </header>
+
             <div className="auth-card">
-                <h1 className="auth-titulo">Criar conta</h1>
-                <p className="auth-subtitulo">Calculadora de Emissão de Carbono</p>
+                <h1 className="auth-titulo">Criar uma conta</h1>
+
+                <button type="button" className="google-btn">
+                    <span className="google-icon" aria-hidden="true">G</span>
+                    Logar com Google
+                </button>
+
+                <span className="auth-separator">ou</span>
 
                 <form onSubmit={handleSubmit} className="auth-form">
                     <div className="auth-campo">
                         <label htmlFor="email">Email</label>
+                        <span className="input-icon email-icon" aria-hidden="true"></span>
                         <input
                             id="email"
                             type="email"
@@ -54,6 +73,7 @@ function Cadastro() {
 
                     <div className="auth-campo">
                         <label htmlFor="senha">Senha</label>
+                        <span className="input-icon lock-icon" aria-hidden="true"></span>
                         <input
                             id="senha"
                             type="password"
@@ -66,6 +86,7 @@ function Cadastro() {
 
                     <div className="auth-campo">
                         <label htmlFor="confirmarSenha">Confirmar senha</label>
+                        <span className="input-icon lock-icon" aria-hidden="true"></span>
                         <input
                             id="confirmarSenha"
                             type="password"
@@ -84,8 +105,8 @@ function Cadastro() {
                 </form>
 
                 <p className="auth-link">
-                    Já tem uma conta?{" "}
-                    <Link to="/login">Entrar</Link>
+                    Já possui uma conta?{" "}
+                    <Link to="/login">Log in</Link>
                 </p>
             </div>
         </div>
