@@ -3,12 +3,10 @@ import { calcularEmissao } from "../services/calculoService";
 
 function FormularioEmissao({ onResultado }) {
     const [enderecoDigitado, setEnderecoDigitado] = useState("");
-    const [tipoTransporte, setTipoTransporte] = useState("");
     const [periodo, setPeriodo] = useState("");
 
     function handleSubmit() {
         const dados = {
-            transporte: tipoTransporte,
             periodo,
             endereco: enderecoDigitado
         };
@@ -50,12 +48,6 @@ function FormularioEmissao({ onResultado }) {
                 onChange={e => setEnderecoDigitado(e.target.value)}
                 placeholder="Digite o endereço..."
             />
-
-            <select value={tipoTransporte} onChange={e => setTipoTransporte(e.target.value)}>
-                <option value="">Selecione o meio de transporte</option>
-                <option value="AVIAO">Avião</option>
-                <option value="CAMINHAO">Caminhão</option>
-            </select>
 
             <h3 className="perodo">Período</h3>
             <select value={periodo} onChange={e => setPeriodo(e.target.value)}>
