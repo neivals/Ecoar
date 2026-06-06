@@ -48,14 +48,14 @@ function Cadastro() {
             </header>
 
             <div className="auth-card">
-                <h1 className="auth-titulo">Create an account</h1>
+                <h1 className="auth-titulo">Criar uma conta</h1>
 
                 <button type="button" className="google-btn">
                     <span className="google-icon" aria-hidden="true">G</span>
-                    Sign up with Google
+                    Logar com Google
                 </button>
 
-                <span className="auth-separator">or</span>
+                <span className="auth-separator">ou</span>
 
                 <form onSubmit={handleSubmit} className="auth-form">
                     <div className="auth-campo">

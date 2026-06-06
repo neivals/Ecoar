@@ -46,7 +46,7 @@ function Login() {
 
                 <button type="button" className="google-btn">
                     <span className="google-icon" aria-hidden="true">G</span>
-                    Log in with Google
+                    Logar com Google
                 </button>
 
                 <span className="auth-separator">or</span>
@@ -86,12 +86,12 @@ function Login() {
                 </form>
 
                 <a href="#" className="forgot-password">
-                    Don’t remember your password?
+                    Esqueceu a senha?
                 </a>
 
                 <p className="auth-link">
-                    Don’t have an account?{" "}
-                    <Link to="/cadastro">Create an account</Link>
+                    Não possui uma conta?{" "}
+                    <Link to="/cadastro">Criar uma conta</Link>
                 </p>
             </div>
         </div>
