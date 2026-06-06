@@ -1,0 +1,352 @@
+.login-page {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 118px 24px 48px;
+  background:
+    radial-gradient(62% 48% at 66% 55%, rgba(174, 230, 206, 0.72) 0 26%, transparent 27%),
+    radial-gradient(58% 52% at 18% 92%, rgba(194, 245, 231, 0.58) 0 22%, transparent 23%),
+    radial-gradient(55% 70% at 89% 7%, rgba(104, 188, 172, 0.68) 0 33%, transparent 34%),
+    radial-gradient(42% 38% at -2% 62%, rgba(202, 226, 250, 0.48) 0 54%, transparent 55%),
+    linear-gradient(135deg, #83c8e8 0%, #b7dfef 48%, #acdced 100%);
+}
+
+.login-page::before,
+.login-page::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.46;
+}
+
+.login-page::before {
+  width: 680px;
+  height: 430px;
+  top: -118px;
+  left: 260px;
+  border-radius: 52% 48% 44% 56%;
+  background: rgba(220, 236, 249, 0.58);
+  transform: rotate(-31deg);
+}
+
+.login-page::after {
+  width: 340px;
+  height: 250px;
+  right: -42px;
+  top: 306px;
+  border-radius: 53% 47% 58% 42%;
+  background: rgba(126, 203, 181, 0.5);
+  transform: rotate(-10deg);
+}
+
+.login-page .auth-brandbar {
+  position: absolute;
+  z-index: 2;
+  top: 40px;
+  left: 38px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  color: #18245d;
+}
+
+.login-page .calculeco-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 26px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.login-page .calculeco-mark {
+  position: relative;
+  width: 22px;
+  height: 34px;
+  border: 3px solid #18245d;
+  border-radius: 50%;
+  transform: rotate(-10deg);
+}
+
+.login-page .calculeco-mark::before,
+.login-page .calculeco-mark::after {
+  content: "";
+  position: absolute;
+  border: 2px solid #18245d;
+  border-radius: 50%;
+}
+
+.login-page .calculeco-mark::before {
+  inset: 5px 2px 4px;
+}
+
+.login-page .calculeco-mark::after {
+  width: 23px;
+  height: 23px;
+  top: -8px;
+  left: -5px;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(22deg);
+}
+
+.login-page .edenred-brand {
+  position: relative;
+  min-width: 84px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 3px;
+  color: #ef3325;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0;
+  isolation: isolate;
+}
+
+.login-page .edenred-brand span {
+  position: absolute;
+  left: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #ef3325;
+}
+
+.login-page .edenred-brand::first-letter {
+  color: #80c9e9;
+}
+
+.login-page .auth-card {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 362px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #19245f;
+}
+
+.login-page .auth-titulo {
+  margin-bottom: 22px;
+  font-size: 24px;
+  line-height: 1.2;
+  text-align: center;
+  font-weight: 800;
+}
+
+.login-page .google-btn {
+  width: 100%;
+  height: 39px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0 18px;
+  border: 2px solid #19245f;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #19245f;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.login-page .google-btn:hover {
+  background: #f7fbff;
+}
+
+.login-page .google-icon {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1;
+  color: #4285f4;
+}
+
+.login-page .auth-separator {
+  margin: 20px 0 23px;
+  font-size: 12px;
+  color: #19245f;
+}
+
+.login-page .auth-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 22px 23px 24px;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.login-page .auth-campo {
+  position: relative;
+}
+
+.login-page .auth-campo label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.login-page .auth-campo input {
+  width: 100%;
+  height: 39px;
+  border: 0;
+  border-radius: 14px;
+  padding: 0 18px 0 60px;
+  background: #eaf3ff;
+  color: #19245f;
+  font-family: 'Kufam', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  outline: none;
+}
+
+.login-page .auth-campo input::placeholder {
+  color: #19245f;
+  opacity: 1;
+}
+
+.login-page .auth-campo input:focus {
+  box-shadow: 0 0 0 2px rgba(25, 36, 95, 0.24);
+}
+
+.login-page .input-icon {
+  position: absolute;
+  z-index: 1;
+  left: 25px;
+  top: 50%;
+  width: 23px;
+  height: 23px;
+  transform: translateY(-50%);
+  color: #19245f;
+}
+
+.login-page .email-icon {
+  border: 3px solid currentColor;
+  border-radius: 2px;
+}
+
+.login-page .email-icon::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 15px;
+  height: 10px;
+  border-left: 3px solid currentColor;
+  border-bottom: 3px solid currentColor;
+  transform: rotate(-45deg);
+  transform-origin: center;
+}
+
+.login-page .lock-icon {
+  top: calc(50% + 2px);
+  width: 22px;
+  height: 18px;
+  border: 3px solid currentColor;
+  border-radius: 4px;
+}
+
+.login-page .lock-icon::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: -14px;
+  width: 10px;
+  height: 13px;
+  border: 3px solid currentColor;
+  border-bottom: 0;
+  border-radius: 9px 9px 0 0;
+}
+
+.login-page .auth-btn {
+  height: 27px;
+  margin: 3px 0 0;
+  padding: 0 18px;
+  border-radius: 14px;
+  background: #19245f;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.login-page .auth-btn:hover {
+  background: #24347d;
+}
+
+.login-page .auth-btn:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.login-page .auth-erro {
+  margin: -6px 0;
+  color: #ff2f25;
+  font-size: 12px;
+  text-align: center;
+}
+
+.login-page .forgot-password {
+  margin-top: 26px;
+  color: #ff2f25;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.login-page .auth-link {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #19245f;
+  text-align: center;
+}
+
+.login-page .auth-link a {
+  color: #ff2f25;
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .login-page {
+    align-items: flex-start;
+    padding: 122px 20px 36px;
+  }
+
+  .login-page::before {
+    width: 500px;
+    height: 330px;
+    top: -95px;
+    left: 80px;
+  }
+
+  .login-page .auth-brandbar {
+    top: 32px;
+    left: 24px;
+    gap: 16px;
+  }
+
+  .login-page .calculeco-brand {
+    font-size: 21px;
+  }
+
+  .login-page .edenred-brand {
+    min-width: 72px;
+    font-size: 14px;
+  }
+
+  .login-page .edenred-brand span {
+    width: 36px;
+    height: 36px;
+  }
+}
