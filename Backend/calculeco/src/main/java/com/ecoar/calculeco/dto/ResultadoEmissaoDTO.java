@@ -18,4 +18,8 @@ public class ResultadoEmissaoDTO {
     private List<Double> emissaoFisicoPorMes = new ArrayList<>();
     private List<Double> emissaoDigitalPorMes = new ArrayList<>();
     private String coordenadas;
+    private double energiaTotal;
+    private double aguaTotal;
+    private double plasticoTotal;
+    private int arvoresSalvas;
 }

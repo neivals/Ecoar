@@ -2,11 +2,13 @@ package com.ecoar.calculeco.service;
 
 import com.ecoar.calculeco.dto.RequestDTO;
 import com.ecoar.calculeco.dto.ResultadoEmissaoDTO;
+import com.ecoar.calculeco.entidade.Arvore;
 import com.ecoar.calculeco.entidade.CartaoDigital;
 import com.ecoar.calculeco.entidade.CartaoFisico;
 import com.ecoar.calculeco.entidade.EmissaoSolicitacao;
 import com.ecoar.calculeco.entidade.enums.TipoMaterial;
 import com.ecoar.calculeco.entidade.enums.TipoPagamento;
+import com.ecoar.calculeco.entidade.enums.TipoTransporte;
 import com.ecoar.calculeco.repository.EmissaoSolicitacaoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,6 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -24,8 +25,9 @@ import java.util.Optional;
 @Service
 public class CalculoService {
 
-    private static final double LAT_ORIGEM_FIXA = -8.05428;
-    private static final double LNG_ORIGEM_FIXA = -34.8813;
+    //Latitude e longitude da fábrica 2
+    private static final double LAT_ORIGEM_FIXA = -23.674328839140124;
+    private static final double LNG_ORIGEM_FIXA = -46.5874538578481;
 
     @Value("${opencage.key}")
     private String apiKey;
@@ -36,17 +38,35 @@ public class CalculoService {
     @Transactional
     public ResultadoEmissaoDTO calcular(RequestDTO dto) {
 
-        CartaoFisico cartaoFisico = new CartaoFisico(1000, 15000, TipoPagamento.FISICO, TipoMaterial.PVC, dto.getTransporte());
-        CartaoDigital cartaoDigital = new CartaoDigital(1000, 15000, TipoPagamento.DIGITAL);
+        CartaoFisico cartaoFisico = new CartaoFisico(TipoPagamento.FISICO, TipoMaterial.PVC, TipoTransporte.CAMINHAO);
+        CartaoDigital cartaoDigital = new CartaoDigital(TipoPagamento.DIGITAL);
+        Arvore arvore = new Arvore();
 
         String coordenadasObtidas = buscarCoordenadas(dto.getEndereco());
+        //em Km
         double distanciaKm = calcularDistanciaPelasCoordenadas(coordenadasObtidas);
-        double totalFisico = calcularFisico(dto, cartaoFisico, distanciaKm);
-        double totalDigital = calcularDigital(dto, cartaoDigital);
-        double diferenca = totalFisico - totalDigital;
+        //em Kg
         List<Double> emissaoFisicoPorMes = new ArrayList<>();
         List<Double> emissaoDigitalPorMes = new ArrayList<>();
         calcularEmissoesPorMes(dto, cartaoFisico, cartaoDigital, emissaoFisicoPorMes, emissaoDigitalPorMes, distanciaKm);
+        int meses;
+        if (dto.getPeriodo().getPeriodoEmMeses() >= 36) {
+            meses = dto.getPeriodo().getPeriodoEmMeses() / 3;
+        } else {
+            meses = dto.getPeriodo().getPeriodoEmMeses();
+        }
+        double totalFisico = emissaoFisicoPorMes.get(meses);
+        double totalDigital = emissaoDigitalPorMes.get(meses);
+        double diferenca = totalFisico - totalDigital;
+
+        //em KWh
+        double energiaTotal = calcularEnergia(dto, cartaoDigital);
+        //em Litros
+        double aguaTotal = calcularAgua(dto, cartaoFisico);
+        //em Kg
+        double plasticoTotal = calcularPlastico(dto, cartaoFisico);
+
+        int arvoresSalvas = calcularArvores(dto, diferenca, arvore);
 
         EmissaoSolicitacao request = EmissaoSolicitacao.builder()
                 .cartaoFisico(cartaoFisico)
@@ -58,30 +78,17 @@ public class CalculoService {
                 .emissaoFisicoPorMes(emissaoFisicoPorMes)
                 .emissaoDigitalPorMes(emissaoDigitalPorMes)
                 .coordenadas(coordenadasObtidas)
+                .energiaTotal(energiaTotal)
+                .aguaTotal(aguaTotal)
+                .plasticoTotal(plasticoTotal)
+                .arvoresSalvas(arvoresSalvas)
                 .build();
 
         repo.save(request);
 
         return new ResultadoEmissaoDTO(request.getEmissaoTotalFisico(), request.getEmissaoTotalDigital(), request.getDiferencaEmissao(),
-                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes(), request.getCoordenadas());
-    }
-
-    private double calcularFisico(RequestDTO dto, CartaoFisico cartaoFisico, double distanciaKm) {
-        int meses = dto.getPeriodo().getPeriodoEmMeses();
-        double emissaoProducao = (cartaoFisico.getMaterial().getEmissaoNaProducao() * cartaoFisico.getQuantidadeCartoesPorMes() * meses);
-        double emissaoTransacao = (cartaoFisico.getTipoPagamento().getEmissaoPorTransacao() * cartaoFisico.getQuantidadeTransacoesPorMes() * meses);
-        double emissaoTransporte = (distanciaKm * cartaoFisico.getTransporte().getEmissaoPorKm() * meses);
-        double emissaoDecarte = 0;
-        if (dto.getPeriodo().incluirDescarte()) {
-            int mesesDescarte = meses - 36;
-            emissaoDecarte = cartaoFisico.emissaoDescarteMediaPorMes() * mesesDescarte;
-        }
-        return emissaoProducao + emissaoTransacao + emissaoTransporte + emissaoDecarte;
-    }
-
-    private double calcularDigital(RequestDTO dto, CartaoDigital cartaoDigital) {
-        int meses = dto.getPeriodo().getPeriodoEmMeses();
-        return (cartaoDigital.getQuantidadeTransacoesPorMes() * cartaoDigital.getTipoPagamento().getEmissaoPorTransacao() * meses);
+                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes(), request.getCoordenadas(), request.getEnergiaTotal(),
+                request.getAguaTotal(), request.getPlasticoTotal(), request.getArvoresSalvas());
     }
 
     private void calcularEmissoesPorMes(RequestDTO dto, CartaoFisico cartaoFisico, CartaoDigital cartaoDigital, List<Double> emissoesPorMesFisico, List<Double> emissoesPorMesDigital, double distanciaKm) {
@@ -140,10 +147,33 @@ public class CalculoService {
         }
     }
 
+    private double calcularEnergia(RequestDTO dto, CartaoDigital cartaoDigital) {
+        double energiaNoMes = cartaoDigital.getEnergiaPorTransacao() * cartaoDigital.getQuantidadeTransacoesPorMes();
+        return energiaNoMes * dto.getPeriodo().getPeriodoEmMeses();
+    }
+
+    private double calcularAgua(RequestDTO dto, CartaoFisico cartaoFisico) {
+        double aguaNoMes = cartaoFisico.getAguaPorCartao() * cartaoFisico.getQuantidadeCartoesPorMes();
+        double aguaTotal = aguaNoMes * dto.getPeriodo().getPeriodoEmMeses();
+        return (double)Math.round(aguaTotal * 1000.0) / 1000.0;
+    }
+
+    private double calcularPlastico(RequestDTO dto, CartaoFisico cartaoFisico) {
+        double plasticoNoMes = cartaoFisico.getMaterial().getQuiloNaProducao() * cartaoFisico.getQuantidadeCartoesPorMes();
+        return plasticoNoMes * dto.getPeriodo().getPeriodoEmMeses();
+    }
+
+    private int calcularArvores(RequestDTO dto, double diferenca, Arvore arvore) {
+        double CO2AbsorvidoPorMes = arvore.calcularAbsorcaoDeCO2PorMes();
+        double diferencaPorMes = diferenca / dto.getPeriodo().getPeriodoEmMeses();
+        return (int) (diferencaPorMes / CO2AbsorvidoPorMes);
+    }
+
     public Optional<ResultadoEmissaoDTO> buscarPorID(Long id) {
         return repo.findById(id).map(request -> new ResultadoEmissaoDTO(
                 request.getEmissaoTotalFisico(), request.getEmissaoTotalDigital(), request.getDiferencaEmissao(),
-                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes(), request.getCoordenadas()));
+                request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes(), request.getCoordenadas(),
+                request.getEnergiaTotal(), request.getAguaTotal(), request.getPlasticoTotal(), request.getArvoresSalvas()));
     }
 
     public String buscarCoordenadas(String endereco) {
