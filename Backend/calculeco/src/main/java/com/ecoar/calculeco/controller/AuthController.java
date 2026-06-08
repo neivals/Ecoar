@@ -13,7 +13,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "https://ecoar.vercel.app")
 @RequiredArgsConstructor
 public class AuthController {
 
