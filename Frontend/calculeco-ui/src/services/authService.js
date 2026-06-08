@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:8080";
+const API = import.meta.env.VITE_API_URL;
 
 export async function cadastrar(email, senha, confirmarSenha) {
     const response = await axios.post(`${API}/auth/cadastro`, {
