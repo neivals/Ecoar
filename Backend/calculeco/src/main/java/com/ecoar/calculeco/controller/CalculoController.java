@@ -14,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/calcular")
-@CrossOrigin(origins = "*")
 public class CalculoController {
 
     @Autowired
