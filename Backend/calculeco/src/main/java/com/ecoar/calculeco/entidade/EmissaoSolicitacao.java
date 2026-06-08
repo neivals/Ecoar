@@ -48,14 +48,8 @@ public class EmissaoSolicitacao {
     @CreationTimestamp
     private LocalDateTime dataSolicitacao;
 
-    @ElementCollection
-    @CollectionTable(name = "emissoes_cartao_fisico", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "emissao", nullable = false)
     private List<Double> emissaoFisicoPorMes;
 
-    @ElementCollection
-    @CollectionTable(name = "emissoes_cartao_digital", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "emissao", nullable = false)
     private List<Double> emissaoDigitalPorMes;
 
     //Em KWh
