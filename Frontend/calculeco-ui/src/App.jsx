@@ -6,6 +6,7 @@ import RotaProtegida from "./components/RotaProtegida";
 import FormularioEmissao from "./components/FormularioEmissao";
 import Resultado from "./components/Resultado";
 import "./App.css";
+import Conscientizacao from "./components/Conscientizacao";
 
 // Página da calculadora (conteúdo original do App)
 function Calculadora() {
@@ -19,6 +20,7 @@ function Calculadora() {
         <div className="paginacalculadora">
             <FormularioEmissao onResultado={handleReceberDados} />
             <Resultado dados={meusDados} />
+            <Conscientizacao />
         </div>
     );
 }
