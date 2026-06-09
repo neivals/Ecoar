@@ -44,7 +44,7 @@ function Login() {
             </header>
 
             <div className="auth-card">
-                <h1 className="auth-titulo">Login into CalculECO</h1>
+                <h1 className="auth-titulo">Login em CalculECO</h1>
 
                 <button type="button" className="google-btn">
                     <FcGoogle className="google-icon" aria-hidden="true" />
