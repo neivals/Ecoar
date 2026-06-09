@@ -51,7 +51,7 @@ function Login() {
                     Logar com Google
                 </button>
 
-                <span className="auth-separator">or</span>
+                <span className="auth-separator">ou</span>
 
                 <form onSubmit={handleSubmit} className="auth-form">
                     <div className="auth-campo">
@@ -62,7 +62,7 @@ function Login() {
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="seu@email.com"
+                            placeholder="Insira seu email"
                             required
                         />
                     </div>
