@@ -82,7 +82,7 @@ function Cadastro() {
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="seu@email.com"
+                            placeholder="Insira o email"
                             required
                         />
                     </div>
@@ -95,7 +95,7 @@ function Cadastro() {
                             type="password"
                             value={senha}
                             onChange={(e) => setSenha(e.target.value)}
-                            placeholder="Mínimo 6 caracteres"
+                            placeholder="Insira sua senha (mínimo 6 caractere)"
                             required
                         />
                     </div>

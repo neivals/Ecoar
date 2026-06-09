@@ -6,20 +6,12 @@
   justify-content: center;
   overflow: hidden;
   padding: 118px 24px 48px;
-  background:
-    radial-gradient(62% 48% at 66% 55%, rgba(174, 230, 206, 0.72) 0 26%, transparent 27%),
-    radial-gradient(58% 52% at 18% 92%, rgba(194, 245, 231, 0.58) 0 22%, transparent 23%),
-    radial-gradient(55% 70% at 89% 7%, rgba(104, 188, 172, 0.68) 0 33%, transparent 34%),
-    radial-gradient(42% 38% at -2% 62%, rgba(202, 226, 250, 0.48) 0 54%, transparent 55%),
-    linear-gradient(135deg, #83c8e8 0%, #b7dfef 48%, #acdced 100%);
+  background: url("../icone/fundo.png") center / cover no-repeat;
 }
 
 .login-page::before,
 .login-page::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-  opacity: 0.46;
+  display: none;
 }
 
 .login-page::before {

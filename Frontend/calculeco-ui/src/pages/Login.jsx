@@ -44,14 +44,14 @@ function Login() {
             </header>
 
             <div className="auth-card">
-                <h1 className="auth-titulo">Login into CalculECO</h1>
+                <h1 className="auth-titulo">Login em CalculECO</h1>
 
                 <button type="button" className="google-btn">
                     <FcGoogle className="google-icon" aria-hidden="true" />
                     Logar com Google
                 </button>
 
-                <span className="auth-separator">or</span>
+                <span className="auth-separator">ou</span>
 
                 <form onSubmit={handleSubmit} className="auth-form">
                     <div className="auth-campo">
@@ -62,7 +62,7 @@ function Login() {
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="seu@email.com"
+                            placeholder="Insira seu email"
                             required
                         />
                     </div>
