@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { MdLockOutline, MdOutlineEmail } from "react-icons/md";
 import { useNavigate, Link } from "react-router-dom";
 import { login, salvarSessao } from "../services/authService";
+import edenredLogo from "../icone/image.png";
 import "../page css/Login.css";
 
 function Login() {
@@ -36,8 +39,7 @@ function Login() {
                     <span>CalculECO</span>
                 </div>
                 <div className="edenred-brand" aria-label="Edenred">
-                    <span aria-hidden="true"></span>
-                    Edenred
+                    <img src={edenredLogo} alt="Edenred" />
                 </div>
             </header>
 
@@ -45,7 +47,7 @@ function Login() {
                 <h1 className="auth-titulo">Login into CalculECO</h1>
 
                 <button type="button" className="google-btn">
-                    <span className="google-icon" aria-hidden="true">G</span>
+                    <FcGoogle className="google-icon" aria-hidden="true" />
                     Logar com Google
                 </button>
 
@@ -54,7 +56,7 @@ function Login() {
                 <form onSubmit={handleSubmit} className="auth-form">
                     <div className="auth-campo">
                         <label htmlFor="email">Email</label>
-                        <span className="input-icon email-icon" aria-hidden="true"></span>
+                        <MdOutlineEmail className="input-icon" aria-hidden="true" />
                         <input
                             id="email"
                             type="email"
@@ -67,7 +69,7 @@ function Login() {
 
                     <div className="auth-campo">
                         <label htmlFor="senha">Senha</label>
-                        <span className="input-icon lock-icon" aria-hidden="true"></span>
+                        <MdLockOutline className="input-icon" aria-hidden="true" />
                         <input
                             id="senha"
                             type="password"
