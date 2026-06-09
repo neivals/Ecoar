@@ -46,12 +46,18 @@ public class CalculoService {
         //em Km
         double distanciaKm = calcularDistanciaPelasCoordenadas(coordenadasObtidas);
         //em Kg
-        double totalFisico = calcularFisico(dto, cartaoFisico, distanciaKm);
-        double totalDigital = calcularDigital(dto, cartaoDigital);
-        double diferenca = totalFisico - totalDigital;
         List<Double> emissaoFisicoPorMes = new ArrayList<>();
         List<Double> emissaoDigitalPorMes = new ArrayList<>();
         calcularEmissoesPorMes(dto, cartaoFisico, cartaoDigital, emissaoFisicoPorMes, emissaoDigitalPorMes, distanciaKm);
+        int meses;
+        if (dto.getPeriodo().getPeriodoEmMeses() >= 36) {
+            meses = dto.getPeriodo().getPeriodoEmMeses() / 3;
+        } else {
+            meses = dto.getPeriodo().getPeriodoEmMeses();
+        }
+        double totalFisico = emissaoFisicoPorMes.get(meses);
+        double totalDigital = emissaoDigitalPorMes.get(meses);
+        double diferenca = totalFisico - totalDigital;
 
         //em KWh
         double energiaTotal = calcularEnergia(dto, cartaoDigital);
@@ -83,24 +89,6 @@ public class CalculoService {
         return new ResultadoEmissaoDTO(request.getEmissaoTotalFisico(), request.getEmissaoTotalDigital(), request.getDiferencaEmissao(),
                 request.getEmissaoFisicoPorMes(), request.getEmissaoDigitalPorMes(), request.getCoordenadas(), request.getEnergiaTotal(),
                 request.getAguaTotal(), request.getPlasticoTotal(), request.getArvoresSalvas());
-    }
-
-    private double calcularFisico(RequestDTO dto, CartaoFisico cartaoFisico, double distanciaKm) {
-        int meses = dto.getPeriodo().getPeriodoEmMeses();
-        double emissaoProducao = (cartaoFisico.getMaterial().getEmissaoNaProducao() * cartaoFisico.getQuantidadeCartoesPorMes() * meses);
-        double emissaoTransacao = (cartaoFisico.getTipoPagamento().getEmissaoPorTransacao() * cartaoFisico.getQuantidadeTransacoesPorMes() * meses);
-        double emissaoTransporte = (distanciaKm * cartaoFisico.getTransporte().getEmissaoPorKm() * meses);
-        double emissaoDecarte = 0;
-        if (dto.getPeriodo().incluirDescarte()) {
-            int mesesDescarte = meses - 36;
-            emissaoDecarte = cartaoFisico.emissaoDescarteMediaPorMes() * mesesDescarte;
-        }
-        return emissaoProducao + emissaoTransacao + emissaoTransporte + emissaoDecarte;
-    }
-
-    private double calcularDigital(RequestDTO dto, CartaoDigital cartaoDigital) {
-        int meses = dto.getPeriodo().getPeriodoEmMeses();
-        return (cartaoDigital.getQuantidadeTransacoesPorMes() * cartaoDigital.getTipoPagamento().getEmissaoPorTransacao() * meses);
     }
 
     private void calcularEmissoesPorMes(RequestDTO dto, CartaoFisico cartaoFisico, CartaoDigital cartaoDigital, List<Double> emissoesPorMesFisico, List<Double> emissoesPorMesDigital, double distanciaKm) {
@@ -166,7 +154,8 @@ public class CalculoService {
 
     private double calcularAgua(RequestDTO dto, CartaoFisico cartaoFisico) {
         double aguaNoMes = cartaoFisico.getAguaPorCartao() * cartaoFisico.getQuantidadeCartoesPorMes();
-        return aguaNoMes * dto.getPeriodo().getPeriodoEmMeses();
+        double aguaTotal = aguaNoMes * dto.getPeriodo().getPeriodoEmMeses();
+        return (double)Math.round(aguaTotal * 1000.0) / 1000.0;
     }
 
     private double calcularPlastico(RequestDTO dto, CartaoFisico cartaoFisico) {

@@ -101,3 +101,27 @@ button:hover {
 
 .xg { color: #135b4f; }
 .yg { color: #4c9e6b; }
+
+
+.conscientizacao-container {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.conscientizacao-texto {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #162056;
+}
+
+.saiba-mais-btn {
+    align-self: flex-end;
+    width: auto;
+    padding: 10px 24px;
+}
