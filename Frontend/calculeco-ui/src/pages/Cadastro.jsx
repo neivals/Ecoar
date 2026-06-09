@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { MdLockOutline, MdOutlineEmail, MdPersonOutline } from "react-icons/md";
 import { useNavigate, Link } from "react-router-dom";
 import { cadastrar, salvarSessao } from "../services/authService";
+import edenredLogo from "../icone/image.png";
 import "../page css/Cadastro.css";
 
 function Cadastro() {
     const navigate = useNavigate();
+    const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
@@ -42,8 +46,7 @@ function Cadastro() {
                     <span>CalculECO</span>
                 </div>
                 <div className="edenred-brand" aria-label="Edenred">
-                    <span aria-hidden="true"></span>
-                    Edenred
+                    <img src={edenredLogo} alt="Edenred" />
                 </div>
             </header>
 
@@ -51,7 +54,7 @@ function Cadastro() {
                 <h1 className="auth-titulo">Criar uma conta</h1>
 
                 <button type="button" className="google-btn">
-                    <span className="google-icon" aria-hidden="true">G</span>
+                    <FcGoogle className="google-icon" aria-hidden="true" />
                     Logar com Google
                 </button>
 
@@ -59,8 +62,21 @@ function Cadastro() {
 
                 <form onSubmit={handleSubmit} className="auth-form">
                     <div className="auth-campo">
+                        <label htmlFor="nome">Nome</label>
+                        <MdPersonOutline className="input-icon" aria-hidden="true" />
+                        <input
+                            id="nome"
+                            type="text"
+                            value={nome}
+                            onChange={(e) => setNome(e.target.value)}
+                            placeholder="Nome"
+                            required
+                        />
+                    </div>
+
+                    <div className="auth-campo">
                         <label htmlFor="email">Email</label>
-                        <span className="input-icon email-icon" aria-hidden="true"></span>
+                        <MdOutlineEmail className="input-icon" aria-hidden="true" />
                         <input
                             id="email"
                             type="email"
@@ -73,7 +89,7 @@ function Cadastro() {
 
                     <div className="auth-campo">
                         <label htmlFor="senha">Senha</label>
-                        <span className="input-icon lock-icon" aria-hidden="true"></span>
+                        <MdLockOutline className="input-icon" aria-hidden="true" />
                         <input
                             id="senha"
                             type="password"
@@ -86,7 +102,7 @@ function Cadastro() {
 
                     <div className="auth-campo">
                         <label htmlFor="confirmarSenha">Confirmar senha</label>
-                        <span className="input-icon lock-icon" aria-hidden="true"></span>
+                        <MdLockOutline className="input-icon" aria-hidden="true" />
                         <input
                             id="confirmarSenha"
                             type="password"
