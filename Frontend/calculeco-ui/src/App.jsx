@@ -8,7 +8,27 @@ import Resultado from "./components/Resultado";
 import "./App.css";
 import Conscientizacao from "./components/Conscientizacao";
 
-// Página da calculadora (conteúdo original do App)
+function Navbar() {
+    return (
+        <nav className="navbar">
+            <div className="navbar-brand">
+                <span className="navbar-mark" aria-hidden="true"></span>
+                <span className="navbar-brand-nome">CalculECO</span>
+            </div>
+            <div className="navbar-tabs">
+                <span className="navbar-tab navbar-tab-ativo">Calculadora</span>
+                <span className="navbar-tab">Informações</span>
+                <span className="navbar-tab">Acessibilidade</span>
+            </div>
+            <div className="navbar-lang">
+                <span className="lang-ativo">ptbr</span>
+                <span className="lang-sep"> | </span>
+                <span>eng</span>
+            </div>
+        </nav>
+    );
+}
+
 function Calculadora() {
     const [meusDados, setMeusDados] = useState(null);
 
@@ -18,9 +38,14 @@ function Calculadora() {
 
     return (
         <div className="paginacalculadora">
-            <FormularioEmissao onResultado={handleReceberDados} />
-            <Resultado dados={meusDados} />
-            <Conscientizacao />
+            <Navbar />
+            <div className="calculadora-layout">
+                <FormularioEmissao onResultado={handleReceberDados} />
+                <div className="resultados-area">
+                    <Resultado dados={meusDados} />
+                    <Conscientizacao />
+                </div>
+            </div>
         </div>
     );
 }
@@ -29,14 +54,9 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                {/* Rota raiz redireciona para login */}
                 <Route path="/" element={<Navigate to="/login" replace />} />
-
-                {/* Rotas públicas */}
                 <Route path="/login" element={<Login />} />
                 <Route path="/cadastro" element={<Cadastro />} />
-
-                {/* Rota protegida — só acessível após login */}
                 <Route
                     path="/calculadora"
                     element={

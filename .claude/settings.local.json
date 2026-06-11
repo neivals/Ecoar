@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_figma_figma__get_screenshot",
+      "Bash(curl *)",
+      "mcp__plugin_figma_figma__get_metadata",
+      "Bash(awk '/<canvas id=\"398:595\"/,/<\\\\/canvas>/' /tmp/figma_metadata.xml)",
+      "Bash(cat)",
+      "Bash(chmod +x /tmp/analyze_screens.sh)",
+      "Bash(/tmp/analyze_screens.sh)",
+      "Skill(run)",
+      "Bash(npm run *)",
+      "Bash(npm list *)",
+      "Bash(node -e \"const { chromium } = require\\('playwright'\\); chromium.launch\\({args:['--no-sandbox']}\\).then\\(b=>{console.log\\('ok'\\);b.close\\(\\)}\\).catch\\(e=>console.error\\(e.message\\)\\)\")",
+      "Bash(kill %2)",
+      "Bash(npx playwright *)",
+      "Bash(node *)",
+      "Bash(node_modules/.bin/playwright --version)",
+      "Bash(npx playwright@1.60.0 install chromium)",
+      "Bash(npx playwright@1.60.0 --version)",
+      "Bash(PLAYWRIGHT_BROWSERS_PATH=/home/telmo/.cache/ms-playwright node -e ' *)",
+      "Bash(PLAYWRIGHT_BROWSERS_PATH=/home/telmo/.cache/ms-playwright node *)",
+      "Bash(pkill -f \"vite --port 5173\")",
+      "Bash(grep -v \"^--$\")"
+    ]
+  }
+}
