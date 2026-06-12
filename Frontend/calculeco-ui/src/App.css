@@ -10,118 +10,405 @@ body {
   color: #162056;
 }
 
-.paginacalculadora {
-  min-height: 100vh;
+/* ===== NAVBAR ===== */
+.navbar {
+  width: 100%;
+  height: 64px;
+  background-color: #ffffff;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
-  gap: 24px;
+  justify-content: space-between;
+  padding: 0 36px;
+  box-shadow: 0 2px 8px rgba(22, 32, 86, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
 }
 
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.navbar-mark {
+  position: relative;
+  width: 20px;
+  height: 30px;
+  border: 3px solid #162056;
+  border-radius: 50%;
+  transform: rotate(-10deg);
+  flex-shrink: 0;
+}
+
+.navbar-mark::before,
+.navbar-mark::after {
+  content: "";
+  position: absolute;
+  border: 2px solid #162056;
+  border-radius: 50%;
+}
+
+.navbar-mark::before {
+  inset: 4px 2px 3px;
+}
+
+.navbar-mark::after {
+  width: 20px;
+  height: 20px;
+  top: -7px;
+  left: -4px;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(22deg);
+}
+
+.navbar-brand-nome {
+  font-family: 'Kufam', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #162056;
+}
+
+.navbar-tabs {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.navbar-tab {
+  font-family: 'Kufam', sans-serif;
+  font-size: 14px;
+  color: #162056;
+  cursor: pointer;
+  padding-bottom: 4px;
+  opacity: 0.5;
+  border: none;
+  background: transparent;
+  width: auto;
+  margin: 0;
+  padding: 4px 0;
+  border-radius: 0;
+  font-weight: 400;
+}
+
+.navbar-tab:hover {
+  opacity: 0.8;
+  background: transparent;
+}
+
+.navbar-tab-ativo {
+  opacity: 1;
+  font-weight: 700;
+  border-bottom: 2px solid #162056;
+}
+
+.navbar-lang {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 13px;
+  color: #162056;
+}
+
+.lang-ativo {
+  font-weight: 700;
+}
+
+.lang-sep {
+  opacity: 0.4;
+  margin: 0 2px;
+}
+
+/* ===== PAGINA CALCULADORA ===== */
+.paginacalculadora {
+  min-height: 100vh;
+  background-color: #eaf3ff;
+  display: flex;
+  flex-direction: column;
+}
+
+.calculadora-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 32px;
+  flex: 1;
+}
+
+/* ===== FORMULARIO ===== */
 .paginacalculadora2 {
   background-color: #fff;
   border-radius: 20px;
-  padding: 30px;
-  width: 100%;
-  max-width: 450px;
+  padding: 28px 24px;
+  width: 360px;
+  min-width: 300px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
+  box-shadow: 0 4px 16px rgba(22, 32, 86, 0.08);
+}
+
+.a-calculeco-tem {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #162056;
+  opacity: 0.75;
 }
 
 .preencha {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
 }
 
 .recursos {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
 }
 
-.regio, .perodo {
-  font-size: 24px;
-  font-weight: 700;
-  margin-top: 8px;
+.recursos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-select {
+.recurso-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #162056;
+  cursor: pointer;
+  user-select: none;
+}
+
+.recurso-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #162056;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.regio,
+.perodo {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+input[type="text"] {
   width: 100%;
-  padding: 12px 16px;
+  padding: 10px 16px;
   border-radius: 20px;
   border: none;
   background-color: #eaf3ff;
   box-shadow: 0 4px 4px rgba(22, 32, 86, 0.25);
-  font-size: 16px;
+  font-size: 14px;
+  color: #162056;
+  font-family: 'Kufam', sans-serif;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  box-shadow: 0 0 0 2px rgba(22, 32, 86, 0.24);
+}
+
+select {
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 20px;
+  border: none;
+  background-color: #eaf3ff;
+  box-shadow: 0 4px 4px rgba(22, 32, 86, 0.25);
+  font-size: 14px;
   color: #162056;
   font-family: 'Kufam', sans-serif;
   cursor: pointer;
+  outline: none;
 }
 
 button {
   width: 100%;
-  padding: 14px;
+  padding: 12px;
   border-radius: 20px;
   border: none;
   background-color: #162056;
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   font-family: 'Kufam', sans-serif;
   font-weight: 700;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 button:hover {
   background-color: #2f44b8;
 }
 
+/* ===== RESULTADOS ===== */
+.resultados-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
 .frame {
   background-color: #fff;
   border-radius: 20px;
-  padding: 30px;
-  width: 100%;
-  max-width: 450px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
+  box-shadow: 0 4px 16px rgba(22, 32, 86, 0.08);
 }
 
 .comparao-dentre-modalidades,
 .comparao-por-tempo {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 700;
 }
 
-.xg, .yg {
-  font-size: 24px;
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quantidade-de-recursos {
+  font-size: 13px;
+  color: #162056;
+  opacity: 0.75;
+}
+
+.chart-and-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fsico,
+.digital {
+  font-size: 13px;
+  font-weight: 600;
+  color: #162056;
+}
+
+.xg {
+  font-size: 22px;
+  font-weight: 700;
+  color: #135b4f;
+}
+
+.yg {
+  font-size: 22px;
+  font-weight: 700;
+  color: #4c9e6b;
+}
+
+.ao-usar-o {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #162056;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+.dentro-de-1 {
+  font-size: 14px;
+  color: #162056;
+}
+
+.cada-um {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #162056;
+}
+
+.energia,
+.agua,
+.plastico {
+  font-weight: 700;
+  display: block;
+  margin-top: 6px;
+}
+
+.arvores {
+  font-size: 18px;
   font-weight: 700;
 }
 
-.xg { color: #135b4f; }
-.yg { color: #4c9e6b; }
+.arvores-salvas {
+  font-size: 14px;
+  color: #162056;
+}
 
-
+/* ===== CONSCIENTIZACAO ===== */
 .conscientizacao-container {
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 30px;
-    width: 100%;
-    max-width: 450px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 4px 16px rgba(22, 32, 86, 0.08);
 }
 
 .conscientizacao-texto {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #162056;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #162056;
 }
 
 .saiba-mais-btn {
-    align-self: flex-end;
-    width: auto;
-    padding: 10px 24px;
+  align-self: flex-end;
+  width: auto;
+  padding: 10px 28px;
+  margin-top: 0;
+  font-size: 14px;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 900px) {
+  .calculadora-layout {
+    flex-direction: column;
+    padding: 20px 16px;
+  }
+
+  .paginacalculadora2 {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .navbar-tabs {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0 16px;
+    height: 56px;
+  }
+
+  .navbar-tabs {
+    gap: 12px;
+  }
+
+  .navbar-tab {
+    font-size: 12px;
+  }
+
+  .navbar-lang {
+    font-size: 12px;
+  }
+
+  .calculadora-layout {
+    padding: 16px;
+    gap: 16px;
+  }
 }

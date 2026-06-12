@@ -1,20 +1,37 @@
 import { useState } from "react";
 import { calcularEmissao } from "../services/calculoService";
 
+const RECURSOS = [
+    { key: "co2",       label: "Liberação de CO2" },
+    { key: "agua",      label: "Consumo de água" },
+    { key: "energia",   label: "Uso de energia elétrica" },
+    { key: "materiais", label: "Descarte de materiais" },
+];
+
 function FormularioEmissao({ onResultado }) {
     const [enderecoDigitado, setEnderecoDigitado] = useState("");
     const [periodo, setPeriodo] = useState("");
+    const [recursos, setRecursos] = useState({
+        co2: true,
+        agua: true,
+        energia: true,
+        materiais: true,
+    });
+
+    const toggleRecurso = (key) =>
+        setRecursos((prev) => ({ ...prev, [key]: !prev[key] }));
 
     function handleSubmit() {
         const dados = {
             periodo,
-            endereco: enderecoDigitado
+            endereco: enderecoDigitado,
+            recursos,
         };
         calcularEmissao(dados)
-            .then(response => {
+            .then((response) => {
                 onResultado(response.data);
             })
-            .catch(erro => {
+            .catch((erro) => {
                 console.error("Erro na comunicação com o servidor:", erro);
             });
     }
@@ -26,31 +43,33 @@ function FormularioEmissao({ onResultado }) {
                 ambientais gerados pelo uso de cartões de benefício físicos e
                 digitais. Preencha os campos abaixo para iniciar o cálculo.
             </div>
+
             <h2 className="preencha">Preencha:</h2>
+
             <h3 className="recursos">Recursos</h3>
-            <div className="calculator-page">
-                <div className="consumo-de-gua">Liberação de CO2</div>
-            </div>
-            <div className="calculator-page">
-                <div className="consumo-de-gua">Consumo de água</div>
-            </div>
-            <div className="calculator-page">
-                <div className="consumo-de-gua">Uso de energia elétrica</div>
-            </div>
-            <div className="calculator-page">
-                <div className="consumo-de-gua">Descarte de materiais</div>
+            <div className="recursos-lista">
+                {RECURSOS.map(({ key, label }) => (
+                    <label key={key} className="recurso-item">
+                        <input
+                            type="checkbox"
+                            checked={recursos[key]}
+                            onChange={() => toggleRecurso(key)}
+                        />
+                        <span>{label}</span>
+                    </label>
+                ))}
             </div>
 
             <h3 className="regio">Região</h3>
             <input
                 type="text"
                 value={enderecoDigitado}
-                onChange={e => setEnderecoDigitado(e.target.value)}
+                onChange={(e) => setEnderecoDigitado(e.target.value)}
                 placeholder="Digite o endereço..."
             />
 
             <h3 className="perodo">Período</h3>
-            <select value={periodo} onChange={e => setPeriodo(e.target.value)}>
+            <select value={periodo} onChange={(e) => setPeriodo(e.target.value)}>
                 <option value="">Selecione o período</option>
                 <option value="SEISMESES">Seis meses</option>
                 <option value="UMANO">Um ano</option>
