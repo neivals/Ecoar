@@ -7,13 +7,18 @@ import FormularioEmissao from "./components/FormularioEmissao";
 import Resultado from "./components/Resultado";
 import "./App.css";
 import Conscientizacao from "./components/Conscientizacao";
+import calculecoLogo from "./icone/Calculeco_logo2.png";
+import edenredLogo from "./icone/Edenred_logo1.png";
 
 function Navbar() {
     return (
         <nav className="navbar">
             <div className="navbar-brand">
                 <span className="navbar-mark" aria-hidden="true"></span>
-                <span className="navbar-brand-nome">CalculECO</span>
+                <img src={calculecoLogo} alt="Calculeco" />
+                <div className="edenred-brand" aria-label="Edenred">
+                    <img src={edenredLogo} alt = "Edenred" />
+                </div>
             </div>
             <div className="navbar-tabs">
                 <span className="navbar-tab navbar-tab-ativo">Calculadora</span>

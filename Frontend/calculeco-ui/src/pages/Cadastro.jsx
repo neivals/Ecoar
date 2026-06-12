@@ -5,6 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { cadastrar, salvarSessao } from "../services/authService";
 import edenredLogo from "../icone/image.png";
 import "../page css/Cadastro.css";
+import calculecoLogo from "../icone/Calculeco_logo1.png";
 
 function Cadastro() {
     const navigate = useNavigate();
@@ -43,7 +44,7 @@ function Cadastro() {
             <header className="auth-brandbar" aria-label="Marcas">
                 <div className="calculeco-brand">
                     <span className="calculeco-mark" aria-hidden="true"></span>
-                    <span>CalculECO</span>
+                    <img src={calculecoLogo} alt="Calculeco" />
                 </div>
                 <div className="edenred-brand" aria-label="Edenred">
                     <img src={edenredLogo} alt="Edenred" />
