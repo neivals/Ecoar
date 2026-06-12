@@ -64,6 +64,7 @@ public class EmissaoSolicitacao {
     @Column(nullable = false)
     private double plasticoTotal;
 
+    //Por mês
     @Column(nullable = false)
     private int arvoresSalvas;
 }

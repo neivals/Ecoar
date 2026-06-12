@@ -19,10 +19,10 @@ public class Cartao {
     private Long id;
 
     @Column(nullable = false)
-    private final int quantidadeCartoesPorMes = 1000;
+    private final int quantidadeCartoesPorMes = 10000;
 
     @Column(nullable = false)
-    private final int quantidadeTransacoesPorMes = 25000;
+    private final int quantidadeTransacoesPorMes = 250000;
 
     //Em KWh
     @Column(nullable = false)
