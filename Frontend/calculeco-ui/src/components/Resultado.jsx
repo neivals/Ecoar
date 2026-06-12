@@ -39,7 +39,7 @@ function Resultado({ dados }) {
             </div>
             <h2 className="arvores">Árvores salvas</h2>
             <div className="arvores-salvas">
-                Com {dados.diferencaEmissao}Kg de CO2 economizados, {dados.arvoresSalvas} árvores são salvas
+                Com {dados.diferencaEmissao}Kg de CO2 economizados, {dados.arvoresSalvas} árvores são salvas por mês.
             </div>
 
         </section>

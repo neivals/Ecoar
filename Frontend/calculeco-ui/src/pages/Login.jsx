@@ -4,6 +4,7 @@ import { MdLockOutline, MdOutlineEmail } from "react-icons/md";
 import { useNavigate, Link } from "react-router-dom";
 import { login, salvarSessao } from "../services/authService";
 import edenredLogo from "../icone/image.png";
+import calculecoLogo from "../icone/Calculeco_logo1.png";
 import "../page css/Login.css";
 
 function Login() {
@@ -36,7 +37,7 @@ function Login() {
             <header className="auth-brandbar" aria-label="Marcas">
                 <div className="calculeco-brand">
                     <span className="calculeco-mark" aria-hidden="true"></span>
-                    <span>CalculECO</span>
+                    <img src={calculecoLogo} alt="Calculeco" />
                 </div>
                 <div className="edenred-brand" aria-label="Edenred">
                     <img src={edenredLogo} alt="Edenred" />
