@@ -34,7 +34,7 @@ public class AuthController {
             AuthResponseDTO response = authService.login(dto);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(401).body(Map.of("erro", "Email ou senha invÃ¡lidos."));
+            return ResponseEntity.status(401).body(Map.of("erro", "Email ou senha inválidos."));
         }
     }
 }
