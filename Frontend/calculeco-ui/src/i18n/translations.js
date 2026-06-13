@@ -54,6 +54,16 @@ const translations = {
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet lorem eu velit faucibus auctor. Sed et suscipit nisi, molestie dictum urna. Quisque rutrum enim tristique ipsum accumsan varius.",
             saibaMais: "Saiba mais",
         },
+        informacoes: {
+            conscientizacaoTitulo: "CONSCIENTIZAÇÃO",
+            conscientizacaoTexto:
+                "X quantidade de recursos podia ser usada para ajudar Z famílias em situação de vulnerabilidade",
+            infoTitulo: "INFO SOBRE COMO É FEITO O CÁLCULO",
+            infoTexto:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet lorem eu velit faucibus auctor. Sed et suscipit nisi, molestie dictum urna.",
+            ctaTitulo: "Calcule os impactos do uso dos cartões!",
+            ctaBotao: "Ir para a calculadora",
+        },
     },
     eng: {
         navbar: {
@@ -109,6 +119,16 @@ const translations = {
             texto:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet lorem eu velit faucibus auctor. Sed et suscipit nisi, molestie dictum urna. Quisque rutrum enim tristique ipsum accumsan varius.",
             saibaMais: "Learn more",
+        },
+        informacoes: {
+            conscientizacaoTitulo: "AWARENESS",
+            conscientizacaoTexto:
+                "X amount of resources could be used to help Z families in vulnerable situations",
+            infoTitulo: "INFO ON HOW THE CALCULATION IS DONE",
+            infoTexto:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet lorem eu velit faucibus auctor. Sed et suscipit nisi, molestie dictum urna.",
+            ctaTitulo: "Calculate the impacts of card usage!",
+            ctaBotao: "Go to calculator",
         },
     },
 };
