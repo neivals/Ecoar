@@ -1,14 +1,15 @@
+import { useLanguage } from "../context/LanguageContext";
+
 function Conscientizacao() {
+    const { t } = useLanguage();
+
     return (
         <div className="conscientizacao-container">
             <p className="conscientizacao-texto">
-                PARÁGRAFO DE CONSCIENTIZAÇÃO<br /><br />
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Nullam aliquet lorem eu velit faucibus auctor. Sed et suscipit
-                nisi, molestie dictum urna. Quisque rutrum enim tristique ipsum
-                accumsan varius.
+                {t.conscientizacao.titulo}<br /><br />
+                {t.conscientizacao.texto}
             </p>
-            <button className="saiba-mais-btn">Saiba mais</button>
+            <button className="saiba-mais-btn">{t.conscientizacao.saibaMais}</button>
         </div>
     );
 }
