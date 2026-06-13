@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import Informacoes from "./pages/Informacoes";
+import Acessibilidade from "./pages/Acessibilidade";
 import RotaProtegida from "./components/RotaProtegida";
 import FormularioEmissao from "./components/FormularioEmissao";
 import Resultado from "./components/Resultado";
@@ -11,6 +12,46 @@ import Conscientizacao from "./components/Conscientizacao";
 import calculecoLogo from "./icone/Calculeco_logo2.png";
 import edenredLogo from "./icone/Edenred_logo1.png";
 import { LanguageProvider, useLanguage } from "./context/LanguageContext";
+import { AccessibilityProvider, useAccessibility, FONT_SCALES } from "./context/AccessibilityContext";
+
+function ColorFilterSVG() {
+    const { filterEnabled, filterValues, FILTER_MATRICES, IDENTITY } = useAccessibility();
+
+    const activeFilters = [
+        { key: "grayscale",    value: filterValues.grayscale },
+        { key: "deuteranopia", value: filterValues.deuteranopia },
+        { key: "protanopia",   value: filterValues.protanopia },
+        { key: "tritanopia",   value: filterValues.tritanopia },
+    ].filter(f => filterEnabled && f.value > 0);
+
+    if (activeFilters.length === 0) return null;
+
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}
+            aria-hidden="true"
+        >
+            <defs>
+                <filter id="ecoar-color-filter" colorInterpolationFilters="sRGB">
+                    {activeFilters.map((f, i) => {
+                        const t = f.value / 100;
+                        const matrix = IDENTITY.map((v, idx) => v * (1 - t) + FILTER_MATRICES[f.key][idx] * t);
+                        return (
+                            <feColorMatrix
+                                key={f.key}
+                                in={i === 0 ? "SourceGraphic" : `r${i - 1}`}
+                                type="matrix"
+                                values={matrix.join(" ")}
+                                result={`r${i}`}
+                            />
+                        );
+                    })}
+                </filter>
+            </defs>
+        </svg>
+    );
+}
 
 function Navbar() {
     const { lang, setLang, t } = useLanguage();
@@ -101,32 +142,68 @@ function PaginaInformacoes() {
     );
 }
 
+function PaginaAcessibilidade() {
+    return (
+        <Layout>
+            <Acessibilidade />
+        </Layout>
+    );
+}
+
+function AppContent() {
+    const { fontSizeIndex, filterEnabled, filterValues } = useAccessibility();
+    const hasActiveFilter = filterEnabled && Object.values(filterValues).some(v => v > 0);
+
+    return (
+        <div
+            style={{
+                zoom: FONT_SCALES[fontSizeIndex],
+                filter: hasActiveFilter ? "url(#ecoar-color-filter)" : undefined,
+                minHeight: "100vh",
+            }}
+        >
+            <ColorFilterSVG />
+            <Routes>
+                <Route path="/" element={<Navigate to="/login" replace />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/cadastro" element={<Cadastro />} />
+                <Route
+                    path="/calculadora"
+                    element={
+                        <RotaProtegida>
+                            <Calculadora />
+                        </RotaProtegida>
+                    }
+                />
+                <Route
+                    path="/informacoes"
+                    element={
+                        <RotaProtegida>
+                            <PaginaInformacoes />
+                        </RotaProtegida>
+                    }
+                />
+                <Route
+                    path="/acessibilidade"
+                    element={
+                        <RotaProtegida>
+                            <PaginaAcessibilidade />
+                        </RotaProtegida>
+                    }
+                />
+            </Routes>
+        </div>
+    );
+}
+
 function App() {
     return (
         <BrowserRouter>
-            <LanguageProvider>
-                <Routes>
-                    <Route path="/" element={<Navigate to="/login" replace />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/cadastro" element={<Cadastro />} />
-                    <Route
-                        path="/calculadora"
-                        element={
-                            <RotaProtegida>
-                                <Calculadora />
-                            </RotaProtegida>
-                        }
-                    />
-                    <Route
-                        path="/informacoes"
-                        element={
-                            <RotaProtegida>
-                                <PaginaInformacoes />
-                            </RotaProtegida>
-                        }
-                    />
-                </Routes>
-            </LanguageProvider>
+            <AccessibilityProvider>
+                <LanguageProvider>
+                    <AppContent />
+                </LanguageProvider>
+            </AccessibilityProvider>
         </BrowserRouter>
     );
 }

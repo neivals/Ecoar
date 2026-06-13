@@ -64,6 +64,15 @@ const translations = {
             ctaTitulo: "Calcule os impactos do uso dos cartões!",
             ctaBotao: "Ir para a calculadora",
         },
+        acessibilidade: {
+            tamanho: "Tamanho:",
+            filtroCores: "Filtro de cores",
+            ativadoDesativado: "Ativado/desativado",
+            grayscale: "Escala de cinza",
+            deuteranopia: "Deuteranopia",
+            protanopia: "Protanopia",
+            tritanopia: "Tritanopia",
+        },
     },
     eng: {
         navbar: {
@@ -129,6 +138,15 @@ const translations = {
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet lorem eu velit faucibus auctor. Sed et suscipit nisi, molestie dictum urna.",
             ctaTitulo: "Calculate the impacts of card usage!",
             ctaBotao: "Go to calculator",
+        },
+        acessibilidade: {
+            tamanho: "Size:",
+            filtroCores: "Color filter",
+            ativadoDesativado: "Enabled/disabled",
+            grayscale: "Grayscale",
+            deuteranopia: "Deuteranopia",
+            protanopia: "Protanopia",
+            tritanopia: "Tritanopia",
         },
     },
 };
