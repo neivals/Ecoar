@@ -127,7 +127,7 @@ function Calculadora() {
                 <FormularioEmissao onResultado={handleReceberDados} />
                 <div className="resultados-area">
                     <Resultado dados={meusDados} />
-                    <Conscientizacao />
+                    <Conscientizacao dados={meusDados}/>
                 </div>
             </div>
         </Layout>

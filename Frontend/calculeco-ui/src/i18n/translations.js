@@ -49,9 +49,9 @@ const translations = {
                 `Com ${kg}Kg de CO2 economizados, ${arvores} árvores são salvas por mês.`,
         },
         conscientizacao: {
-            titulo: "PARÁGRAFO DE CONSCIENTIZAÇÃO",
-            texto:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet lorem eu velit faucibus auctor. Sed et suscipit nisi, molestie dictum urna. Quisque rutrum enim tristique ipsum accumsan varius.",
+            titulo: "(Junção de informações)",
+            texto: (porcentagem) =>
+                `A partir do momento em que você começa a usar o nosso Cartão de Benefícios Digital, seu impacto ambiental diminui em ${porcentagem}% em comparação ao Cartão Físico.`,
             saibaMais: "Saiba mais",
         },
         informacoes: {
@@ -124,9 +124,9 @@ const translations = {
                 `With ${kg}Kg of CO2 saved, ${arvores} trees are saved per month.`,
         },
         conscientizacao: {
-            titulo: "AWARENESS PARAGRAPH",
-            texto:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet lorem eu velit faucibus auctor. Sed et suscipit nisi, molestie dictum urna. Quisque rutrum enim tristique ipsum accumsan varius.",
+            titulo: "(Joining of information)",
+            texto: (porcentagem) =>
+                `From the moment you start using our Digital Benefit Card, your environmental impact decreases by ${porcentagem}% compared to the Physical Card.`,
             saibaMais: "Learn more",
         },
         informacoes: {
