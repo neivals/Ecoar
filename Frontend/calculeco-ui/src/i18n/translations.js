@@ -52,6 +52,16 @@ const translations = {
             titulo: "(Junção de informações)",
             texto: (porcentagem) =>
                 `A partir do momento em que você começa a usar o nosso Cartão de Benefícios Digital, seu impacto ambiental diminui em ${porcentagem}% em comparação ao Cartão Físico.`,
+            textosPorPeriodo: {
+                SEISMESES: (porcentagem) =>
+                    `Em seis meses usando o Cartão de Benefícios Digital, seu impacto ambiental pode diminuir em ${porcentagem}% em comparação ao Cartão Físico. Pequenas escolhas já começam a reduzir emissões rapidamente.`,
+                UMANO: (porcentagem) =>
+                    `Em um ano usando o Cartão de Benefícios Digital, seu impacto ambiental pode diminuir em ${porcentagem}% em comparação ao Cartão Físico. Esse período mostra como a troca de hábito gera uma economia ambiental consistente.`,
+                TRESANOS: (porcentagem) =>
+                    `Em três anos usando o Cartão de Benefícios Digital, seu impacto ambiental pode diminuir em ${porcentagem}% em comparação ao Cartão Físico. A continuidade da escolha amplia a redução de CO2, água e materiais.`,
+                CINCOANOS: (porcentagem) =>
+                    `Em cinco anos usando o Cartão de Benefícios Digital, seu impacto ambiental pode diminuir em ${porcentagem}% em comparação ao Cartão Físico. No longo prazo, a opção digital ajuda a evitar impactos acumulados na natureza.`,
+            },
             saibaMais: "Saiba mais",
         },
         informacoes: {
@@ -127,6 +137,16 @@ const translations = {
             titulo: "(Joining of information)",
             texto: (porcentagem) =>
                 `From the moment you start using our Digital Benefit Card, your environmental impact decreases by ${porcentagem}% compared to the Physical Card.`,
+            textosPorPeriodo: {
+                SEISMESES: (porcentagem) =>
+                    `In six months using the Digital Benefit Card, your environmental impact can decrease by ${porcentagem}% compared to the Physical Card. Small choices already begin to reduce emissions quickly.`,
+                UMANO: (porcentagem) =>
+                    `In one year using the Digital Benefit Card, your environmental impact can decrease by ${porcentagem}% compared to the Physical Card. This period shows how changing habits creates consistent environmental savings.`,
+                TRESANOS: (porcentagem) =>
+                    `In three years using the Digital Benefit Card, your environmental impact can decrease by ${porcentagem}% compared to the Physical Card. Keeping this choice over time expands the reduction of CO2, water, and materials.`,
+                CINCOANOS: (porcentagem) =>
+                    `In five years using the Digital Benefit Card, your environmental impact can decrease by ${porcentagem}% compared to the Physical Card. Over the long term, the digital option helps avoid accumulated impacts on nature.`,
+            },
             saibaMais: "Learn more",
         },
         informacoes: {
