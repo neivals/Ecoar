@@ -396,3 +396,34 @@ button:hover {
     gap: 16px;
   }
 }
+
+.graficos-topo {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+
+.grafico-box {
+  flex: 1;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.grafico-box h3 {
+  margin-bottom: 16px;
+  color: #162056;
+}
+
+.grafico-tempo {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.grafico-box canvas {
+  height: 280px !important;
+}
+
+.grafico-tempo canvas {
+  height: 350px !important;
+}

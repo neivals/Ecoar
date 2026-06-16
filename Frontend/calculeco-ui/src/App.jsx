@@ -116,6 +116,7 @@ function Layout({ children }) {
 
 function Calculadora() {
     const [meusDados, setMeusDados] = useState(null);
+    const [periodoSelecionado, setPeriodoSelecionado] = useState("");
 
     const handleReceberDados = (dadosDoFormulario) => {
         setMeusDados(dadosDoFormulario);
@@ -124,10 +125,19 @@ function Calculadora() {
     return (
         <Layout>
             <div className="calculadora-layout">
-                <FormularioEmissao onResultado={handleReceberDados} />
+                <FormularioEmissao
+                    onResultado={handleReceberDados}
+                    periodoSelecionado={periodoSelecionado}
+                    setPeriodoSelecionado={setPeriodoSelecionado}
+                />
+
                 <div className="resultados-area">
-                    <Resultado dados={meusDados} />
-                    <Conscientizacao dados={meusDados}/>
+                    <Resultado
+                        dados={meusDados}
+                        periodo={periodoSelecionado}
+                    />
+
+                    <Conscientizacao dados={meusDados} />
                 </div>
             </div>
         </Layout>

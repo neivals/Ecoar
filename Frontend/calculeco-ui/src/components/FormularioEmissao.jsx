@@ -2,10 +2,15 @@ import { useState } from "react";
 import { calcularEmissao } from "../services/calculoService";
 import { useLanguage } from "../context/LanguageContext";
 
-function FormularioEmissao({ onResultado }) {
+function FormularioEmissao({
+                               onResultado,
+                               periodoSelecionado,
+                               setPeriodoSelecionado
+                           }) {
     const { t } = useLanguage();
     const [enderecoDigitado, setEnderecoDigitado] = useState("");
-    const [periodo, setPeriodo] = useState("");
+    const periodo = periodoSelecionado;
+    const setPeriodo = setPeriodoSelecionado;
     const [recursos, setRecursos] = useState({
         co2: true,
         agua: true,
