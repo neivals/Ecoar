@@ -137,7 +137,7 @@ function Calculadora() {
                         periodo={periodoSelecionado}
                     />
 
-                    <Conscientizacao dados={meusDados} />
+                    <Conscientizacao dados={meusDados} periodo={periodoSelecionado} />
                 </div>
             </div>
         </Layout>
