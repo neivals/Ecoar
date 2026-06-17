@@ -29,8 +29,9 @@ function FormularioEmissao({
         setRecursos((prev) => ({ ...prev, [key]: !prev[key] }));
 
     function handleSubmit() {
+        const periodoNoMomentoDoEnvio = periodo;
         const dados = {
-            periodo,
+            periodo: periodoNoMomentoDoEnvio,
             endereco: enderecoDigitado,
             recursos,
         };

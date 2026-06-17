@@ -116,7 +116,7 @@ function Layout({ children }) {
 }
 
 function Calculadora() {
-    const { resultado, setResultado, periodo, setPeriodo } = useCalculo();
+    const { resultado, setResultado, periodo, setPeriodo, periodoCalculado } = useCalculo();
 
     return (
         <Layout>
@@ -127,8 +127,8 @@ function Calculadora() {
                     setPeriodoSelecionado={setPeriodo}
                 />
                 <div className="resultados-area">
-                    <Resultado dados={resultado} periodo={periodo} />
-                    <Conscientizacao dados={resultado} periodo={periodo} />
+                    <Resultado dados={resultado} periodo={periodoCalculado} />
+                    <Conscientizacao dados={resultado} periodo={periodoCalculado} />
                 </div>
             </div>
         </Layout>

@@ -12,6 +12,10 @@ export function CalculoProvider({ children }) {
         return sessionStorage.getItem("calculeco_periodo") || "";
     });
 
+    const [periodoCalculado, setPeriodoCalculadoState] = useState(() => {
+        return sessionStorage.getItem("calculeco_periodo_calculado") || "";
+    });
+
     const setResultado = (dados) => {
         setResultadoState(dados);
         if (dados) {
