@@ -232,120 +232,259 @@ button:hover {
   background-color: #2f44b8;
 }
 
-/* ===== RESULTADOS ===== */
+/* ===== RESULTADOS GRID LAYOUT ===== */
 .resultados-area {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 24px;
   min-width: 0;
 }
 
-.frame {
-  background-color: #fff;
-  border-radius: 20px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  box-shadow: 0 4px 16px rgba(22, 32, 86, 0.08);
+.resultados-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+  align-items: stretch;
 }
 
-.comparao-dentre-modalidades,
-.comparao-por-tempo {
+/* Shared Card Styling */
+.resultado-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 28px 24px;
+  box-shadow: 0 4px 16px rgba(22, 32, 86, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 400px;
+}
+
+.card-titulo {
   font-size: 20px;
   font-weight: 700;
+  color: #162056;
+  margin: 0;
 }
 
-.chart-container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.quantidade-de-recursos {
+.card-subtitulo {
   font-size: 13px;
   color: #162056;
   opacity: 0.75;
+  margin-top: -8px;
 }
 
-.chart-and-legend {
+/* Card 1: Modalidades specific styles */
+.card-content-modalidades {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
+}
+
+.bar-chart-wrapper {
+  flex: 1.2;
+  height: 220px;
+  position: relative;
+}
+
+.impacto-texto-wrapper {
+  flex: 0.8;
+  display: flex;
+  align-items: center;
+}
+
+.impacto-texto {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #162056;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* Card 2: Tempo specific styles */
+.card-tempo {
+  justify-content: space-between;
+}
+
+.line-chart-wrapper {
+  flex: 1;
+  height: 220px;
+  position: relative;
+  width: 100%;
+}
+
+.tempo-texto {
+  font-size: 14px;
+  color: #162056;
+  text-align: center;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* Card 3: Recursos specific styles */
+.card-recursos {
+  justify-content: flex-start;
+  min-height: auto;
+}
+
+.recursos-charts-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.recurso-chart-box {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  flex: 1;
 }
 
-.fsico,
-.digital {
-  font-size: 13px;
-  font-weight: 600;
+.recurso-chart-label {
+  font-size: 14px;
+  font-weight: 700;
   color: #162056;
+  margin-bottom: 8px;
 }
 
-.xg {
-  font-size: 22px;
+.doughnut-wrapper {
+  width: 100%;
+  height: 140px;
+  position: relative;
+}
+
+/* Custom Legend */
+.custom-legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 12px 0 8px 0;
+  padding: 8px 0;
+  border-top: 1px solid rgba(22, 32, 86, 0.05);
+  border-bottom: 1px solid rgba(22, 32, 86, 0.05);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.legend-color-plastico {
+  background-color: #162056;
+}
+
+.legend-color-agua {
+  background-color: #4C9E6B;
+}
+
+.legend-color-energia {
+  background-color: #F9C432;
+}
+
+.legend-label {
+  font-size: 13px;
+  color: #162056;
+  font-weight: 600;
+}
+
+/* Recursos text details */
+.recursos-detalhes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.detalhe-item {
+  padding: 8px 12px;
+  background-color: rgba(234, 243, 255, 0.4);
+  border-radius: 12px;
+  border-left: 4px solid #162056;
+}
+
+.detalhe-item.arvores-detalhe {
+  border-left-color: #4C9E6B;
+  background-color: rgba(76, 158, 107, 0.08);
+}
+
+.detalhe-titulo {
+  font-size: 13px;
   font-weight: 700;
-  color: #135b4f;
+  color: #162056;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 2px;
 }
 
-.yg {
-  font-size: 22px;
-  font-weight: 700;
-  color: #4c9e6b;
-}
-
-.ao-usar-o {
+.detalhe-texto {
   font-size: 13px;
   line-height: 1.5;
   color: #162056;
-  opacity: 0.85;
-  margin-top: 4px;
+  margin: 0;
 }
 
-.dentro-de-1 {
-  font-size: 14px;
-  color: #162056;
+/* Card 4: Conscientização specific styles */
+.card-conscientizacao {
+  justify-content: space-between;
 }
 
-.cada-um {
-  font-size: 14px;
-  line-height: 1.9;
-  color: #162056;
+.card-header-with-icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid rgba(22, 32, 86, 0.05);
+  padding-bottom: 8px;
 }
 
-.energia,
-.agua,
-.plastico {
-  font-weight: 700;
-  display: block;
-  margin-top: 6px;
-}
-
-.arvores {
+.conscientizacao-titulo {
   font-size: 18px;
   font-weight: 700;
-}
-
-.arvores-salvas {
-  font-size: 14px;
   color: #162056;
+  margin: 0;
 }
 
-/* ===== CONSCIENTIZACAO ===== */
-.conscientizacao-container {
-  background-color: #fff;
-  border-radius: 20px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 4px 16px rgba(22, 32, 86, 0.08);
+.info-icon {
+  font-size: 24px;
+  color: #162056;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.info-icon:hover {
+  opacity: 1;
 }
 
 .conscientizacao-texto {
   font-size: 14px;
   line-height: 1.7;
   color: #162056;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.card-footer-action {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .saiba-mais-btn {
@@ -354,76 +493,28 @@ button:hover {
   padding: 10px 28px;
   margin-top: 0;
   font-size: 14px;
+  border-radius: 20px;
 }
 
-/* ===== RESPONSIVO ===== */
-@media (max-width: 900px) {
-  .calculadora-layout {
+/* Responsive Grid adjustment */
+@media (max-width: 1200px) {
+  .resultados-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-content-modalidades {
     flex-direction: column;
-    padding: 20px 16px;
+    align-items: stretch;
   }
-
-  .paginacalculadora2 {
-    width: 100%;
-    min-width: unset;
+  
+  .bar-chart-wrapper {
+    height: 180px;
   }
-
-  .navbar-tabs {
-    gap: 18px;
+  
+  .recursos-charts-container {
+    flex-direction: column;
+    gap: 24px;
   }
-}
-
-@media (max-width: 600px) {
-  .navbar {
-    padding: 0 16px;
-    height: 56px;
-  }
-
-  .navbar-tabs {
-    gap: 12px;
-  }
-
-  .navbar-tab {
-    font-size: 12px;
-  }
-
-  .navbar-lang {
-    font-size: 12px;
-  }
-
-  .calculadora-layout {
-    padding: 16px;
-    gap: 16px;
-  }
-}
-
-.graficos-topo {
-  display: flex;
-  gap: 24px;
-  width: 100%;
-}
-
-.grafico-box {
-  flex: 1;
-  background: #fff;
-  border-radius: 12px;
-  padding: 16px;
-}
-
-.grafico-box h3 {
-  margin-bottom: 16px;
-  color: #162056;
-}
-
-.grafico-tempo {
-  width: 100%;
-  margin-top: 20px;
-}
-
-.grafico-box canvas {
-  height: 280px !important;
-}
-
-.grafico-tempo canvas {
-  height: 350px !important;
 }

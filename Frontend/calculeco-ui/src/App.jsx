@@ -132,12 +132,18 @@ function Calculadora() {
                 />
 
                 <div className="resultados-area">
-                    <Resultado
-                        dados={meusDados}
-                        periodo={periodoSelecionado}
-                    />
-
-                    <Conscientizacao dados={meusDados} periodo={periodoSelecionado} />
+                    {meusDados && (
+                        <div className="resultados-grid">
+                            <Resultado
+                                dados={meusDados}
+                                periodo={periodoSelecionado}
+                            />
+                            <Conscientizacao
+                                dados={meusDados}
+                                periodo={periodoSelecionado}
+                            />
+                        </div>
+                    )}
                 </div>
             </div>
         </Layout>
