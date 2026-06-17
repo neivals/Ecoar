@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import "../page css/Informacoes.css";
+import {useCalculo} from "../context/CalculoContext.jsx";
 
 function Informacoes() {
     const { t } = useLanguage();
+    const { resultado } = useCalculo();
     const navigate = useNavigate();
 
     return (
@@ -13,7 +15,7 @@ function Informacoes() {
                     <div className="info-card">
                         <p className="info-card-texto">
                             <span className="info-card-titulo">{t.informacoes.conscientizacaoTitulo}: </span>
-                            {t.informacoes.conscientizacaoTexto}
+                            {t.informacoes.conscientizacaoTexto(resultado.diferencaEmissao, resultado.arvoresSalvas)}
                         </p>
                     </div>
                     <div className="info-card">

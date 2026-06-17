@@ -66,11 +66,11 @@ const translations = {
         },
         informacoes: {
             conscientizacaoTitulo: "CONSCIENTIZAÇÃO",
-            conscientizacaoTexto:
-                "X quantidade de recursos podia ser usada para ajudar Z famílias em situação de vulnerabilidade",
+            conscientizacaoTexto: (kg, arvores) =>
+                `Com ${kg}Kg de CO2 economizados, ${arvores} árvores são salvas por mês.`,
             infoTitulo: "INFO SOBRE COMO É FEITO O CÁLCULO",
             infoTexto:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet lorem eu velit faucibus auctor. Sed et suscipit nisi, molestie dictum urna.",
+                "Para chegarmos aos resultados apresentados na calculadora, o calculo se baseia em diversas etapas, primeiramente calculamos a emissão de CO2 em Kg. Juntando a emissão na produção, emissão no transporte, emissão nas transações e a emissão no descarte, se houver no período selecionado, chegamos à emissão total de CO2 de um cartão físico, que será comparado com a emissão nas transações de um cartão digital. Na próxima etapa, calculamos mais recursos importantes a serem contabilizados no impacto ambiental, a energia total gasta em KWh pelo total de transações feitas por ambos os cartões, a água total gasta em litros na produção dos cartões físicos e o plástico total gasto em Kg também na produção dos cartões físicos. Por último, calculamos uma média de árvores que seriam salvas mensalmente por meio do CO2 que seria poupado caso os cartões físicos fossem trocados por cartões digitais.",
             ctaTitulo: "Calcule os impactos do uso dos cartões!",
             ctaBotao: "Ir para a calculadora",
         },
@@ -151,8 +151,8 @@ const translations = {
         },
         informacoes: {
             conscientizacaoTitulo: "AWARENESS",
-            conscientizacaoTexto:
-                "X amount of resources could be used to help Z families in vulnerable situations",
+            conscientizacaoTexto: (kg, arvores) =>
+                `With ${kg}Kg of CO2 saved, ${arvores} trees are saved per month.`,
             infoTitulo: "INFO ON HOW THE CALCULATION IS DONE",
             infoTexto:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet lorem eu velit faucibus auctor. Sed et suscipit nisi, molestie dictum urna.",
