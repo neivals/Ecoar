@@ -13,6 +13,7 @@ import calculecoLogo from "./icone/Calculeco_logo2.png";
 import edenredLogo from "./icone/Edenred_logo1.png";
 import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import { AccessibilityProvider, useAccessibility, FONT_SCALES } from "./context/AccessibilityContext";
+import {CalculoProvider, useCalculo} from "./context/CalculoContext.jsx";
 
 function ColorFilterSVG() {
     const { filterEnabled, filterValues, FILTER_MATRICES, IDENTITY } = useAccessibility();
@@ -115,29 +116,19 @@ function Layout({ children }) {
 }
 
 function Calculadora() {
-    const [meusDados, setMeusDados] = useState(null);
-    const [periodoSelecionado, setPeriodoSelecionado] = useState("");
-
-    const handleReceberDados = (dadosDoFormulario) => {
-        setMeusDados(dadosDoFormulario);
-    };
+    const { resultado, setResultado, periodo, setPeriodo } = useCalculo();
 
     return (
         <Layout>
             <div className="calculadora-layout">
                 <FormularioEmissao
-                    onResultado={handleReceberDados}
-                    periodoSelecionado={periodoSelecionado}
-                    setPeriodoSelecionado={setPeriodoSelecionado}
+                    onResultado={setResultado}
+                    periodoSelecionado={periodo}
+                    setPeriodoSelecionado={setPeriodo}
                 />
-
                 <div className="resultados-area">
-                    <Resultado
-                        dados={meusDados}
-                        periodo={periodoSelecionado}
-                    />
-
-                    <Conscientizacao dados={meusDados} periodo={periodoSelecionado} />
+                    <Resultado dados={resultado} periodo={periodo} />
+                    <Conscientizacao dados={resultado} periodo={periodo} />
                 </div>
             </div>
         </Layout>
@@ -211,7 +202,9 @@ function App() {
         <BrowserRouter>
             <AccessibilityProvider>
                 <LanguageProvider>
-                    <AppContent />
+                    <CalculoProvider>
+                        <AppContent />
+                    </CalculoProvider>
                 </LanguageProvider>
             </AccessibilityProvider>
         </BrowserRouter>
