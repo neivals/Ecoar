@@ -35,12 +35,10 @@ const valoresAcimaPlugin = {
 
         meta.data.forEach((barra, index) => {
             const x = barra.x;
-            const titulo = chart.data.labels[index];
             const valor = valores[index];
 
             ctx.font = '700 15px Kufam, sans-serif';
             ctx.fillStyle = "#162056";
-            ctx.fillText(titulo, x, barra.y - 22);
 
             ctx.font = '700 16px Kufam, sans-serif';
             ctx.fillStyle = index === 0 ? COR_FISICO : COR_DIGITAL;
