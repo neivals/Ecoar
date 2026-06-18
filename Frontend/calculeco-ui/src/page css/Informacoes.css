@@ -2,88 +2,117 @@
     min-height: calc(100vh - 110px);
     display: flex;
     flex-direction: column;
-    background: url("../icone/fundo.png") center / cover no-repeat;
 }
 
 .informacoes-layout {
     display: flex;
     align-items: flex-start;
-    gap: 24px;
+    gap: 40px;
     padding: 22px 39px 36px;
     flex: 1;
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .informacoes-cards {
     display: flex;
     flex-direction: column;
     gap: 22px;
-    width: 558px;
-    min-width: 300px;
+    width: 50%;
+    min-width: 320px;
     flex-shrink: 0;
 }
 
 .info-card {
     background-color: #fff;
-    border-radius: 14px;
+    border-radius: 20px;
     padding: 38px 24px;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 4px 16px rgba(22, 32, 86, 0.08);
     gap: 12px;
-    box-shadow: none;
     min-height: 287px;
 }
 
 .info-card-titulo {
-    font-size: 12px;
-    font-weight: 400;
-    color: #111111;
+    font-family: 'Kufam', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #162056;
 }
 
 .info-card-texto {
-    font-size: 12px;
-    line-height: 1.3;
-    color: #111111;
-    opacity: 1;
+    font-family: 'Kufam', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #162056;
+    opacity: 0.85;
 }
 
 .informacoes-cta-area {
-    flex: 1;
+    width: 50%;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
-    min-height: 597px;
-    padding-left: 0;
+    gap: 5px;
+    min-height: 596px;
+    position: relative;
 }
 
 .info-cta-card {
     background-color: #fff;
-    border-radius: 13px;
+    border-radius: 20px;
     padding: 21px 27px 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 14px;
-    box-shadow: none;
-    width: 170px;
+    box-shadow: 0 4px 16px rgba(22, 32, 86, 0.08);
+    width: 220px;
     min-height: 80px;
     text-align: center;
+    flex-shrink: 0;
+    margin-bottom: 0;
 }
 
 .info-cta-titulo {
-    font-size: 12px;
-    font-weight: 400;
-    color: #111111;
-    line-height: 1.25;
+    font-family: 'Kufam', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #162056;
+    line-height: 1.4;
 }
 
 .info-cta-botao {
-    width: auto;
-    padding: 8px 16px;
-    font-size: 12px;
-    margin-top: 0;
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-family: 'Kufam', sans-serif;
+    font-weight: 700;
     border-radius: 20px;
     white-space: nowrap;
+    background-color: #162056;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.botao-icone {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    display: block;
+}
+
+.info-cta-botao:hover {
+    background-color: #2f44b8;
 }
 
 @media (max-width: 900px) {
@@ -119,5 +148,43 @@
     .info-cta-card {
         width: 100%;
         max-width: 220px;
+    }
+}
+
+.ciclo-vida-container {
+    width: 100%;
+    max-width: 500px;
+    height: 500px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+
+.ciclo-vida-imagem {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 900px) {
+    .informacoes-cta-area {
+        width: 100%;
+        min-height: auto;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        position: static;
+    }
+
+    .ciclo-vida-container {
+        position: static;
+        transform: none;
+        max-width: 340px;
+        height: 340px;
+        margin: 20px 0 0 0;
     }
 }
