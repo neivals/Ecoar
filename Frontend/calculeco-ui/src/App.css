@@ -283,8 +283,36 @@ button:hover {
 
 .grafico-painel-corpo {
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+}
+
+.coluna-esquerda-painel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.coluna-direita-grafico {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
+  min-width: 0;
+}
+
+.recurso-icone,
+.energia-icone {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .grafico-icone {
@@ -295,30 +323,32 @@ button:hover {
 }
 
 .grafico-painel-chart {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  min-width: 0;
+  width: 100%;
+  height: 240px;
+  position: relative;
 }
 
 .grafico-chart-wrap {
-  height: 220px;
+  height: 100%;
   width: 100%;
+  position: relative;
 }
 
 .grafico-valores {
   display: flex;
-  justify-content: space-around;
-  gap: 12px;
+  flex-direction: row;
+  justify-content: center;
+  gap: 64px;
   padding: 0 8px;
+  width: 100%;
 }
 
 .grafico-valor-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  text-align: center;
+  gap: 2px;
 }
 
 .fsico,
@@ -345,6 +375,7 @@ button:hover {
   line-height: 1.55;
   color: #162056;
   opacity: 0.85;
+  text-align: justify;
 }
 
 .resultados-base {

@@ -1,5 +1,7 @@
 import { useLanguage } from "../context/LanguageContext";
 import Conscientizacao from "./Conscientizacao";
+import recursos from "../icone/Recursos.png";
+import energia from "../icone/Energia.png";
 
 import {
     Chart as ChartJS,
@@ -43,32 +45,6 @@ function formatarEmissao(kg) {
         return `${formatarNumero(kg / 1000)}t`;
     }
     return `${formatarNumero(kg, 0)}Kg`;
-}
-
-function IconeArvores() {
-    return (
-        <svg className="grafico-icone" viewBox="0 0 56 76" fill="none" aria-hidden="true">
-            <path
-                d="M28 4C20 18 8 22 8 34C8 42 14 48 22 50V58H34V50C42 48 48 42 48 34C48 22 36 18 28 4Z"
-                stroke={COR_FISICO}
-                strokeWidth="2"
-                fill="none"
-            />
-            <path d="M22 58H34V72H22V58Z" stroke={COR_FISICO} strokeWidth="2" fill="none" />
-            <circle cx="18" cy="30" r="6" stroke={COR_FISICO} strokeWidth="1.5" fill="none" />
-            <circle cx="38" cy="28" r="5" stroke={COR_FISICO} strokeWidth="1.5" fill="none" />
-        </svg>
-    );
-}
-
-function IconeBateria() {
-    return (
-        <svg className="grafico-icone" viewBox="0 0 56 56" fill="none" aria-hidden="true">
-            <rect x="8" y="14" width="40" height="32" rx="4" stroke={COR_FISICO} strokeWidth="2" fill="none" />
-            <rect x="48" y="22" width="4" height="16" rx="1" fill={COR_FISICO} />
-            <path d="M28 22L22 32H26L24 42H32L30 32H34L28 22Z" fill={COR_FISICO} />
-        </svg>
-    );
 }
 
 const barOptions = {
@@ -144,6 +120,23 @@ function Resultado({ dados, periodo }) {
 
     if (!dados) return null;
 
+    const obterLabelPeriodo = () => {
+        switch (periodo) {
+            case "SEISMESES":
+                return `${t.formulario.seisMeses.toLowerCase()}`;
+            case "UMANO":
+                return `${t.formulario.umAno.toLowerCase()}`;
+            case "TRESANOS":
+                return `${t.formulario.tresAnos.toLowerCase()}`;
+            case "CINCOANOS":
+                return `${t.formulario.cincoAnos.toLowerCase()}`;
+            default:
+                return "";
+        }
+    };
+
+    const textoPeriodoDinamico = obterLabelPeriodo();
+
     const emissaoFisico = dados.emissaoTotalFisico;
     const emissaoDigital = dados.emissaoTotalDigital;
     const porcentagemEconomia =
@@ -151,12 +144,14 @@ function Resultado({ dados, periodo }) {
             ? ((dados.diferencaEmissao / emissaoFisico) * 100).toFixed(1).replace(".", ",")
             : "0";
 
+    const impactoFisico = dados.emissaoTotalFisico + dados.aguaTotal + dados.plasticoTotal;
+
     const recursosData = {
         labels: [t.resultado.fisico, t.resultado.digital],
         datasets: [
             {
                 label: t.resultado.totalCO2,
-                data: [emissaoFisico, emissaoDigital],
+                data: [impactoFisico, emissaoDigital],
                 backgroundColor: [COR_FISICO, COR_DIGITAL],
                 borderRadius: 6,
                 borderSkipped: false,
@@ -231,26 +226,30 @@ function Resultado({ dados, periodo }) {
                         {t.resultado.quantidadeRecursosConsumidos}
                     </h3>
                     <div className="grafico-painel-corpo">
-                        <IconeArvores />
-                        <div className="grafico-painel-chart">
-                            <div className="grafico-chart-wrap">
-                                <Bar data={recursosData} options={barOptions} />
-                            </div>
+                        <div className="coluna-esquerda-painel">
+                            <img src={recursos} className="recurso-icone"/>
+                            <p className="ao-usar-o">
+                                {t.resultado.impactoAmbiental(formatarNumero(dados.aguaTotal || 0, 0), formatarNumero(dados.diferencaEmissao, 0), formatarNumero(dados.plasticoTotal, 0))}
+                            </p>
+                        </div>
+                        <div className="coluna-direita-grafico">
                             <div className="grafico-valores">
                                 <div className="grafico-valor-item">
                                     <span className="fsico">{t.resultado.fisico}</span>
-                                    <span className="xg">{formatarEmissao(emissaoFisico)}</span>
+                                    <span className="xg">{formatarEmissao(impactoFisico)}</span>
                                 </div>
                                 <div className="grafico-valor-item">
                                     <span className="digital">{t.resultado.digital}</span>
                                     <span className="yg">{formatarEmissao(emissaoDigital)}</span>
                                 </div>
                             </div>
+                            <div className="grafico-painel-chart">
+                                <div className="grafico-chart-wrap">
+                                    <Bar data={recursosData} options={barOptions} />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <p className="ao-usar-o">
-                        {t.resultado.impactoAmbiental(formatarNumero(dados.diferencaEmissao, 0))}
-                    </p>
                 </div>
 
                 <div className="grafico-painel">
@@ -258,11 +257,13 @@ function Resultado({ dados, periodo }) {
                         {t.resultado.quantidadeEnergiaUsada}
                     </h3>
                     <div className="grafico-painel-corpo">
-                        <IconeBateria />
-                        <div className="grafico-painel-chart">
-                            <div className="grafico-chart-wrap">
-                                <Bar data={energiaData} options={barOptions} />
-                            </div>
+                        <div className="coluna-esquerda-painel">
+                            <img src={energia} className="energia-icone"/>
+                            <p className="ao-usar-o">
+                                {t.resultado.energiaConsome(textoPeriodoDinamico, formatarNumero(dados.energiaTotal, 0))}
+                            </p>
+                        </div>
+                        <div className="coluna-direita-grafico">
                             <div className="grafico-valores">
                                 <div className="grafico-valor-item">
                                     <span className="fsico">{t.resultado.fisico}</span>
@@ -273,13 +274,16 @@ function Resultado({ dados, periodo }) {
                                     <span className="yg">{formatarNumero(dados.energiaTotal, 0)}kw</span>
                                 </div>
                             </div>
+                            <div className="grafico-painel-chart">
+                                <div className="grafico-chart-wrap">
+                                    <Bar data={energiaData} options={barOptions} />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <p className="ao-usar-o">
-                        {t.resultado.energiaConsome(formatarNumero(dados.energiaTotal, 0))}
-                    </p>
                 </div>
             </div>
+
 
             <div className="resultados-base">
                 <div className="grafico-tempo-area">
@@ -298,7 +302,7 @@ function Resultado({ dados, periodo }) {
                         </span>
                     </div>
                     <p className="dentro-de-1">
-                        {t.resultado.cartaoDigitalEmitePorcentagem(porcentagemEconomia)}
+                        {t.resultado.cartaoDigitalEmitePorcentagem(textoPeriodoDinamico, porcentagemEconomia)}
                     </p>
                 </div>
 
