@@ -25,7 +25,7 @@ import java.util.Optional;
 @Service
 public class CalculoService {
 
-
+    // Latitude e longitude da fábrica 2
     private static final double LAT_ORIGEM_FIXA = -23.674328839140124;
     private static final double LNG_ORIGEM_FIXA = -46.5874538578481;
 
