@@ -25,7 +25,7 @@ import java.util.Optional;
 @Service
 public class CalculoService {
 
-    //Latitude e longitude da fábrica 2
+
     private static final double LAT_ORIGEM_FIXA = -23.674328839140124;
     private static final double LNG_ORIGEM_FIXA = -46.5874538578481;
 
@@ -43,28 +43,26 @@ public class CalculoService {
         Arvore arvore = new Arvore();
 
         String coordenadasObtidas = buscarCoordenadas(dto.getEndereco());
-        //em Km
+
         double distanciaKm = calcularDistanciaPelasCoordenadas(coordenadasObtidas);
-        //em Kg
+
+
         List<Double> emissaoFisicoPorMes = new ArrayList<>();
         List<Double> emissaoDigitalPorMes = new ArrayList<>();
-        calcularEmissoesPorMes(dto, cartaoFisico, cartaoDigital, emissaoFisicoPorMes, emissaoDigitalPorMes, distanciaKm);
-        int meses;
-        if (dto.getPeriodo().getPeriodoEmMeses() >= 36) {
-            meses = dto.getPeriodo().getPeriodoEmMeses() / 3;
-        } else {
-            meses = dto.getPeriodo().getPeriodoEmMeses();
-        }
-        double totalFisico = emissaoFisicoPorMes.get(meses);
-        double totalDigital = emissaoDigitalPorMes.get(meses);
+
+
+        calcularEmissoesPorMes(dto, cartaoFisico, cartaoDigital, emissaoFisicoPorMes, emissaoDigitalPorMes, distanciaKm, isRecursoAtivo(dto, "co2"));
+
+        double totalFisico = emissaoFisicoPorMes.getLast();
+        double totalDigital = emissaoDigitalPorMes.getLast();
         double diferenca = totalFisico - totalDigital;
 
-        //em KWh
-        double energiaTotal = calcularEnergia(dto, cartaoDigital);
-        //em Litros
-        double aguaTotal = calcularAgua(dto, cartaoFisico);
-        //em Kg
-        double plasticoTotal = calcularPlastico(dto, cartaoFisico);
+
+        double energiaTotal = isRecursoAtivo(dto, "energia") ? calcularEnergia(dto, cartaoDigital) : 0.0;
+
+        double aguaTotal = isRecursoAtivo(dto, "agua") ? calcularAgua(dto, cartaoFisico) : 0.0;
+
+        double plasticoTotal = isRecursoAtivo(dto, "materiais") ? calcularPlastico(dto, cartaoFisico) : 0.0;
 
         int arvoresSalvas = calcularArvores(dto, diferenca, arvore);
 
@@ -91,20 +89,29 @@ public class CalculoService {
                 request.getAguaTotal(), request.getPlasticoTotal(), request.getArvoresSalvas());
     }
 
-    private void calcularEmissoesPorMes(RequestDTO dto, CartaoFisico cartaoFisico, CartaoDigital cartaoDigital, List<Double> emissoesPorMesFisico, List<Double> emissoesPorMesDigital, double distanciaKm) {
+    private void calcularEmissoesPorMes(RequestDTO dto, CartaoFisico cartaoFisico, CartaoDigital cartaoDigital, List<Double> emissoesPorMesFisico, List<Double> emissoesPorMesDigital, double distanciaKm, boolean co2Ativo) {
         int meses = dto.getPeriodo().getPeriodoEmMeses();
-        double emissaoNaProducaoFisico = cartaoFisico.getMaterial().getEmissaoNaProducao() * cartaoFisico.getQuantidadeCartoesPorMes();
-        double emissaoNaTransacaoFisico = cartaoFisico.getTipoPagamento().getEmissaoPorTransacao() * cartaoFisico.getQuantidadeTransacoesPorMes();
-        double emissaoNoTransporteFisico = distanciaKm * cartaoFisico.getTransporte().getEmissaoPorKm();
-        double emissaoDecarteFisico = 0;
-        if (dto.getPeriodo().incluirDescarte()) {
-            emissaoDecarteFisico = cartaoFisico.emissaoDescarteMediaPorMes();
+
+        double emissaoNaProducaoFisico = 0.0;
+        double emissaoNaTransacaoFisico = 0.0;
+        double emissaoNoTransporteFisico = 0.0;
+        double emissaoDecarteFisico = 0.0;
+        double emissaoNaTransicaoDigital = 0.0;
+
+        if (co2Ativo) {
+            emissaoNaProducaoFisico = cartaoFisico.getMaterial().getEmissaoNaProducao() * cartaoFisico.getQuantidadeCartoesPorMes();
+            emissaoNaTransacaoFisico = cartaoFisico.getTipoPagamento().getEmissaoPorTransacao() * cartaoFisico.getQuantidadeTransacoesPorMes();
+            emissaoNoTransporteFisico = distanciaKm * cartaoFisico.getTransporte().getEmissaoPorKm();
+            if (dto.getPeriodo().incluirDescarte()) {
+                emissaoDecarteFisico = cartaoFisico.emissaoDescarteMediaPorMes();
+            }
+            emissaoNaTransicaoDigital = cartaoDigital.getQuantidadeTransacoesPorMes() * cartaoDigital.getTipoPagamento().getEmissaoPorTransacao();
         }
 
-        double emissaoNaTransicaoDigital = cartaoDigital.getQuantidadeTransacoesPorMes() * cartaoDigital.getTipoPagamento().getEmissaoPorTransacao();
-
         int pulo = 1;
-        if (meses >= 36) {
+        if (meses == 60) {
+            pulo = 5;
+        } else if (meses >= 36) {
             pulo = 3;
         }
 
@@ -166,7 +173,14 @@ public class CalculoService {
     private int calcularArvores(RequestDTO dto, double diferenca, Arvore arvore) {
         double CO2AbsorvidoPorMes = arvore.calcularAbsorcaoDeCO2PorMes();
         double diferencaPorMes = diferenca / dto.getPeriodo().getPeriodoEmMeses();
+        if (CO2AbsorvidoPorMes == 0 || dto.getPeriodo().getPeriodoEmMeses() == 0) {
+            return 0;
+        }
         return (int) (diferencaPorMes / CO2AbsorvidoPorMes);
+    }
+
+    private boolean isRecursoAtivo(RequestDTO dto, String chave) {
+        return dto.getRecursos() != null && dto.getRecursos().getOrDefault(chave, false);
     }
 
     public Optional<ResultadoEmissaoDTO> buscarPorID(Long id) {
