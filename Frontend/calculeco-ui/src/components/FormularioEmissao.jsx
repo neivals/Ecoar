@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { calcularEmissao } from "../services/calculoService";
 import { useLanguage } from "../context/LanguageContext";
 
