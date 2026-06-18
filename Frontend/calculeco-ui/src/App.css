@@ -170,11 +170,52 @@ body {
 }
 
 .recurso-item input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  accent-color: #162056;
-  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 25px;
+  height: 25px;
+  margin: 0;
   flex-shrink: 0;
+  cursor: pointer;
+  background-color: #eef6ff;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 3px 5px rgba(22, 32, 86, 0.25);
+  position: relative;
+}
+
+.recurso-item input[type="checkbox"]::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 2px;
+  width: 8px;
+  height: 15px;
+  border: solid #162056;
+  border-width: 0 3px 3px 0;
+  opacity: 0;
+  transform: rotate(45deg);
+}
+
+.recurso-item input[type="checkbox"]:checked::after {
+  opacity: 1;
+}
+
+.recurso-item input[type="checkbox"]:focus-visible {
+  outline: 2px solid #162056;
+  outline-offset: 3px;
+}
+
+.recurso-item span {
+  width: 190px;
+  min-height: 25px;
+  padding: 4px 16px;
+  border-radius: 20px;
+  background-color: #eaf3ff;
+  color: #162056;
+  font-size: 16px;
+  line-height: 1.1;
+  text-align: center;
 }
 
 .regio,
