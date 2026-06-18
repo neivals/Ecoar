@@ -27,6 +27,8 @@ const translations = {
         resultado: {
             comparacaoModalidades: "Comparação dentre modalidades de cartões",
             totalCO2: "Total de CO2 emitido por cada cartão",
+            quantidadeRecursosConsumidos: "Quantidade de recursos consumidos",
+            quantidadeEnergiaUsada: "Quantidade de energia elétrica usada",
             fisico: "Físico",
             digital: "Digital",
             impactoAmbiental: (kg) =>
@@ -34,6 +36,8 @@ const translations = {
             comparacaoTempo: "Comparação por tempo",
             cartaoDigitalEmite: (kg) =>
                 `Dentro de 1 ano, o cartão digital emite ${kg}Kg de CO2 menos que o físico!`,
+            cartaoDigitalEmitePorcentagem: (porcentagem) =>
+                `Dentro de 1 ano, o cartão digital gasta ${porcentagem}% menos que o físico.`,
             recursos: "Recursos",
             energia: "Energia",
             energiaConsome: (kwh) =>
@@ -112,6 +116,8 @@ const translations = {
         resultado: {
             comparacaoModalidades: "Comparison between card modalities",
             totalCO2: "Total CO2 emitted per card",
+            quantidadeRecursosConsumidos: "Amount of resources consumed",
+            quantidadeEnergiaUsada: "Amount of electricity used",
             fisico: "Physical",
             digital: "Digital",
             impactoAmbiental: (kg) =>
@@ -119,6 +125,8 @@ const translations = {
             comparacaoTempo: "Comparison over time",
             cartaoDigitalEmite: (kg) =>
                 `Within 1 year, the digital card emits ${kg}Kg of CO2 less than the physical one!`,
+            cartaoDigitalEmitePorcentagem: (porcentagem) =>
+                `Within 1 year, the digital card uses ${porcentagem}% less than the physical one.`,
             recursos: "Resources",
             energia: "Energy",
             energiaConsome: (kwh) =>

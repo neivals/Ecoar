@@ -8,7 +8,6 @@ import RotaProtegida from "./components/RotaProtegida";
 import FormularioEmissao from "./components/FormularioEmissao";
 import Resultado from "./components/Resultado";
 import "./App.css";
-import Conscientizacao from "./components/Conscientizacao";
 import calculecoLogo from "./icone/Calculeco_logo2.png";
 import edenredLogo from "./icone/Edenred_logo1.png";
 import { LanguageProvider, useLanguage } from "./context/LanguageContext";
@@ -127,8 +126,7 @@ function Calculadora() {
                     setPeriodoSelecionado={setPeriodo}
                 />
                 <div className="resultados-area">
-                    <Resultado dados={resultado} periodo={periodoCalculado} />
-                    <Conscientizacao dados={resultado} periodo={periodoCalculado} />
+                    <Resultado dados={resultado} periodo={periodoCalculado || periodo} />
                 </div>
             </div>
         </Layout>

@@ -37,7 +37,7 @@ function FormularioEmissao({
         };
         calcularEmissao(dados)
             .then((response) => {
-                onResultado(response.data);
+                onResultado(response.data, periodoNoMomentoDoEnvio);
             })
             .catch((erro) => {
                 console.error("Erro na comunicação com o servidor:", erro);
