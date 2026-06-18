@@ -237,42 +237,88 @@ button:hover {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 24px;
   min-width: 0;
 }
 
 .frame {
   background-color: #fff;
   border-radius: 20px;
-  padding: 24px;
+  padding: 28px 32px 32px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 28px;
   box-shadow: 0 4px 16px rgba(22, 32, 86, 0.08);
+  width: 100%;
 }
 
 .comparao-dentre-modalidades,
 .comparao-por-tempo {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 700;
+  color: #162056;
 }
 
-.chart-container {
+.comparao-por-tempo {
+  font-size: 24px;
+}
+
+.resultados-topo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.grafico-painel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.grafico-painel-titulo {
+  font-size: 16px;
+  font-weight: 700;
+  color: #162056;
+}
+
+.grafico-painel-corpo {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.grafico-icone {
+  width: 56px;
+  height: auto;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.grafico-painel-chart {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-width: 0;
 }
 
-.quantidade-de-recursos {
-  font-size: 13px;
-  color: #162056;
-  opacity: 0.75;
+.grafico-chart-wrap {
+  height: 220px;
+  width: 100%;
 }
 
-.chart-and-legend {
+.grafico-valores {
+  display: flex;
+  justify-content: space-around;
+  gap: 12px;
+  padding: 0 8px;
+}
+
+.grafico-valor-item {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  gap: 4px;
 }
 
 .fsico,
@@ -283,80 +329,148 @@ button:hover {
 }
 
 .xg {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   color: #135b4f;
 }
 
 .yg {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
-  color: #4c9e6b;
+  color: #ff2f28;
 }
 
 .ao-usar-o {
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.55;
   color: #162056;
   opacity: 0.85;
-  margin-top: 4px;
+}
+
+.resultados-base {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.grafico-tempo-area {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.grafico-tempo {
+  width: 100%;
+  height: 280px;
+}
+
+.grafico-tempo-legenda {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.legenda-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #162056;
+}
+
+.legenda-cor {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.legenda-fisico .legenda-cor {
+  background-color: #135b4f;
+}
+
+.legenda-digital .legenda-cor {
+  background-color: #ff2f28;
 }
 
 .dentro-de-1 {
   font-size: 14px;
   color: #162056;
-}
-
-.cada-um {
-  font-size: 14px;
-  line-height: 1.9;
-  color: #162056;
-}
-
-.energia,
-.agua,
-.plastico {
-  font-weight: 700;
-  display: block;
-  margin-top: 6px;
-}
-
-.arvores {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.arvores-salvas {
-  font-size: 14px;
-  color: #162056;
+  text-align: center;
+  line-height: 1.5;
 }
 
 /* ===== CONSCIENTIZACAO ===== */
 .conscientizacao-container {
+  position: relative;
   background-color: #fff;
+  border: 2px solid #4c9e6b;
   border-radius: 20px;
-  padding: 24px;
+  padding: 24px 24px 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 4px 16px rgba(22, 32, 86, 0.08);
+  gap: 14px;
+  min-width: 0;
+}
+
+.conscientizacao-info {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.conscientizacao-info svg {
+  width: 100%;
+  height: 100%;
+}
+
+.conscientizacao-titulo {
+  font-size: 14px;
+  font-weight: 700;
+  color: #162056;
+  padding-right: 36px;
 }
 
 .conscientizacao-texto {
   font-size: 14px;
   line-height: 1.7;
   color: #162056;
+  flex: 1;
 }
 
 .saiba-mais-btn {
   align-self: flex-end;
   width: auto;
   padding: 10px 28px;
-  margin-top: 0;
+  margin-top: auto;
   font-size: 14px;
+  border-radius: 20px;
 }
 
 /* ===== RESPONSIVO ===== */
+@media (max-width: 1100px) {
+  .resultados-topo,
+  .resultados-base {
+    grid-template-columns: 1fr;
+  }
+
+  .comparao-dentre-modalidades,
+  .comparao-por-tempo {
+    font-size: 22px;
+  }
+}
+
 @media (max-width: 900px) {
   .calculadora-layout {
     flex-direction: column;
@@ -391,39 +505,27 @@ button:hover {
     font-size: 12px;
   }
 
+  .frame {
+    padding: 20px 16px;
+  }
+
+  .grafico-painel-corpo {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .grafico-valores {
+    flex-wrap: wrap;
+  }
+
+  .xg,
+  .yg {
+    font-size: 20px;
+  }
+
   .calculadora-layout {
     padding: 16px;
     gap: 16px;
   }
 }
 
-.graficos-topo {
-  display: flex;
-  gap: 24px;
-  width: 100%;
-}
-
-.grafico-box {
-  flex: 1;
-  background: #fff;
-  border-radius: 12px;
-  padding: 16px;
-}
-
-.grafico-box h3 {
-  margin-bottom: 16px;
-  color: #162056;
-}
-
-.grafico-tempo {
-  width: 100%;
-  margin-top: 20px;
-}
-
-.grafico-box canvas {
-  height: 280px !important;
-}
-
-.grafico-tempo canvas {
-  height: 350px !important;
-}

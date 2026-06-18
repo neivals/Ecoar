@@ -16,12 +16,18 @@ export function CalculoProvider({ children }) {
         return sessionStorage.getItem("calculeco_periodo_calculado") || "";
     });
 
-    const setResultado = (dados) => {
+    const setResultado = (dados, periodoUsado) => {
         setResultadoState(dados);
         if (dados) {
             sessionStorage.setItem("calculeco_resultado", JSON.stringify(dados));
+            if (periodoUsado) {
+                setPeriodoCalculadoState(periodoUsado);
+                sessionStorage.setItem("calculeco_periodo_calculado", periodoUsado);
+            }
         } else {
             sessionStorage.removeItem("calculeco_resultado");
+            sessionStorage.removeItem("calculeco_periodo_calculado");
+            setPeriodoCalculadoState("");
         }
     };
 
@@ -31,7 +37,7 @@ export function CalculoProvider({ children }) {
     };
 
     return (
-        <CalculoContext.Provider value={{ resultado, setResultado, periodo, setPeriodo }}>
+        <CalculoContext.Provider value={{ resultado, setResultado, periodo, setPeriodo, periodoCalculado }}>
             {children}
         </CalculoContext.Provider>
     );

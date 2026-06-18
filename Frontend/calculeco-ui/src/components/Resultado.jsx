@@ -1,4 +1,5 @@
 import { useLanguage } from "../context/LanguageContext";
+import Conscientizacao from "./Conscientizacao";
 
 import {
     Chart as ChartJS,
@@ -9,7 +10,8 @@ import {
     LineElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    Filler,
 } from "chart.js";
 
 import { Bar, Line } from "react-chartjs-2";
@@ -22,62 +24,171 @@ ChartJS.register(
     LineElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    Filler
 );
+
+const COR_FISICO = "#135b4f";
+const COR_DIGITAL = "#ff2f28";
+
+function formatarNumero(valor, casas = 1) {
+    return Number(valor).toLocaleString("pt-BR", {
+        minimumFractionDigits: casas,
+        maximumFractionDigits: casas,
+    });
+}
+
+function formatarEmissao(kg) {
+    if (kg >= 1000) {
+        return `${formatarNumero(kg / 1000)}t`;
+    }
+    return `${formatarNumero(kg, 0)}Kg`;
+}
+
+function IconeArvores() {
+    return (
+        <svg className="grafico-icone" viewBox="0 0 56 76" fill="none" aria-hidden="true">
+            <path
+                d="M28 4C20 18 8 22 8 34C8 42 14 48 22 50V58H34V50C42 48 48 42 48 34C48 22 36 18 28 4Z"
+                stroke={COR_FISICO}
+                strokeWidth="2"
+                fill="none"
+            />
+            <path d="M22 58H34V72H22V58Z" stroke={COR_FISICO} strokeWidth="2" fill="none" />
+            <circle cx="18" cy="30" r="6" stroke={COR_FISICO} strokeWidth="1.5" fill="none" />
+            <circle cx="38" cy="28" r="5" stroke={COR_FISICO} strokeWidth="1.5" fill="none" />
+        </svg>
+    );
+}
+
+function IconeBateria() {
+    return (
+        <svg className="grafico-icone" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+            <rect x="8" y="14" width="40" height="32" rx="4" stroke={COR_FISICO} strokeWidth="2" fill="none" />
+            <rect x="48" y="22" width="4" height="16" rx="1" fill={COR_FISICO} />
+            <path d="M28 22L22 32H26L24 42H32L30 32H34L28 22Z" fill={COR_FISICO} />
+        </svg>
+    );
+}
+
+const barOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: { display: false },
+        tooltip: {
+            backgroundColor: "#162056",
+            titleFont: { family: "Kufam" },
+            bodyFont: { family: "Kufam" },
+        },
+    },
+    scales: {
+        x: {
+            grid: { display: false },
+            border: { display: false },
+            ticks: {
+                color: "#162056",
+                font: { family: "Kufam", size: 13, weight: "600" },
+            },
+        },
+        y: {
+            grid: { color: "rgba(22, 32, 86, 0.08)" },
+            border: { display: false },
+            ticks: {
+                color: "#162056",
+                font: { family: "Kufam", size: 11 },
+                callback: (valor) => (valor >= 1000 ? `${valor / 1000}t` : `${valor}kg`),
+            },
+        },
+    },
+};
+
+const lineOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: { display: false },
+        tooltip: {
+            backgroundColor: "#162056",
+            titleFont: { family: "Kufam" },
+            bodyFont: { family: "Kufam" },
+        },
+    },
+    scales: {
+        x: {
+            grid: { color: "rgba(22, 32, 86, 0.06)" },
+            border: { display: false },
+            ticks: {
+                color: "#162056",
+                font: { family: "Kufam", size: 11 },
+            },
+        },
+        y: {
+            grid: { color: "rgba(22, 32, 86, 0.08)" },
+            border: { display: false },
+            ticks: {
+                color: "#162056",
+                font: { family: "Kufam", size: 11 },
+                callback: (valor) => (valor >= 1000 ? `${valor / 1000}t` : `${valor}kg`),
+            },
+        },
+    },
+    elements: {
+        point: { radius: 0, hoverRadius: 5 },
+        line: { borderWidth: 2.5 },
+    },
+};
 
 function Resultado({ dados, periodo }) {
     const { t } = useLanguage();
 
     if (!dados) return null;
-    console.log(dados);
+
+    const emissaoFisico = dados.emissaoTotalFisico;
+    const emissaoDigital = dados.emissaoTotalDigital;
+    const porcentagemEconomia =
+        emissaoFisico > 0
+            ? ((dados.diferencaEmissao / emissaoFisico) * 100).toFixed(1).replace(".", ",")
+            : "0";
 
     const recursosData = {
-        labels: ["Físico", "Digital"],
+        labels: [t.resultado.fisico, t.resultado.digital],
         datasets: [
             {
-                label: "Impacto Ambiental",
-                data: [
-                    dados.plasticoTotal +
-                    dados.aguaTotal +
-                    dados.emissaoTotalFisico,
-
-                    dados.emissaoTotalDigital
-                ],
-                backgroundColor: ["#162056", "#4C9E6B"]
-            }
-        ]
+                label: t.resultado.totalCO2,
+                data: [emissaoFisico, emissaoDigital],
+                backgroundColor: [COR_FISICO, COR_DIGITAL],
+                borderRadius: 6,
+                borderSkipped: false,
+                maxBarThickness: 72,
+            },
+        ],
     };
 
     const energiaData = {
-        labels: ["Físico", "Digital"],
+        labels: [t.resultado.fisico, t.resultado.digital],
         datasets: [
             {
-                label: "Energia (kWh)",
-                data: [
-                    dados.energiaTotal,
-                    dados.energiaTotal
-                ],
-                backgroundColor: ["#162056", "#4C9E6B"]
-            }
-        ]
+                label: t.resultado.energia,
+                data: [dados.energiaTotal, dados.energiaTotal],
+                backgroundColor: [COR_FISICO, COR_DIGITAL],
+                borderRadius: 6,
+                borderSkipped: false,
+                maxBarThickness: 72,
+            },
+        ],
     };
 
     const gerarLabels = () => {
-
         switch (periodo) {
-
             case "SEISMESES":
                 return ["0", "1", "2", "3", "4", "5", "6"];
-
             case "UMANO":
                 return ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
-
             case "TRESANOS":
                 return ["0", "3", "6", "9", "12", "15", "18", "21", "24", "27", "30", "33", "36"];
-
             case "CINCOANOS":
                 return ["0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60"];
-
             default:
                 return Array.from(
                     { length: dados.emissaoFisicoPorMes.length },
@@ -88,70 +199,110 @@ function Resultado({ dados, periodo }) {
 
     const tempoData = {
         labels: gerarLabels(),
-
         datasets: [
             {
-                label: "Cartão Físico",
+                label: t.resultado.fisico,
                 data: dados.emissaoFisicoPorMes,
-                borderColor: "#162056",
-                backgroundColor: "#162056",
-                tension: 0.3
+                borderColor: COR_FISICO,
+                backgroundColor: "rgba(19, 91, 79, 0.08)",
+                fill: true,
+                tension: 0.35,
             },
             {
-                label: "Cartão Digital",
+                label: t.resultado.digital,
                 data: dados.emissaoDigitalPorMes,
-                borderColor: "#4C9E6B",
-                backgroundColor: "#4C9E6B",
-                tension: 0.3
-            }
-        ]
+                borderColor: COR_DIGITAL,
+                backgroundColor: "rgba(255, 47, 40, 0.06)",
+                fill: true,
+                tension: 0.35,
+            },
+        ],
     };
 
     return (
         <section className="frame">
-            <div className="chart-container">
-                <h2 className="comparao-dentre-modalidades">
-                    {t.resultado.comparacaoModalidades}
-                </h2>
-                <div className="chart-area">
-                    <div className="quantidade-de-recursos">
-                        {t.resultado.totalCO2}
-                    </div>
-                    <div className="graficos-topo">
+            <h2 className="comparao-dentre-modalidades">
+                {t.resultado.comparacaoModalidades}
+            </h2>
 
-                        <div className="grafico-box">
-                            <h3>Recursos Consumidos</h3>
-                            <Bar data={recursosData} />
+            <div className="resultados-topo">
+                <div className="grafico-painel">
+                    <h3 className="grafico-painel-titulo">
+                        {t.resultado.quantidadeRecursosConsumidos}
+                    </h3>
+                    <div className="grafico-painel-corpo">
+                        <IconeArvores />
+                        <div className="grafico-painel-chart">
+                            <div className="grafico-chart-wrap">
+                                <Bar data={recursosData} options={barOptions} />
+                            </div>
+                            <div className="grafico-valores">
+                                <div className="grafico-valor-item">
+                                    <span className="fsico">{t.resultado.fisico}</span>
+                                    <span className="xg">{formatarEmissao(emissaoFisico)}</span>
+                                </div>
+                                <div className="grafico-valor-item">
+                                    <span className="digital">{t.resultado.digital}</span>
+                                    <span className="yg">{formatarEmissao(emissaoDigital)}</span>
+                                </div>
+                            </div>
                         </div>
-
-                        <div className="grafico-box">
-                            <h3>Energia Elétrica</h3>
-                            <Bar data={energiaData} />
-                        </div>
-
                     </div>
+                    <p className="ao-usar-o">
+                        {t.resultado.impactoAmbiental(formatarNumero(dados.diferencaEmissao, 0))}
+                    </p>
+                </div>
+
+                <div className="grafico-painel">
+                    <h3 className="grafico-painel-titulo">
+                        {t.resultado.quantidadeEnergiaUsada}
+                    </h3>
+                    <div className="grafico-painel-corpo">
+                        <IconeBateria />
+                        <div className="grafico-painel-chart">
+                            <div className="grafico-chart-wrap">
+                                <Bar data={energiaData} options={barOptions} />
+                            </div>
+                            <div className="grafico-valores">
+                                <div className="grafico-valor-item">
+                                    <span className="fsico">{t.resultado.fisico}</span>
+                                    <span className="xg">{formatarNumero(dados.energiaTotal, 0)}kw</span>
+                                </div>
+                                <div className="grafico-valor-item">
+                                    <span className="digital">{t.resultado.digital}</span>
+                                    <span className="yg">{formatarNumero(dados.energiaTotal, 0)}kw</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p className="ao-usar-o">
+                        {t.resultado.energiaConsome(formatarNumero(dados.energiaTotal, 0))}
+                    </p>
                 </div>
             </div>
-            <h2 className="comparao-por-tempo">{t.resultado.comparacaoTempo}</h2>
-            <div className="grafico-tempo">
-                <Line data={tempoData} />
-            </div>
-            <div className="dentro-de-1">
-                {t.resultado.cartaoDigitalEmite(dados.diferencaEmissao)}
-            </div>
-            <h2 className="recursos">{t.resultado.recursos}</h2>
 
-            <div className="cada-um">
-                <div className="energia">{t.resultado.energia}</div>
-                {t.resultado.energiaConsome(dados.energiaTotal)}
-                <div className="agua">{t.resultado.agua}</div>
-                {t.resultado.aguaGasta(dados.aguaTotal)}
-                <div className="plastico">{t.resultado.plastico}</div>
-                {t.resultado.plasticoConsome(dados.plasticoTotal)}
-            </div>
-            <h2 className="arvores">{t.resultado.arvoresSalvas}</h2>
-            <div className="arvores-salvas">
-                {t.resultado.arvoresSalvasTexto(dados.diferencaEmissao, dados.arvoresSalvas)}
+            <div className="resultados-base">
+                <div className="grafico-tempo-area">
+                    <h2 className="comparao-por-tempo">{t.resultado.comparacaoTempo}</h2>
+                    <div className="grafico-tempo">
+                        <Line data={tempoData} options={lineOptions} />
+                    </div>
+                    <div className="grafico-tempo-legenda">
+                        <span className="legenda-item legenda-fisico">
+                            <span className="legenda-cor" />
+                            {t.resultado.fisico}
+                        </span>
+                        <span className="legenda-item legenda-digital">
+                            <span className="legenda-cor" />
+                            {t.resultado.digital}
+                        </span>
+                    </div>
+                    <p className="dentro-de-1">
+                        {t.resultado.cartaoDigitalEmitePorcentagem(porcentagemEconomia)}
+                    </p>
+                </div>
+
+                <Conscientizacao dados={dados} periodo={periodo} />
             </div>
         </section>
     );
