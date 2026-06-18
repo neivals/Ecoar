@@ -78,7 +78,6 @@ Dentro dessa proposta se encontra:
 
 </details>
 
-##Inregrantes
 
 ## Integrantes:
 
