@@ -4,6 +4,7 @@ import com.ecoar.calculeco.entidade.enums.Periodo;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import jakarta.validation.constraints.NotNull;
+import java.util.Map;
 
 @Data
 public class RequestDTO {
@@ -13,4 +14,7 @@ public class RequestDTO {
 
     @NotBlank(message = "O endereço é obrigatório")
     private String endereco;
+
+    @NotNull(message = "Os recursos selecionados são obrigatórios")
+    private Map<String, Boolean> recursos;
 }

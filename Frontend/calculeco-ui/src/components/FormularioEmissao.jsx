@@ -28,24 +28,33 @@ function FormularioEmissao({
     const toggleRecurso = (key) =>
         setRecursos((prev) => ({ ...prev, [key]: !prev[key] }));
 
-    function handleSubmit() {
-        const periodoNoMomentoDoEnvio = periodo;
+    const enviarDados = (recursosAtuais) => {
+        if (!enderecoDigitado || !periodo) return;
+
         const dados = {
-            periodo: periodoNoMomentoDoEnvio,
+            periodo,
             endereco: enderecoDigitado,
-            recursos,
+            recursos: recursosAtuais,
         };
+
         calcularEmissao(dados)
             .then((response) => {
-                onResultado(response.data, periodoNoMomentoDoEnvio);
+                onResultado(response.data, periodo);
             })
             .catch((erro) => {
                 console.error("Erro na comunicação com o servidor:", erro);
             });
+    };
+    function handleSubmit() {
+        enviarDados(recursos);
     }
 
     return (
         <div className="paginacalculadora2">
+            <div className="a-calculeco-tem">
+                {t.formulario.descricao}
+            </div>
+
             <h2 className="preencha">{t.formulario.preencha}</h2>
 
             <h3 className="recursos">{t.formulario.recursos}</h3>
