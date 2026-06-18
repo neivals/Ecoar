@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { cadastrar, salvarSessao } from "../services/authService";
 import edenredLogo from "../icone/image.png";
 import "../page css/Cadastro.css";
-import calculecoLogo from "../icone/Calculeco_logo1.png";
+import calculecoLogo from "../icone/Calculeco_logo11.png";
 
 function Cadastro() {
     const navigate = useNavigate();

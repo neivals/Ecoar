@@ -27,8 +27,8 @@ const translations = {
         resultado: {
             comparacaoModalidades: "Comparação dentre modalidades de cartões",
             totalCO2: "Total de recursos consumidos por cada cartão",
-            quantidadeRecursosConsumidos: "Quantidade de recursos consumidos",
-            quantidadeEnergiaUsada: "Quantidade de energia elétrica usada",
+            quantidadeRecursosConsumidos: "Quantidade de recursos consumidos:",
+            quantidadeEnergiaUsada: "Quantidade de energia elétrica usada:",
             fisico: "Físico",
             digital: "Digital",
             impactoAmbiental: (agua, CO2, plastico) =>
@@ -36,11 +36,11 @@ const translations = {
             comparacaoTempo: "Comparação de CO2 por tempo",
             cartaoDigitalEmitePorcentagem: (periodo, porcentagem) =>
                 `Dentro de ${periodo}, o cartão digital emite ${porcentagem}% menos que o físico.`,
-            energiaConsome: (periodo, kwh) =>
-                `Dentro de ${periodo}, o cartão físico e digital consomem ${kwh}KWh`,
+            energiaConsome: () =>
+                `Com o uso do nosso Cartão de Benefícios digital, o gasto de energia continuará o mesmo, em compensação não vai poluir com materiais`,
         },
         conscientizacao: {
-            titulo: "(Junção de informações)",
+            titulo: "Resumo das informações:",
             texto: (porcentagem) =>
                 `A partir do momento em que você começa a usar o nosso Cartão de Benefícios Digital, seu impacto ambiental diminui em ${porcentagem}% em comparação ao Cartão Físico.`,
             textosPorPeriodo: {
@@ -105,8 +105,8 @@ const translations = {
         resultado: {
             comparacaoModalidades: "Comparison between card modalities",
             totalCO2: "Total of resources consumed per card",
-            quantidadeRecursosConsumidos: "Amount of resources consumed",
-            quantidadeEnergiaUsada: "Amount of electricity used",
+            quantidadeRecursosConsumidos: "Amount of resources consumed:",
+            quantidadeEnergiaUsada: "Amount of electricity used:",
             fisico: "Physical",
             digital: "Digital",
             impactoAmbiental: (agua, CO2, plastico) =>
@@ -115,7 +115,7 @@ const translations = {
             cartaoDigitalEmitePorcentagem: (periodo, porcentagem) =>
                 `Within ${periodo}, the digital card release ${porcentagem}% less than the physical one.`,
             energiaConsome: (periodo, kwh) =>
-                `Within ${periodo}, physical and digital cards consume ${kwh}KWh`,
+                `With the use of our digital Benefit Card, energy consumption will remain the same; on the other hand, it will not pollute with materials.`,
         },
         conscientizacao: {
             titulo: "(Joining of information)",

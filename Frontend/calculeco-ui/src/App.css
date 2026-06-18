@@ -39,6 +39,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  margin-left: 40px;
 }
 
 .navbar-brand .edenred-brand img {
@@ -136,19 +137,19 @@ body {
 }
 
 .a-calculeco-tem {
-  font-size: 13px;
+  font-size: 18px;
   line-height: 1.6;
   color: #162056;
   opacity: 0.75;
 }
 
 .preencha {
-  font-size: 24px;
+  font-size: 19px;
   font-weight: 700;
 }
 
 .recursos {
-  font-size: 18px;
+  font-size: 23px;
   font-weight: 700;
 }
 
@@ -162,7 +163,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 14px;
+  font-size: 19px;
   color: #162056;
   cursor: pointer;
   user-select: none;
@@ -178,7 +179,7 @@ body {
 
 .regio,
 .perodo {
-  font-size: 18px;
+  font-size: 23px;
   font-weight: 700;
 }
 
@@ -189,7 +190,7 @@ input[type="text"] {
   border: none;
   background-color: #eaf3ff;
   box-shadow: 0 4px 4px rgba(22, 32, 86, 0.25);
-  font-size: 14px;
+  font-size: 19px;
   color: #162056;
   font-family: 'Kufam', sans-serif;
   outline: none;
@@ -206,7 +207,7 @@ select {
   border: none;
   background-color: #eaf3ff;
   box-shadow: 0 4px 4px rgba(22, 32, 86, 0.25);
-  font-size: 14px;
+  font-size: 19px;
   color: #162056;
   font-family: 'Kufam', sans-serif;
   cursor: pointer;
@@ -220,7 +221,7 @@ button {
   border: none;
   background-color: #162056;
   color: #fff;
-  font-size: 16px;
+  font-size: 21px;
   font-family: 'Kufam', sans-serif;
   font-weight: 700;
   cursor: pointer;
@@ -252,13 +253,13 @@ button:hover {
 
 .comparao-dentre-modalidades,
 .comparao-por-tempo {
-  font-size: 28px;
+  font-size: 33px;
   font-weight: 700;
   color: #162056;
 }
 
 .comparao-por-tempo {
-  font-size: 24px;
+  font-size: 29px;
 }
 
 .resultados-topo {
@@ -275,7 +276,7 @@ button:hover {
 }
 
 .grafico-painel-titulo {
-  font-size: 16px;
+  font-size: 21px;
   font-weight: 700;
   color: #162056;
 }
@@ -308,8 +309,8 @@ button:hover {
 
 .recurso-icone,
 .energia-icone {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -322,8 +323,8 @@ button:hover {
 }
 
 .grafico-painel-chart {
-  width: 100%;
-  height: 240px;
+  width: 300px;
+  height: 350px;
   position: relative;
 }
 
@@ -336,10 +337,10 @@ button:hover {
 .grafico-valores {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   gap: 64px;
   padding: 0 8px;
-  width: 100%;
+  width: 10px;
+  margin-right: 100px;
 }
 
 .grafico-valor-item {
@@ -352,29 +353,29 @@ button:hover {
 
 .fsico,
 .digital {
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 600;
   color: #162056;
 }
 
 .xg {
-  font-size: 24px;
+  font-size: 19px;
   font-weight: 700;
   color: #135b4f;
 }
 
 .yg {
-  font-size: 24px;
+  font-size: 19px;
   font-weight: 700;
   color: #ff2f28;
 }
 
 .ao-usar-o {
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.55;
   color: #162056;
   opacity: 0.85;
-  text-align: justify;
+  text-align: justify-all;
 }
 
 .resultados-base {
@@ -407,7 +408,7 @@ button:hover {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 600;
   color: #162056;
 }
@@ -428,7 +429,7 @@ button:hover {
 }
 
 .dentro-de-1 {
-  font-size: 14px;
+  font-size: 19px;
   color: #162056;
   text-align: center;
   line-height: 1.5;
@@ -466,14 +467,14 @@ button:hover {
 }
 
 .conscientizacao-titulo {
-  font-size: 14px;
+  font-size: 19px;
   font-weight: 700;
   color: #162056;
   padding-right: 36px;
 }
 
 .conscientizacao-texto {
-  font-size: 14px;
+  font-size: 19px;
   line-height: 1.7;
   color: #162056;
   flex: 1;
@@ -484,7 +485,7 @@ button:hover {
   width: auto;
   padding: 10px 28px;
   margin-top: auto;
-  font-size: 14px;
+  font-size: 19px;
   border-radius: 20px;
 }
 
@@ -497,7 +498,7 @@ button:hover {
 
   .comparao-dentre-modalidades,
   .comparao-por-tempo {
-    font-size: 22px;
+    font-size: 17px;
   }
 }
 
@@ -550,7 +551,7 @@ button:hover {
 
   .xg,
   .yg {
-    font-size: 20px;
+    font-size: 25px;
   }
 
   .calculadora-layout {
@@ -559,3 +560,17 @@ button:hover {
   }
 }
 
+.logo-calculeco {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+
+  transform: translateY(10px);
+  margin-left: 4px;
+}
+
+.navbar-icone {
+  width: 32px;
+  height: auto;
+  object-fit: contain;
+}

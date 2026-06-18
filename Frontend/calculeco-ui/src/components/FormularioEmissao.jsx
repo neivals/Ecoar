@@ -51,10 +51,6 @@ function FormularioEmissao({
 
     return (
         <div className="paginacalculadora2">
-            <div className="a-calculeco-tem">
-                {t.formulario.descricao}
-            </div>
-
             <h2 className="preencha">{t.formulario.preencha}</h2>
 
             <h3 className="recursos">{t.formulario.recursos}</h3>

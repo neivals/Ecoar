@@ -1,0 +1,55 @@
+.grafico-valores {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin-bottom: 4px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Cada bloco individual */
+.grafico-valor-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 120px;
+    margin: 0;
+}
+
+/* Bloco do gráfico de recursos, o da esquerda */
+.grafico-valores-recursos {
+    margin-left: 60px;
+    margin-right: 35px;
+    gap: 45px;
+}
+
+/* Bloco do gráfico de energia, o da direita */
+.grafico-valores-energia {
+    margin-left: 55px;
+    margin-right: 35px;
+    gap: 45px;
+}
+
+.grafico-valor-item .fsico,
+.grafico-valor-item .digital {
+    font-family: "Kufam", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #162056;
+    margin-bottom: 2px;
+}
+
+.grafico-valor-item .xg {
+    color: #135b4f;
+    font-family: "Kufam", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.grafico-valor-item .yg {
+    color: #ff2f28;
+    font-family: "Kufam", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+}
