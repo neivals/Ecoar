@@ -72,9 +72,11 @@ const translations = {
             conscientizacaoTitulo: "CONSCIENTIZAÇÃO",
             conscientizacaoTexto: (kg, arvores) =>
                 `Com ${kg}Kg de CO2 economizados, ${arvores} árvores são salvas por mês.`,
+            semCalculo: "Preencha os campos da calculadora para ver nessa seção aplicações práticas resultantes da redução do seu impacto ambiental.",
             infoTitulo: "INFO SOBRE COMO É FEITO O CÁLCULO",
             infoTexto:
-                "Para chegarmos aos resultados apresentados na calculadora, o calculo se baseia em diversas etapas, primeiramente calculamos a emissão de CO2 em Kg. Juntando a emissão na produção, emissão no transporte, emissão nas transações e a emissão no descarte, se houver no período selecionado, chegamos à emissão total de CO2 de um cartão físico, que será comparado com a emissão nas transações de um cartão digital. Na próxima etapa, calculamos mais recursos importantes a serem contabilizados no impacto ambiental, a energia total gasta em KWh pelo total de transações feitas por ambos os cartões, a água total gasta em litros na produção dos cartões físicos e o plástico total gasto em Kg também na produção dos cartões físicos. Por último, calculamos uma média de árvores que seriam salvas mensalmente por meio do CO2 que seria poupado caso os cartões físicos fossem trocados por cartões digitais.",
+                "Para chegarmos aos resultados apresentados na calculadora, o calculo se baseia em diversas etapas, primeiramente calculamos a emissão de CO2 em Kg. Juntando a emissão na produção, emissão no transporte, emissão nas transações e a emissão no descarte, se houver no período selecionado, chegamos à emissão total de CO2 de um cartão físico, que será comparado com a emissão nas transações de um cartão digital. Na próxima etapa, calculamos mais recursos importantes a serem contabilizados no impacto ambiental, a energia total gasta em KWh pelo total de transações feitas por ambos os cartões, a água total gasta em litros na produção dos cartões físicos e o plástico total gasto em Kg também na produção dos cartões físicos. Por último, calculamos uma média de árvores que seriam salvas mensalmente por meio do CO2 que seria poupado caso os cartões físicos fossem trocados por cartões digitais." +
+                "\nVALORES PADRÃO USADOS NA CALCULADORA - CARTÕES PRODUZIDOS POR MÊS: 10000; TRANSAÇÕES AO MÊS FEITAS POR CADA CARTÃO: 25",
             ctaTitulo: "Calcule os impactos do uso dos cartões!",
             ctaBotao: "Ir para a calculadora",
         },
@@ -161,9 +163,11 @@ const translations = {
             conscientizacaoTitulo: "AWARENESS",
             conscientizacaoTexto: (kg, arvores) =>
                 `With ${kg}Kg of CO2 saved, ${arvores} trees are saved per month.`,
+            semCalculo: "Fill in the calculator fields to see practical applications resulting from the reduction of your environmental impact in this section.",
             infoTitulo: "INFO ON HOW THE CALCULATION IS DONE",
             infoTexto:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet lorem eu velit faucibus auctor. Sed et suscipit nisi, molestie dictum urna.",
+                "To arrive at the results shown in the calculator, the calculation is based on several steps. First, we calculate CO2 emissions in kg. By combining emissions from production, transportation, transactions, and disposal — if applicable during the selected period — we arrive at the total CO2 emissions of a physical card, which is then compared to the transaction emissions of a digital card. In the next step, we calculate additional resources relevant to the environmental impact: the total energy consumed in kWh across all transactions made by both card types, the total water used in liters during physical card production, and the total plastic used in kg, also during physical card production. Finally, we calculate an average of how many trees would be saved monthly through the CO2 that would be spared if physical cards were replaced by digital ones." +
+                "\nDEFAULT VALUES USED IN THE CALCULATOR - CARDS PRODUCED PER MONTH: 10,000; TRANSACTIONS PER MONTH PER CARD: 25",
             ctaTitulo: "Calculate the impacts of card usage!",
             ctaBotao: "Go to calculator",
         },

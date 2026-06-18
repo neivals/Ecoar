@@ -15,7 +15,10 @@ function Informacoes() {
                     <div className="info-card">
                         <p className="info-card-texto">
                             <span className="info-card-titulo">{t.informacoes.conscientizacaoTitulo}: </span>
-                            {t.informacoes.conscientizacaoTexto(resultado.diferencaEmissao, resultado.arvoresSalvas)}
+                            {resultado
+                                ? t.informacoes.conscientizacaoTexto(resultado.diferencaEmissao, resultado.arvoresSalvas)
+                                : t.informacoes.semCalculo
+                            }
                         </p>
                     </div>
                     <div className="info-card">
