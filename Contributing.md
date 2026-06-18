@@ -22,11 +22,10 @@ Abra seu terminal e navegue até o diretório onde deseja clonar o repositório.
 Em seguida, execute o comando:
 
 ```bash
-git clone https://github.com/AnzinFelipe/Lumen.git
+https://github.com/neivals/Ecoar.git
 ```
 
 Abra essa pasta com o seu interpretador
-
 
 ### 3. Instale as Dependências 
 
@@ -34,10 +33,21 @@ Faça questão de ter o Maven instalado para conseguir instalar as dependências
 
 ### 4. Como testar localmente a aplicação
 
-Crie uma pasta chamada .env.local e coloque isso dentro dela:
+Crie um aquivo chamado .env.local dentro do diretório Frontend/calculeco-ui e coloque isso dentro dela:
 
 ```bash
 VITE_API_URL=http://localhost:8080
+```
+
+Substitua as linhas específicas do application.properties, que está dentro do diretório Backend/calculeco/src/main/resources, por estas abaixo para poder utilizar o banco de dados local:
+
+```bash
+spring.h2.console.enabled=true
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 ```
 
 Visite a classe Java CalculecoApplication e rode ela, após isso o backend está pronto para ser utilizado
@@ -50,7 +60,7 @@ npm run dev
 
 Depois copie o link do localhost e colar no seu navegador
 
-Após isso quaisquer mudanças aplicadas poderão ser observadas em tempo real
+Após isso, quaisquer mudanças aplicadas poderão ser observadas em tempo real
 
 ## Contribuindo com Código
 
