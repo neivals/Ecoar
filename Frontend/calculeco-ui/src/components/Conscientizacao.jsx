@@ -1,7 +1,9 @@
 import { useLanguage } from "../context/LanguageContext";
+import {useNavigate} from "react-router-dom";
 
 function Conscientizacao({ dados, periodo }) {
     const { t } = useLanguage();
+    const navigate = useNavigate();
 
     const porcentagem =
         dados && dados.emissaoTotalFisico > 0
@@ -23,7 +25,7 @@ function Conscientizacao({ dados, periodo }) {
             <p className="conscientizacao-texto">
                 {textoConscientizacao(porcentagem)}
             </p>
-            <button type="button" className="saiba-mais-btn">
+            <button type="button" className="saiba-mais-btn" onClick={() => navigate("/informacoes")}>
                 {t.conscientizacao.saibaMais}
             </button>
         </div>

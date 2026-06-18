@@ -116,15 +116,23 @@ function Layout({ children }) {
 
 function Calculadora() {
     const { resultado, setResultado, periodo, setPeriodo, periodoCalculado } = useCalculo();
+    const { t } = useLanguage();
 
     return (
         <Layout>
             <div className="calculadora-layout">
-                <FormularioEmissao
-                    onResultado={setResultado}
-                    periodoSelecionado={periodo}
-                    setPeriodoSelecionado={setPeriodo}
-                />
+                <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "360px", flexShrink: 0 }}>
+                    <div className="paginacalculadora2">
+                        <div className="a-calculeco-tem">
+                            {t.formulario.descricao}
+                        </div>
+                    </div>
+                    <FormularioEmissao
+                        onResultado={setResultado}
+                        periodoSelecionado={periodo}
+                        setPeriodoSelecionado={setPeriodo}
+                    />
+                </div>
                 <div className="resultados-area">
                     <Resultado dados={resultado} periodo={periodoCalculado || periodo} />
                 </div>

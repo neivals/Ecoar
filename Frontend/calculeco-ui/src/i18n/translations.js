@@ -15,7 +15,7 @@ const translations = {
             energia: "Uso de energia elétrica",
             materiais: "Descarte de materiais",
             regiao: "Região",
-            enderecoPlaceholder: "Digite o endereço...",
+            enderecoPlaceholder: "Insira seu CEP aqui",
             periodo: "Período",
             selecionePeriodo: "Selecione o período",
             seisMeses: "Seis meses",
@@ -26,31 +26,18 @@ const translations = {
         },
         resultado: {
             comparacaoModalidades: "Comparação dentre modalidades de cartões",
-            totalCO2: "Total de CO2 emitido por cada cartão",
+            totalCO2: "Total de recursos consumidos por cada cartão",
             quantidadeRecursosConsumidos: "Quantidade de recursos consumidos",
             quantidadeEnergiaUsada: "Quantidade de energia elétrica usada",
             fisico: "Físico",
             digital: "Digital",
-            impactoAmbiental: (kg) =>
-                `Ao usar o Cartão de Benefícios Digital, causa um impacto ambiental de ${kg}Kg a menos do que causaria usando o Cartão Físico.`,
-            comparacaoTempo: "Comparação por tempo",
-            cartaoDigitalEmite: (kg) =>
-                `Dentro de 1 ano, o cartão digital emite ${kg}Kg de CO2 menos que o físico!`,
-            cartaoDigitalEmitePorcentagem: (porcentagem) =>
-                `Dentro de 1 ano, o cartão digital gasta ${porcentagem}% menos que o físico.`,
-            recursos: "Recursos",
-            energia: "Energia",
-            energiaConsome: (kwh) =>
-                `Dentro de 1 ano, o cartão físico e digital consomem ${kwh}KWh`,
-            agua: "Água",
-            aguaGasta: (litros) =>
-                `Dentro de 1 ano, a produção dos cartões físicos gasta no total ${litros}L`,
-            plastico: "Plástico",
-            plasticoConsome: (kg) =>
-                `Dentro de 1 ano, a produção dos cartões físicos consome no total ${kg}Kg de plástico`,
-            arvoresSalvas: "Árvores salvas",
-            arvoresSalvasTexto: (kg, arvores) =>
-                `Com ${kg}Kg de CO2 economizados, ${arvores} árvores são salvas por mês.`,
+            impactoAmbiental: (agua, CO2, plastico) =>
+                `Ao usar o nosso Cartão de Benefícios Digital, você reduz em ${agua} litros seu consumo de água, e diminui em ${CO2}Kg e ${plastico}Kg sua liberação de CO2 e descarte de materiais, respectivamente.`,
+            comparacaoTempo: "Comparação de CO2 por tempo",
+            cartaoDigitalEmitePorcentagem: (periodo, porcentagem) =>
+                `Dentro de ${periodo}, o cartão digital emite ${porcentagem}% menos que o físico.`,
+            energiaConsome: (periodo, kwh) =>
+                `Dentro de ${periodo}, o cartão físico e digital consomem ${kwh}KWh`,
         },
         conscientizacao: {
             titulo: "(Junção de informações)",
@@ -73,7 +60,7 @@ const translations = {
             conscientizacaoTexto: (kg, arvores) =>
                 `Com ${kg}Kg de CO2 economizados, ${arvores} árvores são salvas por mês.`,
             semCalculo: "Preencha os campos da calculadora para ver nessa seção aplicações práticas resultantes da redução do seu impacto ambiental.",
-            infoTitulo: "INFO SOBRE COMO É FEITO O CÁLCULO",
+            infoTitulo: "INFORMAÇÃO SOBRE COMO É FEITO O CÁLCULO",
             infoTexto:
                 "Para chegarmos aos resultados apresentados na calculadora, o calculo se baseia em diversas etapas, primeiramente calculamos a emissão de CO2 em Kg. Juntando a emissão na produção, emissão no transporte, emissão nas transações e a emissão no descarte, se houver no período selecionado, chegamos à emissão total de CO2 de um cartão físico, que será comparado com a emissão nas transações de um cartão digital. Na próxima etapa, calculamos mais recursos importantes a serem contabilizados no impacto ambiental, a energia total gasta em KWh pelo total de transações feitas por ambos os cartões, a água total gasta em litros na produção dos cartões físicos e o plástico total gasto em Kg também na produção dos cartões físicos. Por último, calculamos uma média de árvores que seriam salvas mensalmente por meio do CO2 que seria poupado caso os cartões físicos fossem trocados por cartões digitais." +
                 "\nVALORES PADRÃO USADOS NA CALCULADORA - CARTÕES PRODUZIDOS POR MÊS: 10000; TRANSAÇÕES AO MÊS FEITAS POR CADA CARTÃO: 25",
@@ -117,31 +104,18 @@ const translations = {
         },
         resultado: {
             comparacaoModalidades: "Comparison between card modalities",
-            totalCO2: "Total CO2 emitted per card",
+            totalCO2: "Total of resources consumed per card",
             quantidadeRecursosConsumidos: "Amount of resources consumed",
             quantidadeEnergiaUsada: "Amount of electricity used",
             fisico: "Physical",
             digital: "Digital",
-            impactoAmbiental: (kg) =>
-                `By using the Digital Benefit Card, it causes an environmental impact of ${kg}Kg less than using the Physical Card.`,
-            comparacaoTempo: "Comparison over time",
-            cartaoDigitalEmite: (kg) =>
-                `Within 1 year, the digital card emits ${kg}Kg of CO2 less than the physical one!`,
-            cartaoDigitalEmitePorcentagem: (porcentagem) =>
-                `Within 1 year, the digital card uses ${porcentagem}% less than the physical one.`,
-            recursos: "Resources",
-            energia: "Energy",
-            energiaConsome: (kwh) =>
-                `Within 1 year, physical and digital cards consume ${kwh}KWh`,
-            agua: "Water",
-            aguaGasta: (litros) =>
-                `Within 1 year, the production of physical cards spends a total of ${litros}L`,
-            plastico: "Plastic",
-            plasticoConsome: (kg) =>
-                `Within 1 year, the production of physical cards consumes a total of ${kg}Kg of plastic`,
-            arvoresSalvas: "Trees saved",
-            arvoresSalvasTexto: (kg, arvores) =>
-                `With ${kg}Kg of CO2 saved, ${arvores} trees are saved per month.`,
+            impactoAmbiental: (agua, CO2, plastico) =>
+                `By using the Digital Benefit Card, you reduce the water consumption by ${agua} liters, and reduce the CO2 release and disposal of materials by ${CO2}Kg and ${plastico}Kg, respectively.`,
+            comparacaoTempo: "Comparison of CO2 over time",
+            cartaoDigitalEmitePorcentagem: (periodo, porcentagem) =>
+                `Within ${periodo}, the digital card release ${porcentagem}% less than the physical one.`,
+            energiaConsome: (periodo, kwh) =>
+                `Within ${periodo}, physical and digital cards consume ${kwh}KWh`,
         },
         conscientizacao: {
             titulo: "(Joining of information)",
