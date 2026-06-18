@@ -2,6 +2,7 @@ import { useLanguage } from "../context/LanguageContext";
 import Conscientizacao from "./Conscientizacao";
 import recursos from "../icone/Recursos.png";
 import energia from "../icone/Energia.png";
+import "./Resultado.css";
 
 import {
     Chart as ChartJS,
@@ -18,6 +19,67 @@ import {
 
 import { Bar, Line } from "react-chartjs-2";
 
+const COR_FISICO = "#135b4f";
+const COR_DIGITAL = "#ff2f28";
+
+const valoresAcimaPlugin = {
+    id: "valoresAcimaPlugin",
+    afterDatasetsDraw(chart, args, pluginOptions) {
+        const { ctx, chartArea } = chart;
+        const meta = chart.getDatasetMeta(0);
+        const valores = pluginOptions?.valores || [];
+
+        ctx.save();
+        ctx.textAlign = "center";
+        ctx.textBaseline = "bottom";
+
+        meta.data.forEach((barra, index) => {
+            const x = barra.x;
+            const titulo = chart.data.labels[index];
+            const valor = valores[index];
+
+            ctx.font = '700 15px Kufam, sans-serif';
+            ctx.fillStyle = "#162056";
+            ctx.fillText(titulo, x, barra.y - 22);
+
+            ctx.font = '700 16px Kufam, sans-serif';
+            ctx.fillStyle = index === 0 ? COR_FISICO : COR_DIGITAL;
+            ctx.fillText(valor, x, barra.y - 4);
+        });
+
+        ctx.restore();
+    },
+};
+
+const ultimoValorLinhaPlugin = {
+    id: "ultimoValorLinhaPlugin",
+    afterDatasetsDraw(chart) {
+        const { ctx } = chart;
+
+        ctx.save();
+        ctx.textAlign = "center";
+        ctx.textBaseline = "bottom";
+
+        chart.data.datasets.forEach((dataset, datasetIndex) => {
+            const meta = chart.getDatasetMeta(datasetIndex);
+            const pontos = meta.data;
+
+            if (!pontos.length) return;
+
+            const ultimoPonto = pontos[pontos.length - 1];
+            const ultimoValor = dataset.data[dataset.data.length - 1];
+
+
+
+            ctx.font = "700 14px Kufam, sans-serif";
+            ctx.fillStyle = dataset.borderColor;
+            ctx.fillText(formatarEmissao(ultimoValor), ultimoPonto.x - 20, ultimoPonto.y - 6);
+        });
+
+        ctx.restore();
+    },
+};
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -30,9 +92,6 @@ ChartJS.register(
     Filler
 );
 
-const COR_FISICO = "#135b4f";
-const COR_DIGITAL = "#ff2f28";
-
 function formatarNumero(valor, casas = 1) {
     return Number(valor).toLocaleString("pt-BR", {
         minimumFractionDigits: casas,
@@ -44,14 +103,23 @@ function formatarEmissao(kg) {
     if (kg >= 1000) {
         return `${formatarNumero(kg / 1000)}t`;
     }
+
     return `${formatarNumero(kg, 0)}Kg`;
 }
 
-const barOptions = {
+const criarBarOptions = (valores) => ({
     responsive: true,
     maintainAspectRatio: false,
+    layout: {
+        padding: {
+            top: 45,
+        },
+    },
     plugins: {
         legend: { display: false },
+        valoresAcimaPlugin: {
+            valores,
+        },
         tooltip: {
             backgroundColor: "#162056",
             titleFont: { family: "Kufam" },
@@ -77,7 +145,7 @@ const barOptions = {
             },
         },
     },
-};
+});
 
 const lineOptions = {
     responsive: true,
@@ -110,7 +178,13 @@ const lineOptions = {
         },
     },
     elements: {
-        point: { radius: 0, hoverRadius: 5 },
+        point: {
+            radius: (context) => {
+                const dataLength = context.dataset.data.length;
+                return context.dataIndex === dataLength - 1 ? 4 : 0;
+            },
+            hoverRadius: 5,
+        },
         line: { borderWidth: 2.5 },
     },
 };
@@ -227,25 +301,27 @@ function Resultado({ dados, periodo }) {
                     </h3>
                     <div className="grafico-painel-corpo">
                         <div className="coluna-esquerda-painel">
-                            <img src={recursos} className="recurso-icone" alt="recursos-icon"/>
+                            <img src={recursos} className="recurso-icone" alt="recursos-icon" />
                             <p className="ao-usar-o">
-                                {t.resultado.impactoAmbiental(formatarNumero(dados.aguaTotal || 0, 0), formatarNumero(dados.diferencaEmissao, 0), formatarNumero(dados.plasticoTotal, 0))}
+                                {t.resultado.impactoAmbiental(
+                                    formatarNumero(dados.aguaTotal || 0, 0),
+                                    formatarNumero(dados.diferencaEmissao, 0),
+                                    formatarNumero(dados.plasticoTotal, 0)
+                                )}
                             </p>
                         </div>
+
                         <div className="coluna-direita-grafico">
-                            <div className="grafico-valores">
-                                <div className="grafico-valor-item">
-                                    <span className="fsico">{t.resultado.fisico}</span>
-                                    <span className="xg">{formatarEmissao(impactoFisico)}</span>
-                                </div>
-                                <div className="grafico-valor-item">
-                                    <span className="digital">{t.resultado.digital}</span>
-                                    <span className="yg">{formatarEmissao(emissaoDigital)}</span>
-                                </div>
-                            </div>
                             <div className="grafico-painel-chart">
                                 <div className="grafico-chart-wrap">
-                                    <Bar data={recursosData} options={barOptions} />
+                                    <Bar
+                                        data={recursosData}
+                                        options={criarBarOptions([
+                                            formatarEmissao(impactoFisico),
+                                            formatarEmissao(emissaoDigital),
+                                        ])}
+                                        plugins={[valoresAcimaPlugin]}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -256,27 +332,30 @@ function Resultado({ dados, periodo }) {
                     <h3 className="grafico-painel-titulo">
                         {t.resultado.quantidadeEnergiaUsada}
                     </h3>
+
                     <div className="grafico-painel-corpo">
                         <div className="coluna-esquerda-painel">
-                            <img src={energia} className="energia-icone" alt="energia-icon"/>
+                            <img src={energia} className="energia-icone" alt="energia-icon" />
+
                             <p className="ao-usar-o">
-                                {t.resultado.energiaConsome(textoPeriodoDinamico, formatarNumero(dados.energiaTotal, 0))}
+                                {t.resultado.energiaConsome(
+                                    textoPeriodoDinamico,
+                                    formatarNumero(dados.energiaTotal, 0)
+                                )}
                             </p>
                         </div>
+
                         <div className="coluna-direita-grafico">
-                            <div className="grafico-valores">
-                                <div className="grafico-valor-item">
-                                    <span className="fsico">{t.resultado.fisico}</span>
-                                    <span className="xg">{formatarNumero(dados.energiaTotal, 0)}kw</span>
-                                </div>
-                                <div className="grafico-valor-item">
-                                    <span className="digital">{t.resultado.digital}</span>
-                                    <span className="yg">{formatarNumero(dados.energiaTotal, 0)}kw</span>
-                                </div>
-                            </div>
                             <div className="grafico-painel-chart">
                                 <div className="grafico-chart-wrap">
-                                    <Bar data={energiaData} options={barOptions} />
+                                    <Bar
+                                        data={energiaData}
+                                        options={criarBarOptions([
+                                            `${formatarNumero(dados.energiaTotal, 0)}kw`,
+                                            `${formatarNumero(dados.energiaTotal, 0)}kw`,
+                                        ])}
+                                        plugins={[valoresAcimaPlugin]}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -284,25 +363,37 @@ function Resultado({ dados, periodo }) {
                 </div>
             </div>
 
-
             <div className="resultados-base">
                 <div className="grafico-tempo-area">
-                    <h2 className="comparao-por-tempo">{t.resultado.comparacaoTempo}</h2>
+                    <h2 className="comparao-por-tempo">
+                        {t.resultado.comparacaoTempo}
+                    </h2>
+
                     <div className="grafico-tempo">
-                        <Line data={tempoData} options={lineOptions} />
+                        <Line
+                            data={tempoData}
+                            options={lineOptions}
+                            plugins={[ultimoValorLinhaPlugin]}
+                        />
                     </div>
+
                     <div className="grafico-tempo-legenda">
                         <span className="legenda-item legenda-fisico">
                             <span className="legenda-cor" />
                             {t.resultado.fisico}
                         </span>
+
                         <span className="legenda-item legenda-digital">
                             <span className="legenda-cor" />
                             {t.resultado.digital}
                         </span>
                     </div>
+
                     <p className="dentro-de-1">
-                        {t.resultado.cartaoDigitalEmitePorcentagem(textoPeriodoDinamico, porcentagemEconomia)}
+                        {t.resultado.cartaoDigitalEmitePorcentagem(
+                            textoPeriodoDinamico,
+                            porcentagemEconomia
+                        )}
                     </p>
                 </div>
 

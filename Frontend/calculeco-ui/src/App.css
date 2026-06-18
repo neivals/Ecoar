@@ -39,6 +39,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  margin-left: 40px;
 }
 
 .navbar-brand .edenred-brand img {
@@ -559,3 +560,17 @@ button:hover {
   }
 }
 
+.logo-calculeco {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+
+  transform: translateY(10px);
+  margin-left: 4px;
+}
+
+.navbar-icone {
+  width: 32px;
+  height: auto;
+  object-fit: contain;
+}

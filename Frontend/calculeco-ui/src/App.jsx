@@ -13,6 +13,7 @@ import edenredLogo from "./icone/Edenred_logo1.png";
 import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import { AccessibilityProvider, useAccessibility, FONT_SCALES } from "./context/AccessibilityContext";
 import {CalculoProvider, useCalculo} from "./context/CalculoContext.jsx";
+import calculecoIcone from "./icone/logo_branca.png";
 
 function ColorFilterSVG() {
     const { filterEnabled, filterValues, FILTER_MATRICES, IDENTITY } = useAccessibility();
@@ -68,7 +69,8 @@ function Navbar() {
         <nav className="navbar">
             <div className="navbar-brand">
                 <span className="navbar-mark" aria-hidden="true"></span>
-                <img src={calculecoLogo} alt="Calculeco" />
+                <img src={calculecoIcone} className="navbar-icone" alt="Ícone" />
+                <img src={calculecoLogo} className="logo-calculeco" alt="Calculeco" />
                 <div className="edenred-brand" aria-label="Edenred">
                     <img src={edenredLogo} alt="Edenred" />
                 </div>
