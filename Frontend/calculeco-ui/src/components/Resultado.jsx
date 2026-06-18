@@ -227,7 +227,7 @@ function Resultado({ dados, periodo }) {
                     </h3>
                     <div className="grafico-painel-corpo">
                         <div className="coluna-esquerda-painel">
-                            <img src={recursos} className="recurso-icone"/>
+                            <img src={recursos} className="recurso-icone" alt="recursos-icon"/>
                             <p className="ao-usar-o">
                                 {t.resultado.impactoAmbiental(formatarNumero(dados.aguaTotal || 0, 0), formatarNumero(dados.diferencaEmissao, 0), formatarNumero(dados.plasticoTotal, 0))}
                             </p>
@@ -258,7 +258,7 @@ function Resultado({ dados, periodo }) {
                     </h3>
                     <div className="grafico-painel-corpo">
                         <div className="coluna-esquerda-painel">
-                            <img src={energia} className="energia-icone"/>
+                            <img src={energia} className="energia-icone" alt="energia-icon"/>
                             <p className="ao-usar-o">
                                 {t.resultado.energiaConsome(textoPeriodoDinamico, formatarNumero(dados.energiaTotal, 0))}
                             </p>
