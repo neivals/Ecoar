@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
@@ -14,6 +14,10 @@ import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import { AccessibilityProvider, useAccessibility, FONT_SCALES } from "./context/AccessibilityContext";
 import {CalculoProvider, useCalculo} from "./context/CalculoContext.jsx";
 import calculecoIcone from "./icone/logo_branca.png";
+import iconeUsuario from "./icone/icone_usuario.png";
+import iconeEngrenagem from "./icone/Engrenagem_icone.png";
+import iconeHistorico from "./icone/historico_icone.png";
+import { logout, obterEmail } from "./services/authService";
 
 function ColorFilterSVG() {
     const { filterEnabled, filterValues, FILTER_MATRICES, IDENTITY } = useAccessibility();
@@ -58,12 +62,31 @@ function Navbar() {
     const { lang, setLang, t } = useLanguage();
     const navigate = useNavigate();
     const location = useLocation();
+    const [dropdownAberto, setDropdownAberto] = useState(false);
+    const dropdownRef = useRef(null);
+    const email = obterEmail();
 
     const tabs = [
         { label: t.navbar.calculadora, path: "/calculadora" },
         { label: t.navbar.informacoes, path: "/informacoes" },
         { label: t.navbar.acessibilidade, path: "/acessibilidade" },
     ];
+
+    useEffect(() => {
+        function handleClickFora(e) {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setDropdownAberto(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickFora);
+        return () => document.removeEventListener("mousedown", handleClickFora);
+    }, []);
+
+    function handleTerminarSessao() {
+        logout();
+        setDropdownAberto(false);
+        navigate("/login");
+    }
 
     return (
         <nav className="navbar">
@@ -86,22 +109,52 @@ function Navbar() {
                     </span>
                 ))}
             </div>
-            <div className="navbar-lang">
-                <span
-                    className={lang === "ptbr" ? "lang-ativo" : ""}
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setLang("ptbr")}
-                >
-                    ptbr
-                </span>
-                <span className="lang-sep"> | </span>
-                <span
-                    className={lang === "eng" ? "lang-ativo" : ""}
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setLang("eng")}
-                >
-                    eng
-                </span>
+            <div className="navbar-direita">
+                <div className="navbar-lang">
+                    <span
+                        className={lang === "ptbr" ? "lang-ativo" : ""}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => setLang("ptbr")}
+                    >
+                        ptbr
+                    </span>
+                    <span className="lang-sep"> | </span>
+                    <span
+                        className={lang === "eng" ? "lang-ativo" : ""}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => setLang("eng")}
+                    >
+                        eng
+                    </span>
+                </div>
+                <div className="perfil-wrapper" ref={dropdownRef}>
+                    <button
+                        className="perfil-btn"
+                        onClick={() => setDropdownAberto(v => !v)}
+                        aria-label="Menu do usuário"
+                    >
+                        <img src={iconeUsuario} alt="Usuário" className="perfil-avatar" />
+                    </button>
+                    {dropdownAberto && (
+                        <div className="perfil-dropdown">
+                            <div className="perfil-dropdown-avatar">
+                                <img src={iconeUsuario} alt="Usuário" className="perfil-dropdown-foto" />
+                            </div>
+                            <p className="perfil-dropdown-email">{email}</p>
+                            <button className="perfil-dropdown-btn" onClick={() => setDropdownAberto(false)}>
+                                <img src={iconeHistorico} alt="" className="perfil-dropdown-icone" />
+                                {t.navbar.historico}
+                            </button>
+                            <button className="perfil-dropdown-btn" onClick={() => setDropdownAberto(false)}>
+                                <img src={iconeEngrenagem} alt="" className="perfil-dropdown-icone" />
+                                {t.navbar.configuracoes}
+                            </button>
+                            <button className="perfil-dropdown-sair" onClick={handleTerminarSessao}>
+                                {t.navbar.terminarSessao}
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
         </nav>
     );
