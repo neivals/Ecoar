@@ -4,6 +4,9 @@ const translations = {
             calculadora: "Calculadora",
             informacoes: "Informações",
             acessibilidade: "Acessibilidade",
+            historico: "Histórico de Cálculo",
+            configuracoes: "Configurações da conta",
+            terminarSessao: "Terminar sessão",
         },
         formulario: {
             descricao:
@@ -82,6 +85,9 @@ const translations = {
             calculadora: "Calculator",
             informacoes: "Information",
             acessibilidade: "Accessibility",
+            historico: "Calculation History",
+            configuracoes: "Account Settings",
+            terminarSessao: "Sign out",
         },
         formulario: {
             descricao:
