@@ -78,21 +78,35 @@ Dentro dessa proposta se encontra:
 
 </details>
 
+## Como acessar nosso deploy
+
+Primeiramente, acesse o link do nosso backend para ligá-lo, isso deve demorar alguns segundos:
+
+https://ecoar.onrender.com
+
+Quando a página retornar com acesso negado, acesse o nosso site por meio deste link e já será possível utilizar nossa calculadora:
+
+https://ecoar.vercel.app
+
 ## Integrantes:
 
 Design:
 
-- Diego André Máximo de Lima
-- Giovanna Figueiredo de Azevedo
-- Pãmala Aurea Dourado Oliveira Siqueira
-- Mila Siviero Bertini Carneiro
-- Nina Jansen Berardinelli
+| Nome | Email |
+| :--- | :--- |
+| Diego André Máximo de Lima | daml@cesar.school |
+| Giovanna Figueiredo de Azevedo | gfa4@cesar.school |
+| Pãmala Aurea Dourado Oliveira Siqueira | pados@cesar.school |
+| Mila Siviero Bertini Carneiro | msbc@cesar.school |
+| Nina Jansen Berardinelli | njb@cesar.school |
 
 Ciências da Computação:
 
-- Henrique Wanderley de Barros Guimarães
-- Ian Felipe Costa van Drunen
-- Rafael Chiappetta Barboza
-- Sofia Pan Yu
-- Telmo Melo Ferreira Calheiros
-- Thiago Neiva de Lima Santos
+| Nome | Email |
+| :--- | :--- |
+| Henrique Wanderley de Barros Guimarães | hwbg@cesar.school |
+| Ian Felipe Costa van Drunen | ifcvd@cesar.school
+| Rafael Chiappetta Barboza | rcb2@cesar.school |
+| Sofia Pan Yu | spy@cesar.school |
+| Telmo Melo Ferreira Calheiros | tmfc@cesar.school |
+| Thiago Neiva de Lima Santos | tnls@cesar.school |
