@@ -3,7 +3,7 @@
 Aqui se encontra o repositório do grupo 3, responsáveis em propor uma solução a problemáticas trazidos pelo nosso cliente.
 
 Dentro dessa proposta se encontra:
-1. A ideia do cliente em prática: A calculadora de emissão de carbono dos cartões de crédito.
+1. A ideia do cliente em prática: Uma calculadora comparativa do impacto ambiental entre cartões de crédito físicos e cartões digitais.
 2. Uma interfáce visual agradável desenvolvidos pelo designers, trazendo intuitividade e uma baixa curva de aprendizado no uso da aplicação.
 
 ## Sessão de entrega 🎐
