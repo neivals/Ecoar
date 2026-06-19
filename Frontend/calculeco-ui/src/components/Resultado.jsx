@@ -134,7 +134,7 @@ const criarBarOptions = (valores) => ({
             },
         },
         y: {
-            grid: { color: "rgba(22, 32, 86, 0.08)" },
+            grid: { color: "rgba(22, 32, 86, 0.28)" },
             border: { display: false },
             ticks: {
                 color: "#162056",
@@ -158,7 +158,7 @@ const lineOptions = {
     },
     scales: {
         x: {
-            grid: { color: "rgba(22, 32, 86, 0.06)" },
+            grid: { color: "rgba(22, 32, 86, 0.28)" },
             border: { display: false },
             ticks: {
                 color: "#162056",
